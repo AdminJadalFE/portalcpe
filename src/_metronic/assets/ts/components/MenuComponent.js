@@ -763,7 +763,6 @@ MenuComponent.initGlobalHandlers = () => {
                 const item = menuItems[i];
                 const menuObj = MenuComponent.getInstance(item);
                 if (menuObj && menuObj.getItemSubType(item) === 'dropdown') {
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     const menu = menuObj.getElement();
                     const sub = menuObj.getItemSubElement(item);
                     if (item === e.target || item.contains(e.target)) {
