@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {Suspense} from 'react'
+import {Outlet} from 'react-router-dom'
+import {I18nProvider} from './_metronic/i18n/i18nProvider'
+import {LayoutProvider} from './_metronic/layout/core'
+import {MasterInit} from './_metronic/layout/MasterInit'
+// import {AuthInit} from './apps/modules/auth'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Suspense>
+      <I18nProvider>
+        <LayoutProvider>
+          {/* <AuthInit> */}
+            <Outlet />
+            <MasterInit />
+          {/* </AuthInit> */}
+        </LayoutProvider>
+      </I18nProvider>
+    </Suspense>
+  )
 }
 
-export default App;
+export {App}
