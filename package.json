@@ -40,6 +40,7 @@
     "xlsx": "^0.18.5",
     "yup": "0.32.11"
   },
+  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
