@@ -7,8 +7,7 @@ import moment from 'moment';
 import {CpeLoading} from '../../modules/loading/CpeLoading' 
 import {toAbsoluteUrl} from '../../../_metronic/helpers'
 
-import { 
-  CardsWidget0,
+import {  
   ChartsWidget6,
   ChartsWidget1,
   ChartsWidget2,
@@ -43,10 +42,8 @@ const DashboardWrapper = () => {
 
     const tipoCpe = []; 
     const montoCpe = []; 
-    const totalCpe = []; 
-    console.log(dataResumen)
-  console.log(dataResumen.length)
-    if (dataResumen != 'undefined') {
+    const totalCpe = [];  
+     
       console.log("first")
       dataResumen.map((data) => {
         montoCpe.push(data.montoCpe.toFixed(2)); 
@@ -74,8 +71,7 @@ const DashboardWrapper = () => {
             tipoCpe.push("PERCEPCIÓN");
             break;
         }
-      }) 
-    }
+      })  
 
   
     setTipoCpeData(tipoCpe)
@@ -89,8 +85,7 @@ const DashboardWrapper = () => {
     const totalesCpe = dataEstadoTipoCpe.totalCpe; 
     const rechazadosCpe = dataEstadoTipoCpe.rechazadoCpe; 
     const pendientesCpe = dataEstadoTipoCpe.pendienteCpe; 
-
-    if (dataEstadoTipoCpe) {
+ 
       dataEstadoTipoCpe.tipoCpe.map((data) => {  
         switch (data) {
           case "01":
@@ -115,8 +110,7 @@ const DashboardWrapper = () => {
             tiposCpe.push("PERCEPCIÓN");
             break;
         }
-      }) 
-    }
+      })  
  
     setTiposCpe(tiposCpe)
     settotalesCpe(totalesCpe)

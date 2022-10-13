@@ -1,4 +1,3 @@
-import {useState} from 'react' 
 import {Link} from 'react-router-dom'
 import * as XLSX from 'xlsx';
 import {useSearch} from './busqueda/core/searchContext'; 

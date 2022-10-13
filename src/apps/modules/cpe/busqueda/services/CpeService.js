@@ -21,44 +21,37 @@ export const getEstados = async () => {
 }
  
 export const getSedes = async (data) => { 
-    let content = await FetchConf('cpe/sedes','POST',data);
-    console.log(content)
+    let content = await FetchConf('cpe/sedes','POST',data); 
     return content.content;
 }
 
 export const getDataResumen = async (data) => { 
-    let content = await FetchConf('cpe/getdataresumen','POST',data);
-    console.log(content)
+    let content = await FetchConf('cpe/getdataresumen','POST',data); 
     return content.content;
 }
 
 export const getDataTotalEmision = async (data) => { 
-    let content = await FetchConf('cpe/gettotalemision','POST',data);
-    console.log(content)
+    let content = await FetchConf('cpe/gettotalemision','POST',data); 
     return content.content;
 }
 
 export const getDataTotalEstados = async (data) => { 
-    let content = await FetchConf('cpe/gettotalestados','POST',data);
-    console.log(content)
+    let content = await FetchConf('cpe/gettotalestados','POST',data); 
     return content.content;
 }
  
 export const getDataEstadoTipoCpe = async (data) => { 
-    let content = await FetchConf('cpe/getestadotipocpe','POST',data);
-    console.log(content)
+    let content = await FetchConf('cpe/getestadotipocpe','POST',data); 
     return content.content;
 }
  
 export const CpeServiceGetData = async (data) => { 
-    let content = await FetchConf('cpe/getcpe','POST',data);
-    console.log(content)
+    let content = await FetchConf('cpe/getcpe','POST',data); 
     return content.content;
 }
 
 export const SendEmail = async (data) => { 
-    let content = await FetchConf('cpe/sendemail','POST',data);
-    console.log(content)
+    let content = await FetchConf('cpe/sendemail','POST',data); 
     return content.content;
 }
  
