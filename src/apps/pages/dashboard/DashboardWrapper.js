@@ -44,34 +44,39 @@ const DashboardWrapper = () => {
     const tipoCpe = []; 
     const montoCpe = []; 
     const totalCpe = []; 
+    console.log(dataResumen)
+  console.log(dataResumen.length)
+    if (dataResumen != 'undefined') {
+      console.log("first")
+      dataResumen.map((data) => {
+        montoCpe.push(data.montoCpe.toFixed(2)); 
+        totalCpe.push(data.totalCpe);
+        switch (data._id) {
+          case "01":
+            tipoCpe.push("FACTURA");
+            break;
+          case "03":
+            tipoCpe.push("BOLETA");
+            break;
+          case "07":
+            tipoCpe.push("N. CRÉDITO");
+            break;
+          case "08":
+            tipoCpe.push("N. DÉBITO");
+            break;
+          case "09":
+            tipoCpe.push("GUÍA");
+            break;
+          case "20":
+            tipoCpe.push("RETENCIÓN");
+            break;
+          case "40":
+            tipoCpe.push("PERCEPCIÓN");
+            break;
+        }
+      }) 
+    }
 
-    dataResumen.map((data) => {
-      montoCpe.push(data.montoCpe.toFixed(2)); 
-      totalCpe.push(data.totalCpe);
-      switch (data._id) {
-        case "01":
-          tipoCpe.push("FACTURA");
-          break;
-        case "03":
-          tipoCpe.push("BOLETA");
-          break;
-        case "07":
-          tipoCpe.push("N. CRÉDITO");
-          break;
-        case "08":
-          tipoCpe.push("N. DÉBITO");
-          break;
-        case "09":
-          tipoCpe.push("GUÍA");
-          break;
-        case "20":
-          tipoCpe.push("RETENCIÓN");
-          break;
-        case "40":
-          tipoCpe.push("PERCEPCIÓN");
-          break;
-      }
-    }) 
   
     setTipoCpeData(tipoCpe)
     setMontoCpeData(montoCpe)
@@ -85,32 +90,34 @@ const DashboardWrapper = () => {
     const rechazadosCpe = dataEstadoTipoCpe.rechazadoCpe; 
     const pendientesCpe = dataEstadoTipoCpe.pendienteCpe; 
 
-    dataEstadoTipoCpe.tipoCpe.map((data) => { 
-      
-      switch (data) {
-        case "01":
-          tiposCpe.push("FACTURA");
-          break;
-        case "03":
-          tiposCpe.push("BOLETA");
-          break;
-        case "07":
-          tiposCpe.push("N. CRÉDITO");
-          break;
-        case "08":
-          tiposCpe.push("N. DÉBITO");
-          break;
-        case "09":
-          tiposCpe.push("GUÍA");
-          break;
-        case "20":
-          tiposCpe.push("RETENCIÓN");
-          break;
-        case "40":
-          tiposCpe.push("PERCEPCIÓN");
-          break;
-      }
-    }) 
+    if (dataEstadoTipoCpe) {
+      dataEstadoTipoCpe.tipoCpe.map((data) => {  
+        switch (data) {
+          case "01":
+            tiposCpe.push("FACTURA");
+            break;
+          case "03":
+            tiposCpe.push("BOLETA");
+            break;
+          case "07":
+            tiposCpe.push("N. CRÉDITO");
+            break;
+          case "08":
+            tiposCpe.push("N. DÉBITO");
+            break;
+          case "09":
+            tiposCpe.push("GUÍA");
+            break;
+          case "20":
+            tiposCpe.push("RETENCIÓN");
+            break;
+          case "40":
+            tiposCpe.push("PERCEPCIÓN");
+            break;
+        }
+      }) 
+    }
+ 
     setTiposCpe(tiposCpe)
     settotalesCpe(totalesCpe)
     setRechazadosCpe(rechazadosCpe)

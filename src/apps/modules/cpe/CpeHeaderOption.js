@@ -53,7 +53,7 @@ const CpeHeaderOption = () => {
                 <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3'>
                   Exportar CPE
                 </Link>
-                <Link to='.'  className='btn btn-dark me-3'>
+                {/* <Link to='.'  className='btn btn-dark me-3'>
                   Descargar XML
                 </Link>
                 <Link to='.'  className='btn btn-dark me-3'>
@@ -61,7 +61,7 @@ const CpeHeaderOption = () => {
                 </Link>
                 <Link to='.' className='btn btn-dark me-3'>
                   Descargar CDR
-                </Link>
+                </Link> */}
               </div>
             </div>
  
