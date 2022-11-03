@@ -194,19 +194,19 @@ const UserActionsCell = ({cpe}) => {
         return (
             <> 
                 <a
-                    href={cpe.urlCpe}
+                    href={cpe.urlCpe} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                 >
                     <KTSVG path='/media/icons/duotune/general/gen019.svg' className='svg-icon-3' />
                 </a>
                 <a
-                    href={cpe.urlPdf}
+                    href={cpe.urlPdf} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                 >
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                 </a>
                 <a 
-                    href={cpe.urlCdr} 
+                    href={cpe.urlCdr} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                 >
                     <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />

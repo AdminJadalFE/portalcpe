@@ -40,10 +40,10 @@ const AuthLayout = () => {
         style={{backgroundImage: `url(${toAbsoluteUrl('/media/logos/jadal.png')})`}}
       >
         {/* begin::Content */}
-        <div className='d-flex flex-column flex-end py-15 px-5 px-md-15 w-100'>
-        <div className='d-flex flex-column flex-center py-15 px-5 px-md-15 w-100'>
+        <div className='d-flex flex-column flex-end py-5 px-1 px-md-5 w-100'>
+        <div className='d-flex flex-column flex-center py-5 px-1 px-md-5 w-100'>
           {/* begin::Title */}
-          <h1 className='text-white fs-2qx fw-bolder text-center mb-7 pt-30'>
+          <h1 className='text-white fs-2qx fw-bolder text-center mb-7 pt-10'>
             Portal de Facturación Electrónica Jadal System
           </h1>
           {/* end::Title */}
