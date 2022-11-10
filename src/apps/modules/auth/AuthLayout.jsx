@@ -56,7 +56,7 @@ const AuthLayout = () => {
             </a>
             <br /><br />
             También puede consultar nuestro Portal de {' '}
-            <a href='https://www.test.jadalfe.pe/visorcpe' className='opacity-75-hover text-warning fw-bold me-1'>
+            <a href='https://www.visortest.jadal.pe/visorcpe' className='opacity-75-hover text-warning fw-bold me-1'>
               Consulta Pública de Comprobantes
             </a> 
           </div>
