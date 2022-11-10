@@ -51,12 +51,12 @@ const AuthLayout = () => {
           {/* begin::Text */}
           <div className='text-white fs-base text-center'>
             Para mayor información de nuestro servicios puede consultar en{' '}
-            <a href='https://es-la.facebook.com/JadalSoftwareSAC' className='opacity-75-hover text-warning fw-bold me-1'>
+            <a href='https://es-la.facebook.com/JadalSoftwareSAC' target="_blank" className='opacity-75-hover text-warning fw-bold me-1'>
               www.jadalsystem.pe
             </a>
             <br /><br />
             También puede consultar nuestro Portal de {' '}
-            <a href='https://www.visortest.jadal.pe/visorcpe' className='opacity-75-hover text-warning fw-bold me-1'>
+            <a href='https://www.visortest.jadal.pe/visorcpe' target="_blank" className='opacity-75-hover text-warning fw-bold me-1'>
               Consulta Pública de Comprobantes
             </a> 
           </div>
