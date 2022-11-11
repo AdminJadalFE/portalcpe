@@ -37,14 +37,14 @@ const usersColumns = [
       <UserCustomHeader tableProps={props} title='Emisión' className='min-w-100px' />
     ),
     id: 'fechaCpe',
-    Cell: ({...props}) => <DateCell fechaCpe={props.data[props.row.index].fechaCpe} option={formatDate}/>,
+    Cell: ({...props}) => <DateCell fechaCpe={props.data[props.row.index].fechaCpe} option={formatDate} indicador={1}/>,
   }, 
   {
     Header: (props) => (
       <UserCustomHeader tableProps={props} title='Publicación' className='min-w-100px' />
     ),
     id: 'fechaPublicacion',
-    Cell: ({...props}) => <DateCell fechaCpe={props.data[props.row.index].fechaPublicacion} option={formatDateTime}/>,
+    Cell: ({...props}) => <DateCell fechaCpe={props.data[props.row.index].fechaPublicacion} option={formatDateTime} indicador={0}/>,
   },    
   {
     Header: (props) => (

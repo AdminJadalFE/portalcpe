@@ -17,6 +17,7 @@ import moment from 'moment';
  
     const getProduct = async () => {  
       const cpes = await CpeServiceGetData(getDefault());   
+      console.log("cpes:", cpes)
       setCpeData(cpes);  
     }  
    
