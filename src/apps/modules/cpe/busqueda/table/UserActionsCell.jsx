@@ -215,7 +215,7 @@ const UserActionsCell = ({cpe}) => {
                     onClick={() => setModalShow(true)}
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
                 >
-                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' /> 
+                    <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
                 </a> 
                 {
                     modalShow 
