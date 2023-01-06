@@ -15,20 +15,23 @@ const UserActionsCell = ({cpe}) => {
         <a
             href={cpe.urlCpe}
             className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+            title='Descargar XML'
         >
-            <KTSVG path='/media/icons/duotune/general/gen019.svg' className='svg-icon-3' />
+            <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
         </a>
         <a
             href={cpe.urlPdf}
             className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+            title='Descargar PDF'
         >
-            <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+            <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
         </a>
         <a 
             href={cpe.urlCdr} 
             className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
+            title='Descargar CDR'
          >
-            <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+            <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
         </a> 
     </>
   )

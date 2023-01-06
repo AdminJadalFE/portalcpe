@@ -195,25 +195,29 @@ const UserActionsCell = ({cpe}) => {
             <> 
                 <a
                     href={cpe.urlCpe} target="_blank"
-                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1' 
+                    title='Descargar XML'
                 >
-                    <KTSVG path='/media/icons/duotune/general/gen019.svg' className='svg-icon-3' />
+                    <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
                 </a>
                 <a
                     href={cpe.urlPdf} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                    title='Descargar PDF'
                 >
-                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                    <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
                 </a>
                 <a 
                     href={cpe.urlCdr} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                    title='Descargar CDR'
                 >
-                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                    <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
                 </a> 
                 <a   
                     onClick={() => setModalShow(true)}
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
+                    title='Reenviar Correo'
                 >
                     <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
                 </a> 
