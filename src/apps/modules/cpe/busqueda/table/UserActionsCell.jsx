@@ -203,7 +203,7 @@ const UserActionsCell = ({cpe}) => {
                     href={cpe.urlPdf} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                 >
-                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                    <KTSVG path='/media/icons/duotune/fe/pdf.png' className='svg-icon-3' />
                 </a>
                 <a 
                     href={cpe.urlCdr} target="_blank"
