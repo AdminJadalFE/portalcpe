@@ -112,7 +112,7 @@ export const DefaultConfig = {
       pageLoader: {
           componentName: 'page-loader',
           type: 'none',
-          logoImage: 'default.svg',
+          logoImage: 'logo2.svg',
           logoClass: 'mh-75px',
       },
   },
