@@ -73,7 +73,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                 {
                         tipoCpeData.map((tipoCpe) => (
                             <tr key={tipoCpe.tipocpeCod}>
-                            <td>
+                            <td className='p-2'>
                               <div className='d-flex align-items-center'> 
                                 <div className='d-flex justify-content-start flex-column'>
                                   <span className='text-dark fw-bold text-hover-primary fs-6'>
@@ -82,7 +82,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                                 </div>
                               </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className='d-flex align-items-center'> 
                                   <div className='d-flex justify-content-start flex-column'>
                                     <Link to='/cpe/busqueda' onClick={() => setFilterCpe(tipoCpe.tipocpeCod, 'ACEPTADO')} className='text-dark fw-bold text-hover-primary d-block fs-6'>
@@ -91,7 +91,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                                   </div>
                                 </div> 
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className='d-flex align-items-center'> 
                                   <div className='d-flex justify-content-start flex-column'>
                                     <Link to='/cpe/busqueda' onClick={() => setFilterCpe(tipoCpe.tipocpeCod, 'RECHAZADO')} className='text-dark fw-bold text-hover-primary d-block fs-6'>
@@ -100,7 +100,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                                   </div>
                                 </div> 
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className='d-flex align-items-center'> 
                                   <div className='d-flex justify-content-start flex-column'>
                                     <Link to='/cpe/busqueda' onClick={() => setFilterCpe(tipoCpe.tipocpeCod, 'BAJA')} className='text-dark fw-bold text-hover-primary d-block fs-6'>
@@ -109,7 +109,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                                   </div>
                                 </div> 
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className='d-flex align-items-center'> 
                                   <div className='d-flex justify-content-start flex-column'>
                                     <Link to='/cpe/busqueda' onClick={() => setFilterCpe(tipoCpe.tipocpeCod, 'PENDIENTE')} className='text-dark fw-bold text-hover-primary d-block fs-6'>
@@ -118,7 +118,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                                   </div>
                                 </div> 
                             </td>
-                            <td>
+                            <td className='p-0'>
                                 <div className='d-flex align-items-center'> 
                                   <div className='d-flex justify-content-start flex-column'> 
                                     <Link to='/cpe/busqueda' onClick={() => setFilterCpe(tipoCpe.tipocpeCod, '-')} className='text-dark fw-bold text-hover-primary d-block fs-6'>
