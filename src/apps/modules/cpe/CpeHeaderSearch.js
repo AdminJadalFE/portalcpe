@@ -9,18 +9,18 @@ import {useAuth} from '../auth';
 import moment from 'moment'; 
 
 const CpeHeaderSearch = () => {
-  const { searchCpe, setDataCpe } = useSearch();
+
+  const { searchCpe, setDataCpe, setDataFilterCpe } = useSearch();
   const {currentEmisor} = useAuth(); 
   
-  let { register, handleSubmit } = useForm();  
-
-  const [startDate, setStartDate] = useState(new Date(moment().startOf('month')));
-  const [endDate, setEndDate] = useState(new Date(moment().endOf('month')));
-
+  let { register, handleSubmit } = useForm();   
+  const [startDate, setStartDate] = useState(new Date(moment(searchCpe.fechaDesde).add(5, 'h').format()));
+  const [endDate, setEndDate] = useState(new Date(moment(searchCpe.fechaHasta).add(5, 'h').format()));
+ 
   const [tipoCPE, setTipoCPE] = useState([]);  
   const [estadoCPE, setEstadoCPE] = useState([]); 
   const [sede, setSede] = useState([]); 
-
+ 
   const getDataList = async() => { 
     let tipocpe = await getTipoCPE(); 
     setTipoCPE(tipocpe); 
@@ -29,22 +29,32 @@ const CpeHeaderSearch = () => {
     let sede = await getSedes({rucEmisor: currentEmisor.rucEmisor}); 
     setSede(sede); 
   }
+
+  const setFilterCpe = async () => {       
+    let datos = {undefined, undefined} 
+    setDataFilterCpe(datos);  
+  }
  
-  useEffect(() => { 
-      getDataList(); 
+  useEffect(() => {  
+    getDataList(); 
   }, [])
 
-  const manejarSubmit = async (data) => {      
- 
+  const manejarSubmit = async (data) => {   
+    setFilterCpe();    
+    console.log("1111111");
     let rucEmisor = currentEmisor.rucEmisor;
     let fechaDesde = moment(startDate).format("YYYY-MM-DD");
     let fechaHasta = moment(endDate).format("YYYY-MM-DD");
-    let rucReceptor = (data.rucReceptor === '' || data.rucReceptor === false) ? '-' : data.rucReceptor;
-    let serieCpe = (data.serieCpe === '' || data.serieCpe === false) ? '-' : data.serieCpe;
-    let numeroDesde = (data.numeroDesde === '' || data.numeroDesde === false) ? '-' : data.numeroDesde;
-    let numeroHasta = (data.numeroHasta === '' || data.numeroHasta === false) ? '-' : data.numeroHasta;
- 
-    let datos = {...data, fechaDesde, fechaHasta, rucEmisor, rucReceptor, serieCpe, numeroDesde, numeroHasta}  
+    let rucReceptor = (data.rucReceptor === undefined || data.rucReceptor === '' || data.rucReceptor === false) ? '-' : data.rucReceptor;
+    let serieCpe = (data.serieCpe === undefined || data.serieCpe === '' || data.serieCpe === false) ? '-' : data.serieCpe;
+    let numeroDesde = (data.numeroDesde === undefined || data.numeroDesde === '' || data.numeroDesde === false) ? '-' : data.numeroDesde;
+    let numeroHasta = (data.numeroHasta === undefined || data.numeroHasta === '' || data.numeroHasta === false) ? '-' : data.numeroHasta; 
+    console.log(data.estadoCpe);
+    console.log(data.tipoCpe);
+    let estadoCpe = (data.estadoCpe === undefined || data.estadoCpe === '' || data.estadoCpe === '-' || data.estadoCpe === false) ? '-' : data.estadoCpe; 
+    let tipoCpe = (data.tipoCpe === undefined || data.tipoCpe === '' || data.tipoCpe === '-' || data.tipoCpe === false) ? '-' : data.tipoCpe; 
+  
+    let datos = {...data, fechaDesde, fechaHasta, rucEmisor, rucReceptor, serieCpe, numeroDesde, numeroHasta, estadoCpe, tipoCpe}   
  
     setDataCpe(datos);  
   }
@@ -92,7 +102,7 @@ const CpeHeaderSearch = () => {
               Tipo Cpe
             </label> 
 
-            <select name="tipoCpe" 
+            <select name="tipoCpe"  
                      className='form-control form-control-solid w-250px  ps-5' 
                     {...register('tipoCpe', { required: false })}  
             >
@@ -143,7 +153,8 @@ const CpeHeaderSearch = () => {
               <label className='d-flex align-items-center form-label mb-3'>
                 Sede
               </label>  
-              <select name="Sucursal" 
+              
+              <select name="Sucursal"
                      className='form-control form-control-solid w-250px ps-5' 
                     {...register('Sucursal', { required: false })}  
             >

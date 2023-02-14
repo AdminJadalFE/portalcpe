@@ -43,8 +43,7 @@ const DashboardWrapper = () => {
     const tipoCpe = []; 
     const montoCpe = []; 
     const totalCpe = [];  
-     
-      console.log("first")
+      
       dataResumen.map((data) => {
         montoCpe.push(data.montoCpe.toFixed(2)); 
         totalCpe.push(data.totalCpe);

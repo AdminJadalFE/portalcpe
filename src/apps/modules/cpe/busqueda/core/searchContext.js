@@ -16,6 +16,11 @@ import {
     "rucReceptor":"-",
     "Sucursal":"-"
   }
+
+  const initFilterCpe = {  
+    "tipoCpe":"-", 
+    "estadoCpe":"-", 
+  }
    
   const initAuthContextPropsState = { 
     searchCpe: initSearchCpe,
@@ -30,13 +35,18 @@ import {
 
   const SearchProvider = ({children}) => {
     const [searchCpe, setSearchCpe]  = useState(initSearchCpe) 
+    const [filterCpe, setFilterCpe]  = useState(initFilterCpe) 
    
     const setDataCpe = (cpe) => { 
         setSearchCpe(cpe); 
     }
+
+    const setDataFilterCpe = (cpe) => { 
+      setFilterCpe(cpe); 
+  }
   
     return (
-      <SearchContext.Provider value={{ searchCpe, setDataCpe}}>
+      <SearchContext.Provider value={{ searchCpe, setDataCpe, filterCpe, setDataFilterCpe}}>
         {children}
       </SearchContext.Provider>
     )

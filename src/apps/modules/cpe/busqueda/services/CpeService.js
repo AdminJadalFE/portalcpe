@@ -46,10 +46,17 @@ export const getDataEstadoTipoCpe = async (data) => {
 }
  
 export const CpeServiceGetData = async (data) => { 
+    console.log("CpeServiceGetData", data);
     let content = await FetchConf('cpe/getcpe','POST',data); 
     return content.content;
 }
 
+export const GetCpeResume = async (data) => { 
+    console.log("GetCpeResume", data);
+    let content = await FetchConf('cpe/getresumencpe','POST',data); 
+    return content.content;
+}
+ 
 export const SendEmail = async (data) => { 
     let content = await FetchConf('cpe/sendemail','POST',data); 
     return content.content;

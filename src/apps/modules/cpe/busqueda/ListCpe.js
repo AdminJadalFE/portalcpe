@@ -9,7 +9,7 @@ import moment from 'moment';
 
   const ListCpe = () => { 
 
-    const { searchCpe } = useSearch();  
+    const { searchCpe, filterCpe } = useSearch();  
     const [cpeData, setCpeData] = useState([]); 
     const {currentEmisor} = useAuth(); 
 
@@ -17,23 +17,24 @@ import moment from 'moment';
  
     const getProduct = async () => {  
       const cpes = await CpeServiceGetData(getDefault());   
-      console.log("cpes:", cpes)
       setCpeData(cpes);  
     }  
    
     const getDefault = () => {
-  
+      console.log("2222222");
+
       let rucEmisor = (searchCpe.rucEmisor === '-') ? currentEmisor.rucEmisor : searchCpe.rucEmisor;
       let fechaDesde = (searchCpe.fechaDesde === '' || searchCpe.fechaDesde === '-' || searchCpe.fechaDesde === false) ? moment().startOf('month').format('YYYY-MM-DD') : searchCpe.fechaDesde;   
       let fechaHasta = (searchCpe.fechaHasta === '' || searchCpe.fechaHasta === '-' || searchCpe.fechaHasta === false) ?  moment().endOf('month').format('YYYY-MM-DD') : searchCpe.fechaHasta;   
-      let rucReceptor = (searchCpe.rucReceptor === '' || searchCpe.rucReceptor === '-' || searchCpe.rucReceptor === false) ? '-' : searchCpe.rucReceptor;
-      let serieCpe = (searchCpe.serieCpe === '' || searchCpe.serieCpe === '-' || searchCpe.serieCpe === false) ? '-' : searchCpe.serieCpe;
-      let numeroDesde = (searchCpe.numeroDesde === '' || searchCpe.numeroDesde === '-' || searchCpe.numeroDesde === false) ? '-' : searchCpe.numeroDesde;
-      let numeroHasta = (searchCpe.numeroHasta === '' || searchCpe.numeroHasta === '-' || searchCpe.numeroHasta === false) ? '-' : searchCpe.numeroHasta;
-      let Sucursal = (searchCpe.Sucursal === '' || searchCpe.Sucursal === '-' || searchCpe.Sucursal === false) ? '-' : searchCpe.Sucursal;
-   
-      let datos = {...searchCpe, fechaDesde, fechaHasta, rucEmisor, rucReceptor, serieCpe, numeroDesde, numeroHasta, Sucursal}  
-       
+      let rucReceptor = (searchCpe.rucReceptor === undefined || searchCpe.rucReceptor === '' || searchCpe.rucReceptor === '-' || searchCpe.rucReceptor === false) ? '-' : searchCpe.rucReceptor;
+      let serieCpe = (searchCpe.serieCpe === undefined || searchCpe.serieCpe === '' || searchCpe.serieCpe === '-' || searchCpe.serieCpe === false) ? '-' : searchCpe.serieCpe;
+      let numeroDesde = (searchCpe.numeroDesde === undefined || searchCpe.numeroDesde === '' || searchCpe.numeroDesde === '-' || searchCpe.numeroDesde === false) ? '-' : searchCpe.numeroDesde;
+      let numeroHasta = (searchCpe.numeroHasta === undefined || searchCpe.numeroHasta === '' || searchCpe.numeroHasta === '-' || searchCpe.numeroHasta === false) ? '-' : searchCpe.numeroHasta;
+      let Sucursal = (searchCpe.Sucursal === undefined || searchCpe.Sucursal === '' || searchCpe.Sucursal === '-' || searchCpe.Sucursal === false) ? '-' : searchCpe.Sucursal;
+ 
+      let estadoCpe = (filterCpe.estadoCpe === undefined || filterCpe.estadoCpe === '' || filterCpe.estadoCpe === false) ? '-' : filterCpe.estadoCpe;
+      let tipoCpe = (filterCpe.tipoCpe === undefined || filterCpe.tipoCpe === '' || filterCpe.tipoCpe === false) ?  '-' :filterCpe.tipoCpe;
+      let datos = {...searchCpe, fechaDesde, fechaHasta, rucEmisor, rucReceptor, serieCpe, numeroDesde, numeroHasta, Sucursal, estadoCpe, tipoCpe }  
       return datos;
 
     }

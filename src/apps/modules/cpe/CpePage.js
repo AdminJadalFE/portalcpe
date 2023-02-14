@@ -1,17 +1,16 @@
 import {Navigate, Routes, Route, Outlet} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../_metronic/layout/core'
-import {CpeHeaderSearch} from './CpeHeaderSearch'
-import {CpeHeaderOption} from './CpeHeaderOption'
-
-import {ListCpe} from './busqueda/ListCpe'
+import {PageTitle} from '../../../_metronic/layout/core'
+ 
+import CpeList from './CpeList'
+import CpeResume from './CpeResume'
 
 import {SearchProvider} from './busqueda/core/searchContext';
  
 
 const profileBreadCrumbs = [
   {
-    title: 'Busqueda',
-    path: '/cpe/busqueda',
+    title: 'Comprobantes de Pago Electrónicos',
+    path: '/cpe',
     isSeparator: false,
     isActive: false,
   },
@@ -22,36 +21,38 @@ const profileBreadCrumbs = [
     isActive: false,
   },
 ]
- 
-const CpePage = () => (
-<>
-  <SearchProvider>
   
+const CpePage = () => {
+  return (
+    <SearchProvider>
     <Routes>
+      <Route element={<Outlet />}>
+        
       <Route
-        element={
-          <>
-            <CpeHeaderOption />
-            <CpeHeaderSearch />
-            <Outlet />
-          </>
-        }
-      >
+          path='emitidos'
+          element={
+            <>
+              <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+              <CpeResume />
+            </>
+          }
+        /> 
+
         <Route
-          path='/busqueda'
+          path='busqueda'
           element={
             <>
               <PageTitle breadcrumbs={profileBreadCrumbs}>Busqueda</PageTitle>  
-              <ListCpe /> 
+              <CpeList /> 
             </>
           }
         />
-        <Route index element={<Navigate to='/cpe/busqueda' />} />
+ 
+        {/* <Route index element={<Navigate to='/emitidos' />} /> */}
       </Route>
     </Routes>
-
-  </SearchProvider>
-  </>
-)
+    </SearchProvider>
+  )
+}
 
 export default CpePage
