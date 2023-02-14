@@ -9,7 +9,7 @@ import moment from 'moment';
 
   const ListCpe = () => { 
 
-    const { searchCpe, filterCpe } = useSearch();  
+    const { searchCpe, setDataCpe, filterCpe } = useSearch();  
     const [cpeData, setCpeData] = useState([]); 
     const {currentEmisor} = useAuth(); 
 
@@ -21,7 +21,8 @@ import moment from 'moment';
     }  
    
     const getDefault = () => {
-      console.log("2222222");
+
+console.log("object",searchCpe);
 
       let rucEmisor = (searchCpe.rucEmisor === '-') ? currentEmisor.rucEmisor : searchCpe.rucEmisor;
       let fechaDesde = (searchCpe.fechaDesde === '' || searchCpe.fechaDesde === '-' || searchCpe.fechaDesde === false) ? moment().startOf('month').format('YYYY-MM-DD') : searchCpe.fechaDesde;   
@@ -35,6 +36,7 @@ import moment from 'moment';
       let estadoCpe = (filterCpe.estadoCpe === undefined || filterCpe.estadoCpe === '' || filterCpe.estadoCpe === false) ? '-' : filterCpe.estadoCpe;
       let tipoCpe = (filterCpe.tipoCpe === undefined || filterCpe.tipoCpe === '' || filterCpe.tipoCpe === false) ?  '-' :filterCpe.tipoCpe;
       let datos = {...searchCpe, fechaDesde, fechaHasta, rucEmisor, rucReceptor, serieCpe, numeroDesde, numeroHasta, Sucursal, estadoCpe, tipoCpe }  
+       
       return datos;
 
     }

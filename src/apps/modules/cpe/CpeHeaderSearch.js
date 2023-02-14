@@ -12,7 +12,7 @@ const CpeHeaderSearch = () => {
 
   const { searchCpe, setDataCpe, setDataFilterCpe } = useSearch();
   const {currentEmisor} = useAuth(); 
-  
+ 
   let { register, handleSubmit } = useForm();   
   const [startDate, setStartDate] = useState(new Date(moment(searchCpe.fechaDesde).add(5, 'h').format()));
   const [endDate, setEndDate] = useState(new Date(moment(searchCpe.fechaHasta).add(5, 'h').format()));
@@ -41,7 +41,6 @@ const CpeHeaderSearch = () => {
 
   const manejarSubmit = async (data) => {   
     setFilterCpe();    
-    console.log("1111111");
     let rucEmisor = currentEmisor.rucEmisor;
     let fechaDesde = moment(startDate).format("YYYY-MM-DD");
     let fechaHasta = moment(endDate).format("YYYY-MM-DD");
@@ -49,11 +48,8 @@ const CpeHeaderSearch = () => {
     let serieCpe = (data.serieCpe === undefined || data.serieCpe === '' || data.serieCpe === false) ? '-' : data.serieCpe;
     let numeroDesde = (data.numeroDesde === undefined || data.numeroDesde === '' || data.numeroDesde === false) ? '-' : data.numeroDesde;
     let numeroHasta = (data.numeroHasta === undefined || data.numeroHasta === '' || data.numeroHasta === false) ? '-' : data.numeroHasta; 
-    console.log(data.estadoCpe);
-    console.log(data.tipoCpe);
     let estadoCpe = (data.estadoCpe === undefined || data.estadoCpe === '' || data.estadoCpe === '-' || data.estadoCpe === false) ? '-' : data.estadoCpe; 
     let tipoCpe = (data.tipoCpe === undefined || data.tipoCpe === '' || data.tipoCpe === '-' || data.tipoCpe === false) ? '-' : data.tipoCpe; 
-  
     let datos = {...data, fechaDesde, fechaHasta, rucEmisor, rucReceptor, serieCpe, numeroDesde, numeroHasta, estadoCpe, tipoCpe}   
  
     setDataCpe(datos);  

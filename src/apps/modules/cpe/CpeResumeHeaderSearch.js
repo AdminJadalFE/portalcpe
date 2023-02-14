@@ -17,16 +17,25 @@ const CpeResumeHeaderSearch = () => {
   const [startDate, setStartDate] = useState(new Date(moment().startOf('month')));
   const [endDate, setEndDate] = useState(new Date(moment().endOf('month')));
   
-  const manejarSubmit = async (data) => {      
- 
+
+  const getDefault = () => {
     let rucEmisor = currentEmisor.rucEmisor;
     let fechaDesde = moment(startDate).format("YYYY-MM-DD");
     let fechaHasta = moment(endDate).format("YYYY-MM-DD");
  
-    let datos = {...data, fechaDesde, fechaHasta, rucEmisor}  
+    let datos = {...searchCpe,fechaDesde, fechaHasta, rucEmisor}  
  
     setDataCpe(datos);  
   }
+
+  const manejarSubmit = async () => {      
+    console.log("333333", searchCpe);
+    getDefault();
+  }
+
+  useEffect(() => {   
+    getDefault() 
+  }, [])  
   
   return (
     <div className='card mb-2 mb-xl-5'>

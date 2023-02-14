@@ -28,13 +28,13 @@ import moment from 'moment';
     }  
    
     const getDefault = () => {
-  
+      console.log("ResumeCpe", searchCpe);
       let rucEmisor = (searchCpe.rucEmisor === '-') ? currentEmisor.rucEmisor : searchCpe.rucEmisor;
       let fechaDesde = (searchCpe.fechaDesde === '' || searchCpe.fechaDesde === '-' || searchCpe.fechaDesde === false) ? moment().startOf('month').format('YYYY-MM-DD') : searchCpe.fechaDesde;   
       let fechaHasta = (searchCpe.fechaHasta === '' || searchCpe.fechaHasta === '-' || searchCpe.fechaHasta === false) ?  moment().endOf('month').format('YYYY-MM-DD') : searchCpe.fechaHasta;   
       let datos = {...searchCpe, fechaDesde, fechaHasta, rucEmisor}   
-      return datos;
-
+ 
+      return datos; 
     }
   
     useEffect(() => {   
