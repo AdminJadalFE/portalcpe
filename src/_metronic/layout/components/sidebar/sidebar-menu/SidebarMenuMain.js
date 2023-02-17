@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
-import {useIntl} from 'react-intl'
-import {KTSVG} from '../../../../helpers'
+import {useIntl} from 'react-intl' 
 import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
 import {SidebarMenuItem} from './SidebarMenuItem'
 
@@ -29,7 +28,7 @@ const SidebarMenuMain = () => {
         icon='/media/icons/duotune/general/gen022.svg'
       > 
           <SidebarMenuItem
-            to='/cpe/busqueda'
+            to='/cpe/emitidos'
             title='Búsqueda'
             hasBullet={true}
           /> 

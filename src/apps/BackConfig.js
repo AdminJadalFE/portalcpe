@@ -1,4 +1,4 @@
-export const URL_BACK = 'https://api.jadal.pe/api/';
+export const URL_BACK = 'https://apitest.jadal.pe/api/';
 
 export const FetchGet = async (endpoint) => {
     const response = await fetch(URL_BACK + endpoint);

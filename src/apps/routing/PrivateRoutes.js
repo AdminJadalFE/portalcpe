@@ -1,4 +1,4 @@
-import {lazy, FC, Suspense} from 'react'
+import {lazy, Suspense} from 'react'
 import {Route, Routes, Navigate} from 'react-router-dom'
 import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
@@ -8,6 +8,7 @@ import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 
 
 const PrivateRoutes = () => {
+
   const CpePage = lazy(() => import('../modules/cpe/CpePage'))  
   const ResumenPage = lazy(() => import('../modules/resumen/ResumenPage'))  
 
