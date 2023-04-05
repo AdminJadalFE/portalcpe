@@ -40,7 +40,7 @@ const ResumenPage = ({tipoCpe}) => {
             }
           >
             <Route
-              path='/busqueda'
+              path='busqueda'
               element={
                 <>
                   <PageTitle breadcrumbs={profileBreadCrumbs}>Busqueda</PageTitle>  

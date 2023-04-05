@@ -5,6 +5,10 @@ import {LayoutProvider} from './_metronic/layout/core'
 import {MasterInit} from './_metronic/layout/MasterInit'
 // import {AuthInit} from './apps/modules/auth'
 
+import { pdfjs } from 'react-pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
+
 const App = () => {
   return (
     <Suspense>

@@ -4,7 +4,7 @@ import ApexCharts  from 'apexcharts'
 import {getCSSVariableValue} from '../../../assets/ts/_utils' 
 import moment from 'moment'; 
  
-const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosCpe, pendientesCpe, totalCpe}) => {
+const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosCpe, pendientesCpe, erroresCpe, totalCpe}) => {
   
   const fechaDesde = moment().startOf('month').format('DD-MM-YYYY'); 
   const fechaHasta = moment().endOf('month').format('DD-MM-YYYY'); 
@@ -15,7 +15,7 @@ const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe
       return
     }
 
-    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosCpe, pendientesCpe))
+    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosCpe, pendientesCpe, erroresCpe))
     if (chart) {
       chart.render()
     }
@@ -58,13 +58,14 @@ const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe
   )
 }
 
-const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosCpe, pendientesCpe) => {
+const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosCpe, pendientesCpe, erroresCpe) => {
 
   
   const labelColor = getCSSVariableValue('--kt-gray-500')
-  const borderColor = getCSSVariableValue('--kt-gray-200')
-  const secondaryColor = getCSSVariableValue('--kt-gray-300')
-  const baseColor = getCSSVariableValue('--kt-' + chartColor)
+  const borderColor = getCSSVariableValue('--kt-gray-200') 
+  const baseColor = getCSSVariableValue('--kt-' + 'success')
+  const rechazoColor = getCSSVariableValue('--kt-' + 'danger')
+  const errorColor = getCSSVariableValue('--kt-' + 'warning')
 
   return {
     series: [
@@ -76,6 +77,10 @@ const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosC
         name: 'Rechazados',
         data: rechazadosCpe,
       },      
+      {
+        name: 'Errores',
+        data: erroresCpe,
+      },
       {
         name: 'Pendientes',
         data: pendientesCpe,
@@ -164,7 +169,7 @@ const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosC
         },
       },
     },
-    colors: [baseColor, secondaryColor],
+    colors: [baseColor, rechazoColor, errorColor],
     grid: {
       padding: {
         top: 10,

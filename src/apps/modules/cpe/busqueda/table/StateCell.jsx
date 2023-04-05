@@ -19,6 +19,10 @@ const StateCell = ({estadoCpe}) => {
       case "BAJA":
         estadoColor = 'badge badge-light-danger fw-bolder'
         break;
+
+      case "ERROR":
+        estadoColor = 'badge badge-light-warning fw-bolder'
+        break;
     
       default:
         estadoColor = 'badge badge-light-secondary fw-bolder'

@@ -8,6 +8,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
     let objtipoCpe = new Object();
     var resumenCpe = new Array();
  
+ 
     const getDataList = async() => {   
   
       tipocpe.map((tipo) => {  
@@ -17,14 +18,17 @@ const ResumeCpeBody = ({tipocpe, data}) => {
         objtipoCpe.tipocpeDesc = tipo.tipocpeDesc;  
         objtipoCpe.aceptados = 0;
         objtipoCpe.rechazados = 0;
+        objtipoCpe.errores = 0;
         objtipoCpe.baja = 0;
         objtipoCpe.pendiente = 0; 
         objtipoCpe.total = 0; 
 
         for (let i = 0; i < data.tipoCpe.length; i++) {  
+  
           if (tipo.tipocpeCod === data.tipoCpe[i]) {
             objtipoCpe.aceptados = data.aceptadoCpe[i];
             objtipoCpe.rechazados = data.rechazadoCpe[i];
+            objtipoCpe.errores = data.errorCpe[i];
             objtipoCpe.baja = data.bajaCpe[i];
             objtipoCpe.pendiente = data.pendienteCpe[i]; 
             objtipoCpe.total = data.totalCpe[i]; 
@@ -61,6 +65,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                   <th className='min-w-150px'>Tipo de Comprobante</th>
                   <th className='min-w-140px'>Aceptados</th>
                   <th className='min-w-140px'>Rechazados</th>
+                  <th className='min-w-140px'>Errores</th>
                   <th className='min-w-120px'>Baja</th>
                   <th className='min-w-120px'>Pendiente</th> 
                   <th className='min-w-120px'>Total</th> 
@@ -96,6 +101,15 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                                   <div className='d-flex justify-content-start flex-column'>
                                     <Link to='/cpe/busqueda' onClick={() => setFilterCpe(tipoCpe.tipocpeCod, 'RECHAZADO')} className='text-dark fw-bold text-hover-primary d-block fs-6'>
                                         {tipoCpe.rechazados} 
+                                    </Link>  
+                                  </div>
+                                </div> 
+                            </td>
+                            <td className='p-2'>
+                                <div className='d-flex align-items-center'> 
+                                  <div className='d-flex justify-content-start flex-column'>
+                                    <Link to='/cpe/busqueda' onClick={() => setFilterCpe(tipoCpe.tipocpeCod, 'ERROR')} className='text-dark fw-bold text-hover-primary d-block fs-6'>
+                                        {tipoCpe.errores} 
                                     </Link>  
                                   </div>
                                 </div> 

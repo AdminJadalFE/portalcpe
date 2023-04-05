@@ -21,8 +21,8 @@ import moment from 'moment';
     }  
    
     const getDefault = () => {
-
-console.log("object",searchCpe);
+ 
+      console.log(searchCpe);
 
       let rucEmisor = (searchCpe.rucEmisor === '-') ? currentEmisor.rucEmisor : searchCpe.rucEmisor;
       let fechaDesde = (searchCpe.fechaDesde === '' || searchCpe.fechaDesde === '-' || searchCpe.fechaDesde === false) ? moment().startOf('month').format('YYYY-MM-DD') : searchCpe.fechaDesde;   
@@ -32,9 +32,9 @@ console.log("object",searchCpe);
       let numeroDesde = (searchCpe.numeroDesde === undefined || searchCpe.numeroDesde === '' || searchCpe.numeroDesde === '-' || searchCpe.numeroDesde === false) ? '-' : searchCpe.numeroDesde;
       let numeroHasta = (searchCpe.numeroHasta === undefined || searchCpe.numeroHasta === '' || searchCpe.numeroHasta === '-' || searchCpe.numeroHasta === false) ? '-' : searchCpe.numeroHasta;
       let Sucursal = (searchCpe.Sucursal === undefined || searchCpe.Sucursal === '' || searchCpe.Sucursal === '-' || searchCpe.Sucursal === false) ? '-' : searchCpe.Sucursal;
- 
-      let estadoCpe = (filterCpe.estadoCpe === undefined || filterCpe.estadoCpe === '' || filterCpe.estadoCpe === false) ? '-' : filterCpe.estadoCpe;
-      let tipoCpe = (filterCpe.tipoCpe === undefined || filterCpe.tipoCpe === '' || filterCpe.tipoCpe === false) ?  '-' :filterCpe.tipoCpe;
+   
+      let estadoCpe = (filterCpe.estadoCpe === undefined || filterCpe.estadoCpe === '' || filterCpe.estadoCpe === false) ?  searchCpe.estadoCpe : filterCpe.estadoCpe;
+      let tipoCpe = (filterCpe.tipoCpe === undefined || filterCpe.tipoCpe === '' || filterCpe.tipoCpe === false) ?  searchCpe.tipoCpe : filterCpe.tipoCpe ;
       let datos = {...searchCpe, fechaDesde, fechaHasta, rucEmisor, rucReceptor, serieCpe, numeroDesde, numeroHasta, Sucursal, estadoCpe, tipoCpe }  
        
       return datos;

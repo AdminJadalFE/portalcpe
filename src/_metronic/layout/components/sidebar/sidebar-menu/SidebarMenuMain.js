@@ -32,7 +32,24 @@ const SidebarMenuMain = () => {
             title='Búsqueda'
             hasBullet={true}
           /> 
+
+          {/* <SidebarMenuItemWithSub
+            to='/emisión'
+            title='Emisión'
+            fontIcon='bi-archive'
+            icon='/media/icons/duotune/general/gen022.svg'
+          > 
+              <SidebarMenuItem
+                to='/emision/factura'
+                title='Factura'
+                hasBullet={true}
+              /> 
+          </SidebarMenuItemWithSub> */}
+  
       </SidebarMenuItemWithSub>
+
+
+
 
       <SidebarMenuItemWithSub
         to='/baja'
