@@ -171,7 +171,7 @@ const DashboardWrapper = () => {
                             rechazadosCpe={rechazadosCpe}
                             pendientesCpe={pendientesCpe} 
                             erroresCpe={erroresCpe}
-                            totalCpe={totalCpeData} /> 
+                            totalCpe={totalEmisionData.totalCpe} /> 
                     </div> 
                   </div>   
                 </div> 
