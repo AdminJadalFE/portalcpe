@@ -9,6 +9,7 @@ import {useFormik} from 'formik'
 import clsx from 'clsx' 
 import * as Yup from 'yup'
 import Swal from 'sweetalert2';
+import {Link} from 'react-router-dom' 
 
 const loginSchema = Yup.object().shape({
     email1: Yup.string()
@@ -186,13 +187,21 @@ function MyVerticallyCenteredModal(props) {
     );
   }
  
- 
+   
+
 const UserActionsCell = ({cpe}) => {
  
         const [modalShow, setModalShow] = useState(false);
-        
+   
+          const setUrlPdf = (urlPdf) => {
+            localStorage.setItem('urlpdfjadal', urlPdf);
+          }
+ 
         return (
             <> 
+                
+
+ 
                 <a
                     href={cpe.urlCpe} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1' 
@@ -200,6 +209,15 @@ const UserActionsCell = ({cpe}) => {
                 >
                     <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
                 </a>
+                
+                {/* <Link to='/visorpdf' 
+                      target="_blank" 
+                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                      title='Descargar PDF'
+                      onClick={() => setUrlPdf(cpe.urlPdf)}>
+                        <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
+                </Link> */}
+                
                 <a
                     href={cpe.urlPdf} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
@@ -207,6 +225,9 @@ const UserActionsCell = ({cpe}) => {
                 >
                     <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
                 </a>
+
+
+
                 <a 
                     href={cpe.urlCdr} target="_blank"
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'

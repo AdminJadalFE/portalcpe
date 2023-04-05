@@ -32,8 +32,7 @@ import moment from 'moment';
 
   }
 
-  useEffect(() => {   
-    console.log("ListResumen");
+  useEffect(() => {    
     getProduct() 
   }, [])  
   

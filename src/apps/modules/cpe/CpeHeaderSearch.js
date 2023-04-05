@@ -40,6 +40,7 @@ const CpeHeaderSearch = () => {
   }, [])
 
   const manejarSubmit = async (data) => {   
+  
     setFilterCpe();    
     let rucEmisor = currentEmisor.rucEmisor;
     let fechaDesde = moment(startDate).format("YYYY-MM-DD");

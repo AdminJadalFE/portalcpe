@@ -29,9 +29,13 @@ const DashboardWrapper = () => {
   const [totalesCpe, settotalesCpe] = useState();
   const [rechazadosCpe, setRechazadosCpe] = useState();
   const [pendientesCpe, setPendientesCpe] = useState(); 
+  const [erroresCpe, setErroresCpe] = useState(); 
 
   const fechaDesde = moment().startOf('month').format('YYYY-MM-DD'); 
   const fechaHasta = moment().endOf('month').format('YYYY-MM-DD'); 
+
+  // const fechaDesde = '2023-03-01'; 
+  // const fechaHasta = '2023-03-31'; 
  
 
   const getDataList = async() => { 
@@ -39,6 +43,8 @@ const DashboardWrapper = () => {
     let dataTotalEmision = await getDataTotalEmision({rucEmisor: currentEmisor.rucEmisor, fechaDesde, fechaHasta}); 
     let dataTotalEstados = await getDataTotalEstados({rucEmisor: currentEmisor.rucEmisor, fechaDesde, fechaHasta}); 
     let dataEstadoTipoCpe = await getDataEstadoTipoCpe({rucEmisor: currentEmisor.rucEmisor, fechaDesde, fechaHasta}); 
+
+    console.log(dataEstadoTipoCpe);
 
     const tipoCpe = []; 
     const montoCpe = []; 
@@ -84,6 +90,7 @@ const DashboardWrapper = () => {
     const totalesCpe = dataEstadoTipoCpe.totalCpe; 
     const rechazadosCpe = dataEstadoTipoCpe.rechazadoCpe; 
     const pendientesCpe = dataEstadoTipoCpe.pendienteCpe; 
+    const erroresCpe = dataEstadoTipoCpe.errorCpe; 
  
       dataEstadoTipoCpe.tipoCpe.map((data) => {  
         switch (data) {
@@ -115,6 +122,7 @@ const DashboardWrapper = () => {
     settotalesCpe(totalesCpe)
     setRechazadosCpe(rechazadosCpe)
     setPendientesCpe(pendientesCpe)
+    setErroresCpe(erroresCpe)
   
   }
 
@@ -161,7 +169,9 @@ const DashboardWrapper = () => {
                             tiposCpe={tiposCpe}
                             totalesCpe={totalesCpe}
                             rechazadosCpe={rechazadosCpe}
-                            pendientesCpe={pendientesCpe} /> 
+                            pendientesCpe={pendientesCpe} 
+                            erroresCpe={erroresCpe}
+                            totalCpe={totalCpeData} /> 
                     </div> 
                   </div>   
                 </div> 

@@ -2,6 +2,9 @@ import {FetchConf} from '../../../BackConfig';
 
 export const login = async (data) => { 
     let content = await FetchConf('auth/user/login','POST',data); 
+
+    console.log(content)
+
     return content;
 }
  
