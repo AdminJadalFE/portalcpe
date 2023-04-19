@@ -1,11 +1,10 @@
 import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
-import {PrivateRoutes} from './PrivateRoutes' 
-import {PublicRoutes} from './PublicRoutes' 
+import {PrivateRoutes} from './PrivateRoutes'  
 import {Logout, AuthPage, useAuth} from '../modules/auth'
 import {App} from '../../App'
 
 import {VisorPDF} from '../modules/visor/VisorPDF' 
-import {VisorXML} from '../modules/visor/VisorXML' 
+import {VisorTraza} from '../modules/visor/VisorTraza' 
  
  
 const AppRoutes = () => {
@@ -16,8 +15,9 @@ const AppRoutes = () => {
       <Routes>
         <Route element={<App />}> 
           <Route path='logout' element={<Logout />} />
-          <Route path='visorpdf' element={<VisorPDF />} />   
-
+          <Route path='visorpdf/:id' element={<VisorPDF />} />   
+          <Route path='visortraza/:id' element={<VisorTraza />} />   
+ 
           {currentUser ? (
             <>
 
