@@ -1,4 +1,4 @@
 .contenedorEmpresas {
-    max-height: 700px; /* establece la altura máxima en 200 píxeles */
+    max-height: 600px; /* establece la altura máxima en 200 píxeles */
     overflow-y: auto; /* habilita el scroll vertical */
   }
