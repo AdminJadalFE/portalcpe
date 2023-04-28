@@ -1,10 +1,12 @@
 import {FetchConf} from '../../../BackConfig';
 
 export const login = async (data) => { 
-    let content = await FetchConf('auth/user/login','POST',data); 
+    let content = await FetchConf('auth/user/login','POST',data);   
+    return content;
+}
 
-    console.log(content)
-
+export const updatepassword = async (data) => { 
+    let content = await FetchConf('auth/user/updatepwd','POST',data);   
     return content;
 }
  

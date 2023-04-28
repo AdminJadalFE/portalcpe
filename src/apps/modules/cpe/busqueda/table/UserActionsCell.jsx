@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {useEffect, useState} from 'react' 
 import {MenuComponent} from '../../../../../_metronic/assets/ts/components'
-import {SendEmail} from '../services/CpeService'; 
+import {SendEmail, ResendCpe} from '../services/CpeService'; 
 import { KTSVG} from '../../../../../_metronic/helpers' 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -66,9 +66,7 @@ function MyVerticallyCenteredModal(props) {
                     title: `El correo fue enviado correctamente a las bandejas ${emails}`,
                     showConfirmButton: false,
                     timer: 2000
-                }) 
-
-
+                })  
 
             } catch (error) {
                 console.error(error)
@@ -192,69 +190,109 @@ function MyVerticallyCenteredModal(props) {
 const UserActionsCell = ({cpe}) => {
  
         const [modalShow, setModalShow] = useState(false);
-   
-          const setUrlPdf = (urlPdf) => {
-            localStorage.setItem('urlpdfjadal', urlPdf);
-          }
- 
+
+
+        const ResendCPEById = async (id) => {  
+            const data = {
+                "id": id
+            } 
+            const content = await ResendCpe(data);   
+
+            console.log(content.indicador );
+
+            if(content.indicador == true){
+                Swal.fire({
+                    icon: "success",
+                    title: `${content.message}`,
+                    showConfirmButton: false,
+                    timer: 2000
+                }) 
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: `${content.message}`,
+                    showConfirmButton: false,
+                    timer: 2000
+                }) 
+            }
+
+
+
+          } 
+      
         return (
-            <> 
-                
+            <>  
+   
+    <Link to=''   
+            className='btn btn-light btn-active-light-primary btn-sm'
+            data-kt-menu-trigger='click'
+            data-kt-menu-placement='bottom-end'>
+            Opciones
+            <KTSVG path='/media/icons/duotune/arrows/arr072.svg' className='svg-icon-5 m-0' />
+    </Link> 
+      {/* begin::Menu */}
+      <div
+        className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-150px py-4'
+        data-kt-menu='true'
+      >
+        {/* begin::Menu item */}
+        <div className='menu-item px-3'>  
+          <a className='menu-link px-3' href={cpe.urlCpe} target="_blank" title='Descargar XML'>
+                <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
+                <text>Descargar XML</text>
+          </a> 
 
+          <Link to={`/visorpdf/${cpe.id}`} 
+                    target="_blank" 
+                    className='menu-link px-3'
+                    title='Descargar PDF'>
+                <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
+                <text> Descargar PDF</text>
+            </Link>
+
+          <a className='menu-link px-3' href={cpe.urlCdr} target="_blank" title='Descargar XML'>
+                <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
+                <text>Descargar CDR</text>
+          </a>
+
+          <a className='menu-link px-3' onClick={() => setModalShow(true)} title='Enviar Correo'>
+                <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
+                <text>Enviar Correo</text>
+          </a>
+            {
+                modalShow 
+                ?
+                (
+                    <MyVerticallyCenteredModal
+                    id={cpe.id}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
+                )
+                :
+                <></>
+            }
+
+            <Link to={`/visortraza/${cpe.id}`}   
+                    target="_blank" 
+                    className='menu-link px-3'
+                    title='Ver Traza CPE'>
+                <KTSVG path='/media/icons/duotune/abstract/abs015.svg' className='svg-icon-3' />
+                <text> Ver Traza CPE</text>
+            </Link>
+
+            <a className='menu-link px-3' onClick={() => ResendCPEById(`${cpe.id}`)} title='Enviar Correo'>
+                <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
+                <text>Reenviar CPE</text>
+          </a>
+  
+        </div>
+        {/* end::Menu item */}
  
-                <a
-                    href={cpe.urlCpe} target="_blank"
-                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1' 
-                    title='Descargar XML'
-                >
-                    <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
-                </a>
-                
-                {/* <Link to='/visorpdf' 
-                      target="_blank" 
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      title='Descargar PDF'
-                      onClick={() => setUrlPdf(cpe.urlPdf)}>
-                        <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
-                </Link> */}
-                
-                <a
-                    href={cpe.urlPdf} target="_blank"
-                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    title='Descargar PDF'
-                >
-                    <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
-                </a>
+      </div>
+      {/* end::Menu */}
 
-
-
-                <a 
-                    href={cpe.urlCdr} target="_blank"
-                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    title='Descargar CDR'
-                >
-                    <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
-                </a> 
-                <a   
-                    onClick={() => setModalShow(true)}
-                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
-                    title='Reenviar Correo'
-                >
-                    <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
-                </a> 
-                {
-                    modalShow 
-                    ?
-                    (
-                        <MyVerticallyCenteredModal
-                        id={cpe.id}
-                        show={modalShow}
-                        onHide={() => setModalShow(false)}
-                    />
-                    )
-                    :
-                    <></>
-                }
+   
 
             </>
         )

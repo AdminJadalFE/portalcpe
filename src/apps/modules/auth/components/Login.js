@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import {useFormik} from 'formik' 
 import {useAuth} from '../core/Auth' 
 import {login, getEmisores} from '../services/AuthService';   
+import {Link} from 'react-router-dom'
 import './Login.css';
 
 const loginSchema = Yup.object().shape({
@@ -33,30 +34,22 @@ export function Login() {
     validationSchema: loginSchema,
     onSubmit: async (values, {setStatus, setSubmitting}) => {
       setLoading(true)
-      try {
-
+      try { 
         const user = {
           "emailUsuario":`${values.email}`,
           "claveUsuario":`${values.password}`
-        }
-
-        const data = await login(user)
-        console.log("data", data)
-
-        if (data.status == true) {
-           
+        } 
+        const data = await login(user) 
+        if (data.status == true) { 
           const user = {
             "emailUsuario":`${values.email}`
-          }
-
-          const emisores = await getEmisores(user)  
-
+          } 
+          const emisores = await getEmisores(user)   
           if (emisores) { 
             // saveAuth(data) 
             setCurrentUser(data)
             setEmisores(emisores.content)
-            setCurrentEmisor(emisores.content[0]); 
-
+            setCurrentEmisor(emisores.content[0]);  
           }else{
             // saveAuth(undefined)
             setStatus('Usuario Incorrecto')
@@ -151,7 +144,17 @@ export function Login() {
       </div>
       {/* end::Form group */}
 
-      
+      {/* begin::Wrapper */}
+      <div className='d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8'>
+        <div />
+
+        {/* begin::Link */}
+        <Link to='/auth/forgot-password' className='link-primary'>
+        ¿Has olvidado la contraseña?
+        </Link>
+        {/* end::Link */}
+      </div>
+      {/* end::Wrapper */}
 
       {/* begin::Action */}
       <div className='d-grid mb-10'>

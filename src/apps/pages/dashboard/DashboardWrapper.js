@@ -31,21 +31,22 @@ const DashboardWrapper = () => {
   const [pendientesCpe, setPendientesCpe] = useState(); 
   const [erroresCpe, setErroresCpe] = useState(); 
 
+  // moment(date).add(5, 'h').format()
+
+
   const fechaDesde = moment().startOf('month').format('YYYY-MM-DD'); 
   const fechaHasta = moment().endOf('month').format('YYYY-MM-DD'); 
 
   // const fechaDesde = '2023-03-01'; 
   // const fechaHasta = '2023-03-31'; 
- 
+   
 
   const getDataList = async() => { 
     let dataResumen = await getDataResumen({rucEmisor: currentEmisor.rucEmisor, fechaDesde, fechaHasta}); 
     let dataTotalEmision = await getDataTotalEmision({rucEmisor: currentEmisor.rucEmisor, fechaDesde, fechaHasta}); 
     let dataTotalEstados = await getDataTotalEstados({rucEmisor: currentEmisor.rucEmisor, fechaDesde, fechaHasta}); 
     let dataEstadoTipoCpe = await getDataEstadoTipoCpe({rucEmisor: currentEmisor.rucEmisor, fechaDesde, fechaHasta}); 
-
-    console.log(dataEstadoTipoCpe);
-
+ 
     const tipoCpe = []; 
     const montoCpe = []; 
     const totalCpe = [];  
@@ -76,8 +77,7 @@ const DashboardWrapper = () => {
             tipoCpe.push("PERCEPCIÓN");
             break;
         }
-      })  
-
+      })   
   
     setTipoCpeData(tipoCpe)
     setMontoCpeData(montoCpe)

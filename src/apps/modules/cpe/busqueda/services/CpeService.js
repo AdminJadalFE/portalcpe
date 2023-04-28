@@ -61,3 +61,13 @@ export const SendEmail = async (data) => {
     return content.content;
 }
  
+
+export const ResendCpe = async (data) => { 
+    let content = await FetchConf('cpe/resendcpe','POST',data); 
+    return content;
+}
+
+export const GetEventos = async (data) => { 
+    let content = await FetchConf('cpe/getevent','POST',data); 
+    return content;
+}
