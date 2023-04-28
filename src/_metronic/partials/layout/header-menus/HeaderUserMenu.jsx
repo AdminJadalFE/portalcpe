@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import {useAuth} from '../../../../apps/modules/auth' 
 import {toAbsoluteUrl} from '../../../helpers' 
 
+import './HeaderUserMenu.css'
+
 const HeaderUserMenu = () => {
   const {currentUser, setCurrentEmisor, emisores, logout} = useAuth(); 
 
@@ -39,7 +41,7 @@ const HeaderUserMenu = () => {
         className='menu-item px-5'
         data-kt-menu-trigger='hover'
         data-kt-menu-placement='left-start'
-        data-kt-menu-flip='bottom'
+        data-kt-menu-flip='bottom' 
       >
         <a href='#' className='menu-link px-5'>
           <span className='menu-title'>Mis Empresas</span>
@@ -49,7 +51,7 @@ const HeaderUserMenu = () => {
           <span className='menu-arrow'></span>
         </a>
 
-        <div className='menu-sub menu-sub-dropdown w-400px py-4'> 
+        <div className='menu-sub menu-sub-dropdown w-400px py-4 contenedorEmpresas'> 
 
           {
             emisores.map((emi,i) => ( 
