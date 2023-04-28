@@ -1,5 +1,5 @@
 export const URL_BACK = 'https://api.jadal.pe/api/';
-export const URL_BUCKET = 'https://jadalfecpeqa.s3.amazonaws.com/';
+export const URL_BUCKET = 'https://jadalfecpe.s3.amazonaws.com/';
 
 export const FetchGet = async (endpoint) => {
     const response = await fetch(URL_BACK + endpoint);
