@@ -24,7 +24,7 @@ const profileBreadCrumbs = [
  
 const CpeList = () => (
 <> 
-    <CpeHeaderOption />
+    {/* <CpeHeaderOption /> */}
     <CpeHeaderSearch />
     <Outlet /> 
     <PageTitle breadcrumbs={profileBreadCrumbs}>Busqueda</PageTitle>  
