@@ -46,12 +46,16 @@ const CpeHeaderOption = () => {
     console.log(dataReport);
 
     // Fechas de ejemplo
-    const fechaInicio = new Date(dataReport.fechaDesde);
-    const fechaFin = new Date(dataReport.fechaHasta);
+    let fechaInicio = moment(dataReport.fechaDesde).format("YYYY-MM-DD");
+    let fechaFin = moment(dataReport.fechaHasta).format("YYYY-MM-DD");
+ 
 
+    console.log(fechaInicio);
+    console.log(fechaFin);
     // Obtener la cantidad de días entre las fechas
     const cantidadDias = differenceInDays(fechaFin,fechaInicio);
   
+    console.log(cantidadDias);
     
     if (cantidadDias < 0) {
       Swal.fire({
