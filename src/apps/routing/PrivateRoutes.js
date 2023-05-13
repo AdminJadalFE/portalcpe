@@ -2,7 +2,7 @@ import {lazy, Suspense} from 'react'
 import {Route, Routes, Navigate} from 'react-router-dom'
 import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper' 
+import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'  
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils' 
  
  
@@ -11,6 +11,7 @@ const PrivateRoutes = () => {
   const CpePage = lazy(() => import('../modules/cpe/CpePage'))  
   const ResumenPage = lazy(() => import('../modules/resumen/ResumenPage'))   
   const EmisionPage = lazy(() => import('../modules/emision/EmisionPage'))   
+  const ReportePage = lazy(() => import('../modules/reporte/ReportePage'))   
  
   return (
 
@@ -25,6 +26,7 @@ const PrivateRoutes = () => {
           <Route path='baja/*' element={<SuspensedView><ResumenPage tipoCpe="RA"/></SuspensedView>}/> 
           <Route path='resumen/*' element={<SuspensedView><ResumenPage tipoCpe="RC"/></SuspensedView>}/> 
           <Route path='emision/*' element={<SuspensedView><EmisionPage/></SuspensedView>}/> 
+          <Route path='reporte/*' element={<SuspensedView><ReportePage/></SuspensedView>}/> 
 
           <Route path='*' element={<Navigate to='/error/404' />} />
         </Route>

@@ -76,6 +76,14 @@ const SidebarMenuMain = () => {
             hasBullet={true}
           /> 
       </SidebarMenuItemWithSub>
+
+     
+        <SidebarMenuItem
+          to='/reporte/busqueda'
+          title='Reportes'
+          fontIcon='bi-archive'
+          icon='/media/icons/duotune/general/gen022.svg'
+        />  
   
   
     </>
