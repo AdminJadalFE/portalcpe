@@ -100,9 +100,7 @@ const CpeHeaderSearch = () => {
     // Fechas de ejemplo
     let fechaInicio = moment(dataReport.fechaDesde).format("YYYY-MM-DD");
     let fechaFin = moment(dataReport.fechaHasta).format("YYYY-MM-DD");
- 
-    console.log(fechaInicio);
-    console.log(fechaFin);
+  
     // Obtener la cantidad de días entre las fechas
     const cantidadDias = differenceInDays(new Date(fechaFin),new Date(fechaInicio));
 
@@ -161,13 +159,13 @@ const CpeHeaderSearch = () => {
                 <div className='d-flex flex-column'></div>
 
                 <div className='d-flex my-4'>  
-                  <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3'>
+                  <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3 btn-sm'>
                     Exportar CPE
                   </Link> 
-                  <Link to='.' onClick={() => exportReport('PDF')}  className='btn btn-dark me-3'>
+                  <Link to='.' onClick={() => exportReport('PDF')}  className='btn btn-dark me-3 btn-sm'>
                     Exportar PDF
                   </Link> 
-                  <Link to='.' onClick={() => exportReport('XML')}  className='btn btn-dark me-3'>
+                  <Link to='.' onClick={() => exportReport('XML')}  className='btn btn-dark me-3 btn-sm'>
                     Exportar XML
                   </Link> 
                 </div>
@@ -191,7 +189,7 @@ const CpeHeaderSearch = () => {
                   Fecha Desde 
                 </label> 
                 <DatePicker 
-                  className='form-control form-control-solid w-250px ps-5' 
+                  className='form-control form-control-solid w-200px form-control-sm' 
                   id="fechaDesde"
                   name="fechaDesde" 
                   wrapperClassName="datePicker"  
@@ -206,7 +204,7 @@ const CpeHeaderSearch = () => {
                 Fecha Hasta 
                 </label>
                 <DatePicker 
-                  className='form-control form-control-solid w-250px ps-5' 
+                  className='form-control form-control-solid w-200px form-control-sm' 
                   id="fechaHasta"
                   name="fechaHasta" 
                   wrapperClassName="datePicker"  
@@ -223,7 +221,7 @@ const CpeHeaderSearch = () => {
               </label> 
 
               <select name="tipoCpe"  
-                      className='form-control form-control-solid w-250px  ps-5' 
+                      className='form-control form-control-solid w-200px form-control-sm' 
                       {...register('tipoCpe', { required: false })}  
               >
                   <option value="-">Seleccione...</option> 
@@ -240,7 +238,7 @@ const CpeHeaderSearch = () => {
                 Estado Cpe
               </label>
               <select name="estadoCpe" 
-                      className='form-control form-control-solid w-250px ps-5'  
+                      className='form-control form-control-solid w-200px form-control-sm'  
                       {...register('estadoCpe', { required: false })}  
               >
               <option value="-">Seleccione...</option> 
@@ -261,7 +259,7 @@ const CpeHeaderSearch = () => {
                 data-kt-user-table-filter='search'
                 id="rucReceptor"
                 name="rucReceptor" 
-                className='form-control form-control-solid w-250px ps-5'
+                className='form-control form-control-solid w-200px form-control-sm'
                 {...register('rucReceptor', { required: false })} 
               /> 
               </div>   
@@ -275,7 +273,7 @@ const CpeHeaderSearch = () => {
                 </label>  
                 
                 <select name="Sucursal"
-                      className='form-control form-control-solid w-250px ps-5' 
+                      className='form-control form-control-solid w-200px form-control-sm' 
                       {...register('Sucursal', { required: false })}  
               >
               <option value="-">Seleccione...</option> 
@@ -293,7 +291,7 @@ const CpeHeaderSearch = () => {
                 <input
                   type='text'
                   data-kt-user-table-filter='search'
-                  className='form-control form-control-solid w-250px ps-5' 
+                  className='form-control form-control-solid w-200px form-control-sm' 
                   id="serieCpe"
                   name="serieCpe" 
                   {...register('serieCpe', { required: false })} 
@@ -307,7 +305,7 @@ const CpeHeaderSearch = () => {
               <input
                 type='text'
                 data-kt-user-table-filter='search'
-                className='form-control form-control-solid w-250px ps-5' 
+                className='form-control form-control-solid w-200px form-control-sm' 
                 id="numeroDesde"
                 name="numeroDesde" 
                 {...register('numeroDesde', { required: false })} 
@@ -321,7 +319,7 @@ const CpeHeaderSearch = () => {
               <input
                 type='text'
                 data-kt-user-table-filter='search'
-                className='form-control form-control-solid w-250px ps-5' 
+                className='form-control form-control-solid w-200px form-control-sm' 
                 id="numeroHasta"
                 name="numeroHasta" 
                 {...register('numeroHasta', { required: false })} 
@@ -332,7 +330,7 @@ const CpeHeaderSearch = () => {
                 <label className='d-flex align-items-center form-label mb-3 invisible'>
                   .
                 </label>
-                <button type="submit" className="btn btn-dark mb-1 w-250px">Consultar</button>
+                <button type="submit" className="btn btn-dark mb-1 btn-sm">Consultar</button>
               </div>    
     
             </div> 

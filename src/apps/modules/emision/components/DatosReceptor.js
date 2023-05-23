@@ -1,55 +1,82 @@
-import {Link} from 'react-router-dom'
-import * as XLSX from 'xlsx'; 
-import moment from 'moment';  
+import { useForm } from "react-hook-form"; 
 
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
-import { KTSVG} from '../../../../_metronic/helpers' 
+import {useEmision} from '../core/EmisionContext';
+
 
 const DatosReceptor = () => {
   
+  const { setReceptorDatos } = useEmision();
+
+  const setTipoDocumento = (event) => { 
+    setReceptorDatos('tipoDocumento', event.target.value) 
+  };
+  const setNumeroDocumento = (event) => { 
+    setReceptorDatos('numeroDocumento', event.target.value) 
+  };
+  const setRazonSocial = (event) => { 
+    setReceptorDatos('razonSocial', event.target.value) 
+  };
+  const setDireccion = (event) => { 
+    setReceptorDatos('direccion', event.target.value) 
+  };
+  const setCorreo = (event) => { 
+    setReceptorDatos('correo', event.target.value) 
+  };
+
   return (
     <div className='card mb-2'>
-      <div className='card-body pt-1 pb-0'>
-        <div className='d-flex flex-wrap flex-sm-nowrap mb-1'> 
+      <div className='card-body pt-1 pb-0'> 
+         
+            <Form>
 
-          <div className='flex-grow-1'>
-            <div className='d-flex justify-content-between align-items-start flex-wrap'>
-              <div className='d-flex flex-column'>
-
-                <div className='d-flex my-8'>
-                    <div className='pb-8'>
-                      <h2 className='fw-bolder text-dark'>RAZON SOCIAL DE LA EMPRESA</h2>
-                      <h2 className='fw-bolder text-dark'>RUC</h2>
-                    </div>
+            <Row className="mt-3"> 
+                <div>
+                    <h3 className='fw-bolder text-dark'>DATOS DEL RECEPTOR</h3>
                 </div>
+              </Row>
 
+              <Row className="mb-3"> 
+                  <Col xs="auto">
+                    <Form.Group as={Col} controlId="formTipoDocumento">
+                      <Form.Select  size="sm" defaultValue="RUC" onChange={setTipoDocumento}>
+                        <option>RUC</option>
+                        <option>DNI</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </Col> 
+                  <Col xs="auto">
+                    <Form.Group as={Col} controlId="formNumeroDocumento"> 
+                      <Form.Control  size="sm" type="text" placeholder="Número Documento" onChange={setNumeroDocumento}/>
+                    </Form.Group>
+                  </Col> 
+                  <Col>
+                    <Form.Group  controlId="formRazonSocial" lg={2}> 
+                      <Form.Control  size="sm" type="text" placeholder="Razón Social" onChange={setRazonSocial}/>
+                    </Form.Group>
+                  </Col>  
+              </Row> 
 
-              </div>
+              <Row className="mb-3">    
+                <Col>
+                  <Form.Group  controlId="formDireccion" lg={2}> 
+                    <Form.Control  size="sm" type="text" placeholder="Dirección" onChange={setDireccion}/>
+                  </Form.Group>
+                </Col>   
+                <Col xs="auto">
+                  <Form.Group as={Col} controlId="formCorreo"> 
+                    <Form.Control  size="sm" type="email" placeholder="correo@receptor.pe" onChange={setCorreo}/>
+                  </Form.Group>
+                </Col> 
+              </Row>
 
-              <div className='d-flex flex-column'>
-              
-                <div className='d-flex my-4'>  
-                  <div className='notice d-flex bg-light rounded border-light border border-dashed p-2' style={{ width: '500px' }} >
-                
-                      <div className='d-flex flex-stack flex-grow-1 justify-content-center'>
-                        <div className='fw-bold d-flex flex-column'>
-                            
-                          <div className='fs-4 text-gray-800 d-flex justify-content-center'>RUC: 20543754332</div>
-                          <div className='d-flex justify-content-center'><h4 className='fs-1 pt-2 text-gray-800 fw-bolder'>FACTURA ELECTRÓNICA</h4></div> 
-                          <div className='fs-4 text-gray-800 d-flex justify-content-center'>Nro. de Factura</div>  
-  
-                        </div>
-                      </div>
-                    </div> 
-                </div>
-
-              </div>
+            </Form> 
  
-
-            </div> 
-          </div>
-
-        </div>
+ 
       </div>
     </div>
   )
