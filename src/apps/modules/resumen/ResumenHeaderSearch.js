@@ -35,7 +35,7 @@ const ResumenHeaderSearch = ({tipoCpe}) => {
                 Fecha Desde 
               </label> 
               <DatePicker 
-                className='form-control form-control-solid w-250px ps-5' 
+                className='form-control form-control-solid w-200px form-control-sm' 
                 id="fechaDesde"
                 name="fechaDesde" 
                 wrapperClassName="datePicker"  
@@ -50,7 +50,7 @@ const ResumenHeaderSearch = ({tipoCpe}) => {
               Fecha Hasta 
               </label>
               <DatePicker 
-                className='form-control form-control-solid w-250px ps-5' 
+                className='form-control form-control-solid w-200px form-control-sm' 
                 id="fechaHasta"
                 name="fechaHasta" 
                 wrapperClassName="datePicker"  
@@ -65,7 +65,7 @@ const ResumenHeaderSearch = ({tipoCpe}) => {
               <label className='d-flex align-items-center form-label mb-3 invisible'>
                 .
               </label>
-              <button type="submit" className="btn btn-dark mb-1 w-250px">Consultar</button>
+              <button type="submit" className="btn btn-dark mb-1 btn-sm">Consultar</button>
             </div>    
   
    

@@ -2,8 +2,11 @@ import {Link} from 'react-router-dom'
 import * as XLSX from 'xlsx';
 import {useSearch} from './busqueda/core/searchContext'; 
 import {CpeServiceGetData} from './busqueda/services/CpeService'; 
+import {createReporte} from '../reporte/busqueda/services/ReporteService'; 
 import moment from 'moment'; 
 import {useAuth} from '../auth';
+import Swal from 'sweetalert2';
+import { differenceInDays } from 'date-fns';
 
 const CpeHeaderOption = () => {
 
@@ -37,6 +40,63 @@ const CpeHeaderOption = () => {
       XLSX.writeFile(workBook,"Listado_Comprobantes.xlsx");
   }
 
+  const exportReport = async(tipo) =>{
+    const dataReport = getDefault();
+
+    console.log(dataReport);
+
+    // Fechas de ejemplo
+    let fechaInicio = moment(dataReport.fechaDesde).format("YYYY-MM-DD");
+    let fechaFin = moment(dataReport.fechaHasta).format("YYYY-MM-DD");
+ 
+
+    console.log(fechaInicio);
+    console.log(fechaFin);
+    // Obtener la cantidad de días entre las fechas
+    const cantidadDias = differenceInDays(fechaFin,fechaInicio);
+  
+    console.log(cantidadDias);
+    
+    if (cantidadDias < 0) {
+      Swal.fire({
+        icon: "warning",
+        title: 'La Fecha de Inicio no puede ser mayor a la Fecha de Fin',
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }    
+
+    if (cantidadDias > 7) {
+      Swal.fire({
+        icon: "warning",
+        title: 'Solo se permite generar reportes de un rango de 7 días',
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    dataReport.tipoReporte = tipo;
+    dataReport.usuario = 'adm@jadal.pe';
+    const response = await createReporte(dataReport)
+    if (response.status == true) {
+      Swal.fire({
+        icon: "success",
+        title: `Se ha registrado de manera satisfactoria su solicitud de reporte, este estará disponible pronto en la opción Reportes.`,
+        showConfirmButton: false,
+        timer: 5000
+    })  
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: response.content + ', por favor revise la opción Reportes.',
+        showConfirmButton: false,
+        timer: 5000
+    })  
+    } 
+}
+
 
   return (
     <div className='card mb-2'>
@@ -47,12 +107,18 @@ const CpeHeaderOption = () => {
             <div className='d-flex justify-content-between align-items-start flex-wrap'>
               <div className='d-flex flex-column'></div>
 
-              <div className='d-flex my-4'> 
-                  
+              <div className='d-flex my-4'>  
                 <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3'>
                   Exportar CPE
                 </Link> 
+                <Link to='.' onClick={() => exportReport('PDF')}  className='btn btn-dark me-3'>
+                  Exportar PDF
+                </Link> 
+                <Link to='.' onClick={() => exportReport('XML')}  className='btn btn-dark me-3'>
+                  Exportar XML
+                </Link> 
               </div>
+ 
             </div>
  
           </div>

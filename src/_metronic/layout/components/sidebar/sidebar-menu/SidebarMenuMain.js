@@ -21,36 +21,27 @@ const SidebarMenuMain = () => {
         </div>
       </div>
 
-      <SidebarMenuItemWithSub
-        to='/cpe'
-        title='Comprobantes'
+
+      <SidebarMenuItem
+          to='/cpe/emitidos'
+          title='Emitidos'
+          fontIcon='bi-archive'
+          icon='/media/icons/duotune/general/gen022.svg'
+        />  
+  
+      {/* <SidebarMenuItemWithSub
+        to='/emisión'
+        title='Emisión Web'
         fontIcon='bi-archive'
         icon='/media/icons/duotune/general/gen022.svg'
       > 
           <SidebarMenuItem
-            to='/cpe/emitidos'
-            title='Búsqueda'
+            to='/emision/factura'
+            title='Factura'
             hasBullet={true}
           /> 
-
-          {/* <SidebarMenuItemWithSub
-            to='/emisión'
-            title='Emisión'
-            fontIcon='bi-archive'
-            icon='/media/icons/duotune/general/gen022.svg'
-          > 
-              <SidebarMenuItem
-                to='/emision/factura'
-                title='Factura'
-                hasBullet={true}
-              /> 
-          </SidebarMenuItemWithSub> */}
-  
-      </SidebarMenuItemWithSub>
-
-
-
-
+      </SidebarMenuItemWithSub> */}
+     
       <SidebarMenuItemWithSub
         to='/baja'
         title='Comunicación de Baja'
@@ -76,6 +67,14 @@ const SidebarMenuMain = () => {
             hasBullet={true}
           /> 
       </SidebarMenuItemWithSub>
+
+     
+        <SidebarMenuItem
+          to='/reporte/busqueda'
+          title='Reportes'
+          fontIcon='bi-archive'
+          icon='/media/icons/duotune/general/gen022.svg'
+        />  
   
   
     </>

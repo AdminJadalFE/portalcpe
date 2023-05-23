@@ -32,9 +32,8 @@ const EmisionPage = () => {
                 <FacturaPage />
               </>
             }
-          /> 
-    
-    
+          />  
+          
         </Route>
       </Routes>
     </EmisionProvider>
