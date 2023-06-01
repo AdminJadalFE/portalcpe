@@ -53,7 +53,10 @@ import {
         console.log(item);
 
         item.igv = (item.venta * 0.18).toFixed(2);
-        item.total = (item.venta + parseFloat(item.igv)).toFixed(2);
+
+        let igvunit = (item.precio * 0.18).toFixed(2);
+        item.total = (item.precio + parseFloat(igvunit)).toFixed(2);
+        
         item.venta = parseFloat(item.venta).toFixed(2);
         item.precio = parseFloat(item.precio).toFixed(2);
         setDatosItem([...datosItem, item])
