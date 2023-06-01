@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form"; 
 
 import { useState } from 'react'
-
-import Button from 'react-bootstrap/Button';
+ 
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -10,17 +9,70 @@ import Table from 'react-bootstrap/Table';
 
 import {useEmision} from '../core/EmisionContext';
 
+import Swal from 'sweetalert2';
+
 const DatosDetalle = () => {
 
   
 let { register, handleSubmit } = useForm();   
 
 const { AddItem,DeleteItem, datosItem } = useEmision();
-const [ cantidad, setCantidad ] = useState(1);
-const [ precio, setPrecio ] = useState(0);
-const [ venta, setVenta ] = useState(0);
+const [ cantidad, setCantidad ] = useState();
+const [ precio, setPrecio ] = useState();
+const [ venta, setVenta ] = useState();
 
   const manejarSubmit = async (data) => {    
+ 
+    if (!data || !data.codigo) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar el Código del Ítem",
+        showConfirmButton: false,
+        timer: 5000
+      })      
+      return false;
+    }
+
+    if (!data || !data.descripcion) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar la Descripción del Ítem",
+        showConfirmButton: false,
+        timer: 5000
+      })      
+      return false;
+    }
+
+    if (!data || !data.unidadMedida) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe seleccionar la Unidad de Medida del Ítem",
+        showConfirmButton: false,
+        timer: 5000
+      })      
+      return false;
+    }
+    console.log(data.cantidad);
+    if (!cantidad) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar la Cantidad del Ítem",
+        showConfirmButton: false,
+        timer: 5000
+      })      
+      return false;
+    }
+
+    if (!precio) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar el Precio del Ítem",
+        showConfirmButton: false,
+        timer: 5000
+      })      
+      return false;
+    }
+
     data.cantidad = cantidad;
     data.precio = precio;
     data.venta = venta;
@@ -34,7 +86,8 @@ const [ venta, setVenta ] = useState(0);
   const calcularVentaCantidad = (event) => { 
     let value = event.target.value;
     setCantidad(value) 
-    const venta = value * precio
+    console.log(precio);
+    const venta = value * (precio == undefined ? 0 : precio)
     console.log("venta",venta);
     setVenta(venta);
   };
@@ -42,15 +95,12 @@ const [ venta, setVenta ] = useState(0);
   const calcularVentaPrecio = (event) => { 
     let value = event.target.value;
     setPrecio(value) 
-    const venta = cantidad * value
+    const venta = (cantidad == undefined ? 0 : cantidad) * value
     console.log("venta",venta);
     setVenta(venta);
   };
 
-  const calcularTotal = (event) => { 
-    let value = event.target.value; 
-    console.log("venta",value); 
-  };
+  
   
   return (
     <div className='card mb-2'>
@@ -80,8 +130,7 @@ const [ venta, setVenta ] = useState(0);
                   <Col xs="auto">
                     <Form.Group as={Col} controlId="formUnidadMedida">
                       <Form.Select size="sm"  {...register('unidadMedida', { required: false })}>
-                        <option value="NIU">Unidad Medida...</option>
-                        <option>...</option>
+                        <option value="NIU">NIU</option>
                       </Form.Select>
                     </Form.Group>
                   </Col> 
@@ -92,13 +141,13 @@ const [ venta, setVenta ] = useState(0);
 
                 <Col xs="auto">
                     <Form.Group as={Col} controlId="formCantidad"> 
-                      <Form.Control size="sm"  type="decimal" value={cantidad} onChange={calcularVentaCantidad} />
+                      <Form.Control size="sm"  type="decimal" placeholder="Cantidad"  value={cantidad} onChange={calcularVentaCantidad} />
                     </Form.Group>
                   </Col> 
 
                   <Col xs="auto">
                     <Form.Group as={Col} controlId="formPrecio"> 
-                      <Form.Control size="sm"  type="decimal" value={precio} onChange={calcularVentaPrecio} />
+                      <Form.Control size="sm"  type="decimal" placeholder="Precio Unitario" value={precio} onChange={calcularVentaPrecio} />
                     </Form.Group>
                   </Col> 
 

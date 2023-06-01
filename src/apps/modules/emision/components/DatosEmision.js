@@ -6,8 +6,9 @@ import moment from 'moment';
  
 import {useEmision} from '../core/EmisionContext';
 
-const DatosEmision = () => {
+const DatosEmision = ({tipoCpe}) => {
 
+  console.log(tipoCpe);
   const { setCpeDatos } = useEmision();
  
   const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).format("YYYY-MM-DD");
@@ -23,6 +24,12 @@ const DatosEmision = () => {
   const setMoneda= (event) => { 
     setCpeDatos('moneda', event.target.value) 
   };
+
+
+  useEffect(() => {   
+    setCpeDatos('tipoCpe', tipoCpe)  
+  }, [])  
+  
   
   return (
     
@@ -61,7 +68,6 @@ const DatosEmision = () => {
                     </label>
                     <Form.Select  size="sm"  defaultValue="PEN" onChange={setMoneda}>
                       <option>PEN</option>
-                      <option>USD</option>
                     </Form.Select>
                   </Form.Group>
                 </Col> 

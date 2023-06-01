@@ -1,6 +1,4 @@
-import { useForm } from "react-hook-form"; 
-
-import Button from 'react-bootstrap/Button';
+import React, {useEffect,useState} from 'react';   
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -8,9 +6,11 @@ import Row from 'react-bootstrap/Row';
 import {useEmision} from '../core/EmisionContext';
 
 
-const DatosReceptor = () => {
+const DatosReceptor = ({tipoDocumento}) => {
   
   const { setReceptorDatos } = useEmision();
+
+  const [ tipoDoc, setTipoDoc ] = useState(0);
 
   const setTipoDocumento = (event) => { 
     setReceptorDatos('tipoDocumento', event.target.value) 
@@ -28,6 +28,13 @@ const DatosReceptor = () => {
     setReceptorDatos('correo', event.target.value) 
   };
 
+
+  useEffect(() => {   
+    setReceptorDatos('tipoDocumento', tipoDocumento)  
+    setTipoDoc(tipoDocumento)
+  }, [])  
+  
+
   return (
     <div className='card mb-2'>
       <div className='card-body pt-1 pb-0'> 
@@ -43,9 +50,9 @@ const DatosReceptor = () => {
               <Row className="mb-3"> 
                   <Col xs="auto">
                     <Form.Group as={Col} controlId="formTipoDocumento">
-                      <Form.Select  size="sm" defaultValue="RUC" onChange={setTipoDocumento}>
-                        <option>RUC</option>
-                        <option>DNI</option>
+                      <Form.Select  size="sm" value={tipoDoc} onChange={setTipoDocumento}>
+                        <option value="6">RUC</option>
+                        <option value="1">DNI</option>
                       </Form.Select>
                     </Form.Group>
                   </Col> 

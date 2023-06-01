@@ -28,8 +28,7 @@ const CpeResumeHeaderSearch = () => {
     setDataCpe(datos);  
   }
 
-  const manejarSubmit = async () => {      
-    console.log("333333", searchCpe);
+  const manejarSubmit = async () => {   
     getDefault();
   }
 

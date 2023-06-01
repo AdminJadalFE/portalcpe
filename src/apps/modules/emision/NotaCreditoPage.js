@@ -9,6 +9,7 @@ import {getSerie} from './services/EmisionService';
 
 import {DatosEmisor} from './components/DatosEmisor'
 import {DatosReceptor} from './components/DatosReceptor'
+import {DatosReferencia} from './components/DatosReferencia'
 import { DatosEmision } from './components/DatosEmision'
 import { DatosDetalle } from './components/DatosDetalle'
 import { DatosTotales } from './components/DatosTotales';  
@@ -31,11 +32,11 @@ const profileBreadCrumbs = [
   },
 ]
  
-const FacturaPage = () => {
+const NotaCreditoPage = () => {
   
   let { register, handleSubmit } = useForm();   
   const {currentEmisor} = useAuth(); 
-  const { datosCpe,datosReceptor,datosItem, datosTotales} = useEmision();
+  const { datosCpe,datosReceptor,datosItem, datosTotales, datosReferencia} = useEmision();
   const [ dataSerie, setDataSerie ] = useState();
 
 
@@ -112,6 +113,66 @@ const FacturaPage = () => {
       return false;
     }
 
+    if (!datosReferencia || !datosReferencia.tipoCpe) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe seleccionar el Tipo de Comprobante de Referencia",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    if (!datosReferencia || !datosReferencia.serieDocumento) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar la Serie del Comprobante de Referencia",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+    if (!datosReferencia || !datosReferencia.numeroDocumento) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar el Número del Comprobante de Referencia",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+
+    if (!datosReferencia || !datosReferencia.fechaCpeRef) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar la Fecha del Comprobante de Referencia",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+    if (!datosReferencia || !datosReferencia.tipoNotaCredito) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe seleccionar el Tipo de Nota de Crédito",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+    if (!datosReferencia || !datosReferencia.descripcion) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar el Motivo de la Nota de Crédito",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+
+
     if (!datosItem || datosItem.length == 0)  { 
       Swal.fire({
         icon: "error",
@@ -130,6 +191,7 @@ const FacturaPage = () => {
           rucEmisor: currentEmisor.rucEmisor
         },
         datosReceptor,
+        datosReferencia,
         datosItem,
         datosTotales
     }
@@ -171,9 +233,10 @@ const FacturaPage = () => {
           (
  
             <>
-                <DatosEmisor tipoCpe="FACTURA"/>
-                <DatosEmision tipoCpe="01"/>
+                <DatosEmisor tipoCpe="NOTA DE CRÉDITO"/>
+                <DatosEmision tipoCpe="07"/>
                 <DatosReceptor tipoDocumento="6"/>
+                <DatosReferencia /> 
                 <DatosDetalle /> 
                 <DatosTotales />
         
@@ -198,4 +261,4 @@ const FacturaPage = () => {
     </>
     )
   }
-export default FacturaPage
+export default NotaCreditoPage
