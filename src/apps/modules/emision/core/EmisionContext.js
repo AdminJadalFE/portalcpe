@@ -7,7 +7,25 @@ import {
   import moment from 'moment'; 
 
   const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).format("YYYY-MM-DD");
+
+  const totalesInitialize = {
+    subTotal:0,
+    igv:0,
+    subTotalGravadas:0,
+    total:0
+  }
  
+  const referenciaInitialize = {
+    fechaCpeRef:fechaActual,
+    tipoNotaCredito:'01'
+  }
+
+  const cpeInitialize = {
+    fechaCpe:fechaActual,
+    fechaVencimiento:fechaActual,
+    moneda: 'PEN'
+  }
+
   const EmisionContext = createContext()
  
   const useEmision = () => {
@@ -16,23 +34,11 @@ import {
 
   const EmisionProvider = ({children}) => {
 
-    const [datosCpe, setDatosCpe] = useState({
-      fechaCpe:fechaActual,
-      fechaVencimiento:fechaActual,
-      moneda: 'PEN'
-    });
+    const [datosCpe, setDatosCpe] = useState(cpeInitialize);
     const [datosReceptor, setDatosReceptor] = useState(null);  
-    const [datosReferencia, setDatosReferencia] = useState({
-      fechaCpeRef:fechaActual,
-      tipoNotaCredito:'01'
-    });  
+    const [datosReferencia, setDatosReferencia] = useState(referenciaInitialize);  
     const [datosItem, setDatosItem] = useState([]);
-    const [datosTotales, setDatosTotales] = useState({
-      subTotal:0,
-      igv:0,
-      subTotalGravadas:0,
-      total:0
-    });
+    const [datosTotales, setDatosTotales] = useState(totalesInitialize);
 
     const setCpeDatos =  async (campo, valor) => { 
       setDatosCpe({ ...datosCpe, [campo]: valor }); 
@@ -50,12 +56,10 @@ import {
     }
   
     const AddItem =  (item) => { 
-        console.log(item);
-
+        
         item.igv = (item.venta * 0.18).toFixed(2);
-
-        let igvunit = (item.precio * 0.18).toFixed(2);
-        item.total = (item.precio + parseFloat(igvunit)).toFixed(2);
+        let igvunit = (item.precio * 0.18).toFixed(2); 
+        item.total = (parseFloat(item.precio) + parseFloat(igvunit)).toFixed(2);
         
         item.venta = parseFloat(item.venta).toFixed(2);
         item.precio = parseFloat(item.precio).toFixed(2);
@@ -74,8 +78,6 @@ import {
         subtotal += parseFloat(item.venta)
       })
 
-      console.log("subtotal",subtotal);
-
       let igv = (subtotal * 0.18).toFixed(2);
       let total = (subtotal + parseFloat(igv)).toFixed(2);
   
@@ -83,9 +85,29 @@ import {
   
     }
 
+    const CleanItem =  () => { 
+      setDatosItem([]);
+    }
+
+    const CleanDatosCpe =  () => { 
+      setDatosCpe(cpeInitialize);
+    }
+
+    const CleanDatosReceptor =  () => { 
+      setDatosReceptor(null);
+    }
   
+    const CleanDatosReferencia =  () => { 
+      setDatosReferencia(referenciaInitialize);
+    }
+
+    const CleanDatosTotales =  () => { 
+      setDatosTotales(totalesInitialize);
+    }
+ 
+
     return (
-      <EmisionContext.Provider value={{setCpeDatos,setReceptorDatos,setReferenciaDatos, AddItem,DeleteItem, setTotales, datosCpe,datosReceptor,datosItem,datosTotales,datosReferencia}}>
+      <EmisionContext.Provider value={{setCpeDatos,setReceptorDatos,setReferenciaDatos, AddItem, DeleteItem, CleanItem, CleanDatosCpe, CleanDatosReceptor, CleanDatosReferencia, CleanDatosTotales, setTotales, datosCpe,datosReceptor,datosItem,datosTotales,datosReferencia}}>
         {children}
       </EmisionContext.Provider>
     )

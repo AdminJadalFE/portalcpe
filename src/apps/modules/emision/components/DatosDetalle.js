@@ -88,7 +88,6 @@ const [ venta, setVenta ] = useState();
     setCantidad(value) 
     console.log(precio);
     const venta = value * (precio == undefined ? 0 : precio)
-    console.log("venta",venta);
     setVenta(venta);
   };
 
@@ -96,7 +95,6 @@ const [ venta, setVenta ] = useState();
     let value = event.target.value;
     setPrecio(value) 
     const venta = (cantidad == undefined ? 0 : cantidad) * value
-    console.log("venta",venta);
     setVenta(venta);
   };
 

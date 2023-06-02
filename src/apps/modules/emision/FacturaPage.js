@@ -35,7 +35,7 @@ const FacturaPage = () => {
   
   let { register, handleSubmit } = useForm();   
   const {currentEmisor} = useAuth(); 
-  const { datosCpe,datosReceptor,datosItem, datosTotales} = useEmision();
+  const { datosCpe,datosReceptor,datosItem, datosTotales, CleanItem, CleanDatosCpe, CleanDatosReceptor, CleanDatosReferencia, CleanDatosTotales} = useEmision();
   const [ dataSerie, setDataSerie ] = useState();
 
 
@@ -138,6 +138,14 @@ const FacturaPage = () => {
     const cpe = await CreateCpe(factura);
 
     if (cpe.indicador == true) {
+
+      CleanItem()
+      CleanDatosCpe()
+      CleanDatosReceptor()
+      CleanDatosReferencia()
+      CleanDatosTotales()
+
+      
       Swal.fire({
         icon: "success",
         title: cpe.message,

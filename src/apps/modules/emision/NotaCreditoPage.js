@@ -36,7 +36,7 @@ const NotaCreditoPage = () => {
   
   let { register, handleSubmit } = useForm();   
   const {currentEmisor} = useAuth(); 
-  const { datosCpe,datosReceptor,datosItem, datosTotales, datosReferencia} = useEmision();
+  const { datosCpe,datosReceptor,datosItem, datosTotales, datosReferencia, CleanItem, CleanDatosCpe, CleanDatosReceptor, CleanDatosReferencia, CleanDatosTotales} = useEmision();
   const [ dataSerie, setDataSerie ] = useState();
 
 
@@ -200,6 +200,13 @@ const NotaCreditoPage = () => {
     const cpe = await CreateCpe(factura);
 
     if (cpe.indicador == true) {
+
+      CleanItem()
+      CleanDatosCpe()
+      CleanDatosReceptor()
+      CleanDatosReferencia()
+      CleanDatosTotales()
+
       Swal.fire({
         icon: "success",
         title: cpe.message,
