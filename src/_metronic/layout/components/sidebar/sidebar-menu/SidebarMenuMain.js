@@ -29,7 +29,7 @@ const SidebarMenuMain = () => {
           icon='/media/icons/duotune/general/gen022.svg'
         />  
   
-      {/* <SidebarMenuItemWithSub
+      <SidebarMenuItemWithSub
         to='/emisión'
         title='Emisión Web'
         fontIcon='bi-archive'
@@ -55,7 +55,7 @@ const SidebarMenuMain = () => {
             title='Serie-Número'
             hasBullet={true}
           /> 
-      </SidebarMenuItemWithSub> */}
+      </SidebarMenuItemWithSub>
      
       <SidebarMenuItemWithSub
         to='/baja'
