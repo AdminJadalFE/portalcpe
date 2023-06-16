@@ -21,6 +21,7 @@ const StateCell = ({estadoCpe}) => {
         break;
 
       case "ERROR":
+        estadoCpe = 'REMITIDO'
         estadoColor = 'badge badge-light-warning fw-bolder'
         break;
     

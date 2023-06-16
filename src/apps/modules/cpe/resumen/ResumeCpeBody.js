@@ -65,7 +65,7 @@ const ResumeCpeBody = ({tipocpe, data}) => {
                   <th className='min-w-150px'>Tipo de Comprobante</th>
                   <th className='min-w-140px'>Aceptados</th>
                   <th className='min-w-140px'>Rechazados</th>
-                  <th className='min-w-140px'>Errores</th>
+                  <th className='min-w-140px'>Remitidos</th>
                   <th className='min-w-120px'>Baja</th>
                   <th className='min-w-120px'>Pendiente</th> 
                   <th className='min-w-120px'>Total</th> 

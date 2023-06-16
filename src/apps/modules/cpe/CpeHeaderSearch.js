@@ -244,7 +244,7 @@ const CpeHeaderSearch = () => {
               <option value="-">Seleccione...</option> 
                     {
                         estadoCPE.map((elm,i) => (
-                            <option key={i} value={elm.estado_desc}>{elm.estado_cod}-{elm.estado_desc}</option>
+                            <option key={i} value={elm.estado_desc}>{elm.estado_cod}-{elm.estado_desc == 'ERROR' ? 'REMITIDO' : elm.estado_desc}</option>
                         ))
                     }
                 </select>

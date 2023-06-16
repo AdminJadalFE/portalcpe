@@ -2,6 +2,9 @@ import {Navigate, Routes, Route, Outlet} from 'react-router-dom'
 import {PageTitle} from '../../../_metronic/layout/core'
 import {EmisionProvider} from './core/EmisionContext';
 import FacturaPage from './FacturaPage' 
+import BoletaPage from './BoletaPage' 
+import NotaCreditoPage from './NotaCreditoPage' 
+import SeriePage from './SeriePage' 
 
 const profileBreadCrumbs = [
   {
@@ -30,6 +33,36 @@ const EmisionPage = () => {
               <>
                 <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
                 <FacturaPage />
+              </>
+            }
+          />  
+
+        <Route
+            path='boleta'
+            element={
+              <>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <BoletaPage />
+              </>
+            }
+          />  
+
+        <Route
+            path='notacredito'
+            element={
+              <>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <NotaCreditoPage />
+              </>
+            }
+          />  
+
+        <Route
+            path='serie'
+            element={
+              <>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <SeriePage />
               </>
             }
           />  

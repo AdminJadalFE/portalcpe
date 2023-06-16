@@ -1,10 +1,7 @@
-import { useForm } from "react-hook-form"; 
 
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
+import Row from 'react-bootstrap/Row'; 
 
 
 import {useEmision} from '../core/EmisionContext';
@@ -52,7 +49,7 @@ const DatosTotales = () => {
                       <label className='d-flex align-items-center form-label mb-3'>
                         SubTotal Gravadas
                       </label>
-                      <Form.Control size="sm" type="text" disabled value={datosTotales.igv} />
+                      <Form.Control size="sm" type="text" disabled value={datosTotales.subTotalGravadas} />
                     </Form.Group>
                   </Col>  
                   <Col xs="auto">
@@ -60,7 +57,7 @@ const DatosTotales = () => {
                       <label className='d-flex align-items-center form-label mb-3'>
                         Total IGV
                       </label>
-                      <Form.Control size="sm" type="text" disabled value={datosTotales.subTotalGravadas} />
+                      <Form.Control size="sm" type="text" disabled value={datosTotales.igv} />
                     </Form.Group>
                   </Col>  
                   <Col xs="auto">

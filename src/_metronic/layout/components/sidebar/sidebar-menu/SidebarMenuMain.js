@@ -40,6 +40,21 @@ const SidebarMenuMain = () => {
             title='Factura'
             hasBullet={true}
           /> 
+          <SidebarMenuItem
+            to='/emision/boleta'
+            title='Boleta'
+            hasBullet={true}
+          /> 
+          <SidebarMenuItem
+            to='/emision/notacredito'
+            title='Nota de Crédito'
+            hasBullet={true}
+          /> 
+          <SidebarMenuItem
+            to='/emision/serie'
+            title='Serie-Número'
+            hasBullet={true}
+          /> 
       </SidebarMenuItemWithSub> */}
      
       <SidebarMenuItemWithSub

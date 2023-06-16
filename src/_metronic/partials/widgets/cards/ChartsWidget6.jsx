@@ -78,7 +78,7 @@ const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosC
         data: rechazadosCpe,
       },      
       {
-        name: 'Errores',
+        name: 'Remitidos',
         data: erroresCpe,
       },
       {

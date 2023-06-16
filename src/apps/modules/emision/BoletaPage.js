@@ -19,7 +19,7 @@ import {useAuth} from '../auth'
 const profileBreadCrumbs = [
   {
     title: 'Busqueda',
-    path: '/emision/factura',
+    path: '/emision/boleta',
     isSeparator: false,
     isActive: false,
   },
@@ -31,7 +31,7 @@ const profileBreadCrumbs = [
   },
 ]
  
-const FacturaPage = () => {
+const BoletaPage = () => {
   
   let { register, handleSubmit } = useForm();   
   const {currentEmisor} = useAuth(); 
@@ -145,7 +145,7 @@ const FacturaPage = () => {
       CleanDatosReferencia()
       CleanDatosTotales()
 
-      
+
       Swal.fire({
         icon: "success",
         title: cpe.message,
@@ -179,9 +179,9 @@ const FacturaPage = () => {
           (
  
             <>
-                <DatosEmisor tipoCpe="FACTURA"/>
-                <DatosEmision tipoCpe="01"/>
-                <DatosReceptor tipoDocumento="6"/>
+                <DatosEmisor tipoCpe="BOLETA"/>
+                <DatosEmision tipoCpe="03"/>
+                <DatosReceptor tipoDocumento="1"/>
                 <DatosDetalle /> 
                 <DatosTotales />
         
@@ -206,4 +206,4 @@ const FacturaPage = () => {
     </>
     )
   }
-export default FacturaPage
+export default BoletaPage
