@@ -108,7 +108,8 @@ const CpeHeaderOption = () => {
               <div className='d-flex flex-column'></div>
 
               <div className='d-flex my-4'>  
-                <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3'>
+                {/* <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3'> */}
+                <Link to='.' onClick={() => exportReport('XSL')}  className='btn btn-dark me-3'>
                   Exportar CPE
                 </Link> 
                 <Link to='.' onClick={() => exportReport('PDF')}  className='btn btn-dark me-3'>
