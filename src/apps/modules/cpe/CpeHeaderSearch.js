@@ -104,7 +104,10 @@ const CpeHeaderSearch = () => {
     // Obtener la cantidad de días entre las fechas
     const cantidadDias = differenceInDays(new Date(fechaFin),new Date(fechaInicio));
 
-    console.log(cantidadDias);
+    let maximoDias = 7;
+    if (tipo == 'XLS') {
+      maximoDias = 31;
+    }
     
     if (cantidadDias < 0) {
       Swal.fire({
@@ -116,10 +119,10 @@ const CpeHeaderSearch = () => {
       return false;
     }    
 
-    if (cantidadDias > 7) {
+    if (cantidadDias > maximoDias) {
       Swal.fire({
         icon: "warning",
-        title: 'Solo se permite generar reportes de un rango de 7 días',
+        title: 'Solo se permite generar reportes de un rango de ' + maximoDias + ' días',
         showConfirmButton: false,
         timer: 5000
       })  
@@ -159,7 +162,8 @@ const CpeHeaderSearch = () => {
                 <div className='d-flex flex-column'></div>
 
                 <div className='d-flex my-4'>  
-                  <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3 btn-sm'>
+                  {/* <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3 btn-sm'> */}
+                  <Link to='.' onClick={() => exportReport('XLS')}  className='btn btn-dark me-3 btn-sm'>
                     Exportar CPE
                   </Link> 
                   <Link to='.' onClick={() => exportReport('PDF')}  className='btn btn-dark me-3 btn-sm'>
