@@ -4,9 +4,9 @@ const DateCell = ({fechaCpe, option, indicador}) => (
 )
 
 const getDateFormat = (date, option, indicador) => { 
-  if (indicador == '1') {
-    date = moment(date).add(5, 'h').format();   
-  } 
+  // if (indicador == '1') {
+  //   date = moment(date).add(5, 'h').format();   
+  // } 
   return moment(date).format(option); 
 }
 
