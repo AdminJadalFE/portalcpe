@@ -8,8 +8,10 @@ import {useEmision} from '../core/EmisionContext';
 import {getMoneda, getTipoAfectacion, getFormaPago} from '../services/EmisionService';  
 
 const DatosEmision = ({tipoCpe}) => {
+
+  console.log(tipoCpe);
  
-  const { setCpeDatos, datosItem  } = useEmision();
+  const { setCpeDatosInicial, setCpeDatos, datosItem  } = useEmision();
   const [ monedas, setMonedas ] = useState([]);
   const [ tiposAfectacion, setTiposAfectacion ] = useState([]);
   const [ formasPago, setFormasPago ] = useState([]);
@@ -74,14 +76,11 @@ const DatosEmision = ({tipoCpe}) => {
     setFormasPago(listFormasPago);
   }; 
 
-  const setData = async () => { 
-     if (tipoCpe == '03' || tipoCpe == '07') {
-      setCpeDatos('formaPago', '01');
-     }
+  const setData = async () => {  
+      setCpeDatosInicial(tipoCpe, '01'); 
   }; 
 
-  useEffect(() => {   
-    setCpeDatos('tipoCpe', tipoCpe);
+  useEffect(() => {    
     getData();
     setData();
   }, [])  

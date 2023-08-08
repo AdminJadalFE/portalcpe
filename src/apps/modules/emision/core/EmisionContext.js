@@ -15,7 +15,8 @@ import {
     tipoAfectacion: '1000',
     formaPago: '01',
     afectacionIgv: true,
-    porcentajeIgv: '18.00'
+    porcentajeIgv: '18.00',
+    tipoCpe:''
   }
 
   const contingenciaInitialize = {
@@ -70,8 +71,15 @@ import {
     const [datosTotales, setDatosTotales] = useState(totalesInitialize);
     const [datosAdicionales, setDatosAdicionales] = useState(adicionalesInitialize);
 
+    const setCpeDatosInicial =  async (tipoCpe, formaPago) => { 
+      
+      setDatosCpe({ ...datosCpe, tipoCpe, formaPago });   
+    }
+
     const setCpeDatos =  async (campo, valor) => { 
+      console.log(campo, valor);
       setDatosCpe({ ...datosCpe, [campo]: valor });  
+      console.log(datosCpe);
     }
 
     const setContingenciaDatos =  async (campo, valor) => { 
@@ -184,7 +192,7 @@ import {
 
     return (
       <EmisionContext.Provider 
-        value={{setCpeDatos, CleanDatosCpe, setReceptorDatos, CleanDatosReceptor, setReferenciaDatos, CleanDatosReferencia, setTotales, CleanDatosTotales, setContingenciaDatos, CleanDatosContingencia, setAdicionalesDatos, CleanDatosAdicionales,
+        value={{setCpeDatosInicial, setCpeDatos, CleanDatosCpe, setReceptorDatos, CleanDatosReceptor, setReferenciaDatos, CleanDatosReferencia, setTotales, CleanDatosTotales, setContingenciaDatos, CleanDatosContingencia, setAdicionalesDatos, CleanDatosAdicionales,
                  AddItem, DeleteItem, CleanItem, AddFormaPago, DeleteFormaPago, CleanFormaPago, AddDocRel, DeleteDocRel, CleanDocRel,
                 datosCpe, datosReceptor,datosItem,datosTotales,datosReferencia, datosAdicionales, datosContingencia, datosDocRel, datosFormaPago }}>
         {children}
