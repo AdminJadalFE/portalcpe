@@ -5,11 +5,15 @@ import Row from 'react-bootstrap/Row';
 import moment from 'moment'; 
  
 import {useEmision} from '../core/EmisionContext';
-
+import {getTipoNota} from '../services/EmisionService';  
 
 const DatosReferencia = () => {
   
-  const { setReferenciaDatos } = useEmision();
+  const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).format("YYYY-MM-DD");
+
+  const [ tipoNota, setTipoNota ] = useState([]);
+
+  const { setReferenciaDatos, setCpeDatos } = useEmision();
    
   const setTipoCpe = (event) => { 
     setReferenciaDatos('tipoCpe', event.target.value) 
@@ -24,17 +28,29 @@ const DatosReferencia = () => {
     setReferenciaDatos('fechaCpeRef', event.target.value) 
   }; 
   const setTipoNotaCredito = (event) => { 
-    setReferenciaDatos('tipoNotaCredito', event.target.value) 
+    let codTipoNota = event.target.value;
+    setReferenciaDatos('tipoNotaCredito', codTipoNota) 
+    if (codTipoNota == '13') {
+      setFormaPago('02');
+    } else {
+      setFormaPago('01');
+    }
   };
   const setDescripcion = (event) => { 
     setReferenciaDatos('descripcion', event.target.value) 
   }; 
-  
-  const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).format("YYYY-MM-DD");
-  
+  const setFormaPago= (codTipoNota) => { 
+    setCpeDatos('formaPago', codTipoNota) 
+  };
+   
+  const getData = async () => { 
+    const listTipoNota = await getTipoNota(); 
+    setTipoNota(listTipoNota);
+  };
 
   useEffect(() => {   
-    setReferenciaDatos('tipoCpe', "01")  
+    getData();
+    setReferenciaDatos('tipoCpe', "01");
   }, [])  
 
   return (
@@ -75,11 +91,15 @@ const DatosReferencia = () => {
                 </Col> 
                 <Col xs="auto">
                     <Form.Group as={Col} controlId="formTipoDocumento">
-                      <Form.Select  size="sm" value="01" onChange={setTipoNotaCredito}>
-                        <option value="01">ANULACION DE LA OPERACIÓN</option>
+                      <Form.Select  size="sm" onChange={setTipoNotaCredito}>
+                      {
+                        tipoNota.map((tiponota,i) => (
+                                <option key={i} value={tiponota.codigoTipoNota}>{tiponota.descripcionTipoNota}</option>
+                            ))
+                        }
                       </Form.Select>
                     </Form.Group>
-                  </Col>   
+                </Col>   
               </Row> 
 
               <Row className="mb-3">    

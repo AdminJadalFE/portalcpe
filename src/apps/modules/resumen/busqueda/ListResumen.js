@@ -9,6 +9,7 @@ import moment from 'moment';
  
  const ListResumen = ({tipoCpe}) => { 
 
+  const [loading, setLoading] = useState(false)
   const { searchResumen } = useSearch();  
   const [cpeData, setCpeData] = useState([]);  
   const {currentEmisor} = useAuth(); 
@@ -16,8 +17,12 @@ import moment from 'moment';
   const columns = useMemo(() => usersColumns, [])
  
   const getProduct = async () => {  
+
+    setLoading(false);
     const cpes = await CpeServiceGetData(getDefault());    
     setCpeData(cpes); 
+    setLoading(true); 
+  
   }  
 
   const getDefault = () => {
@@ -25,9 +30,7 @@ import moment from 'moment';
     let rucEmisor = (searchResumen.rucEmisor === '-') ? currentEmisor.rucEmisor : searchResumen.rucEmisor;
     let fechaDesde = (searchResumen.fechaDesde === '' || searchResumen.fechaDesde === '-' || searchResumen.fechaDesde === false) ? moment().startOf('month').format('YYYY-MM-DD') : searchResumen.fechaDesde;   
     let fechaHasta = (searchResumen.fechaHasta === '' || searchResumen.fechaHasta === '-' || searchResumen.fechaHasta === false) ?  moment().endOf('month').format('YYYY-MM-DD') : searchResumen.fechaHasta;   
- 
     let datos = {...searchResumen, fechaDesde, fechaHasta, rucEmisor, tipoCpe }  
-     
     return datos;
 
   }
@@ -62,13 +65,9 @@ import moment from 'moment';
     </h3>
 
   </div> 
-  {/* <div className='card-body py-3'>  */}
-    {/* <div className='table-responsive'>  */}
-
-          
-      {/* <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3'>  */}
+ 
           {
-              cpeData
+              loading
               ? 
               (  
                 <ResumenBody  cpes={cpeData} cpesColumns={columns}/>    
@@ -78,9 +77,7 @@ import moment from 'moment';
                 <CpeLoading />
               )
           } 
-      {/* </table>  */}
-    {/* </div>  */}
-  {/* </div>  */}
+ 
 </div>
   )
 }  

@@ -10,9 +10,7 @@ import { useEffect } from "react";
 const DatosTotales = () => {
  
   const { setTotales,datosTotales, datosItem } = useEmision(); 
-
-  console.log(datosTotales);
-      
+ 
   useEffect(() => {
     setTotales() 
   }, [])
