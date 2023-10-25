@@ -7,15 +7,12 @@ import {useAuth} from '../../auth'
 const DatosEmisor = ({tipoCpe}) => {
 
   const {currentEmisor} = useAuth(); 
-
-  console.log(currentEmisor);
   
   const [ dataSerie, setDataSerie ] = useState();
   
   const getSerieEmisor = async () => { 
     const serie = await getSerie({rucEmisor:currentEmisor.rucEmisor});
-    setDataSerie(serie);
-    console.log(serie);
+    setDataSerie(serie); 
   };
 
   useEffect(() => {   

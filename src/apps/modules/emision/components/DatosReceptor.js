@@ -13,6 +13,7 @@ const DatosReceptor = ({tipoDocumento}) => {
   const [ tipoDoc, setTipoDoc ] = useState(0);
 
   const setTipoDocumento = (event) => { 
+    setTipoDoc(event.target.value)
     setReceptorDatos('tipoDocumento', event.target.value) 
   };
   const setNumeroDocumento = (event) => { 

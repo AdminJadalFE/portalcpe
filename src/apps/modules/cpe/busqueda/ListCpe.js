@@ -9,6 +9,8 @@ import moment from 'moment';
 
   const ListCpe = () => { 
 
+    const [loading, setLoading] = useState(false)
+
     const { searchCpe, setDataCpe, filterCpe } = useSearch();  
     const [cpeData, setCpeData] = useState([]); 
     const {currentEmisor} = useAuth(); 
@@ -16,14 +18,14 @@ import moment from 'moment';
     const columns = useMemo(() => usersColumns, [])
  
     const getProduct = async () => {  
+      setLoading(false);
       const cpes = await CpeServiceGetData(getDefault());   
-      setCpeData(cpes);  
+      setCpeData(cpes); 
+      setLoading(true); 
     }  
    
     const getDefault = () => {
  
-      console.log(searchCpe);
-
       let rucEmisor = (searchCpe.rucEmisor === '-') ? currentEmisor.rucEmisor : searchCpe.rucEmisor;
       let fechaDesde = (searchCpe.fechaDesde === '' || searchCpe.fechaDesde === '-' || searchCpe.fechaDesde === false) ? moment().startOf('month').format('YYYY-MM-DD') : searchCpe.fechaDesde;   
       let fechaHasta = (searchCpe.fechaHasta === '' || searchCpe.fechaHasta === '-' || searchCpe.fechaHasta === false) ?  moment().endOf('month').format('YYYY-MM-DD') : searchCpe.fechaHasta;   
@@ -71,27 +73,21 @@ import moment from 'moment';
     </h3>
 
   </div> 
-
-  {/* <div className='card-body py-3'>  */}
-    {/* <div className='table-responsive'>  */}
  
-          {
-              cpeData
-              ? 
-              (  
-                // <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3'> 
-                  <CpesBody  cpes={cpeData} cpesColumns={columns}/>   
-                // {/* </table>  */}
-              )
-              :
-              (
-                <CpeLoading />
-              )
-          }  
-
-    {/* </div>  */}
-  {/* </div>  */}
-
+      {
+          loading
+          ? 
+          (  
+            // <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3'> 
+              <CpesBody  cpes={cpeData} cpesColumns={columns}/>   
+            // {/* </table>  */}
+          )
+          :
+          (
+            <CpeLoading />
+          )
+      }  
+ 
 </div>
   )
 }  

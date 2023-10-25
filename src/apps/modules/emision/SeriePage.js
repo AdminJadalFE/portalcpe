@@ -2,7 +2,8 @@
 import React, {useState, useEffect, useContext} from 'react';  
 import { useForm } from "react-hook-form";   
 import {getSerie, CreateSerie, UpdateSerie} from './services/EmisionService';  
-import {useAuth} from '../auth'
+import {useAuth} from '../auth';
+import Swal from 'sweetalert2';
 
 const SeriePage = () => {
  
@@ -54,11 +55,21 @@ const SeriePage = () => {
      
     const serieVal = await getSerie({rucEmisor:currentEmisor.rucEmisor});
 
+    let strMensaje='';
     if(serieVal){
       await UpdateSerie(serieEmisor)
+      strMensaje = 'La Serie fue actualizada correctamente';
     }else{
       await CreateSerie(serieEmisor)
+      strMensaje = 'La Serie fue registrada correctamente';
     }
+
+    Swal.fire({
+      icon: "success",
+      title: strMensaje,
+      showConfirmButton: false,
+      timer: 5000
+    })  
   
   }
  

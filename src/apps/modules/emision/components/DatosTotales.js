@@ -10,9 +10,7 @@ import { useEffect } from "react";
 const DatosTotales = () => {
  
   const { setTotales,datosTotales, datosItem } = useEmision(); 
-
-  console.log(datosTotales);
-      
+ 
   useEffect(() => {
     setTotales() 
   }, [])
@@ -69,7 +67,17 @@ const DatosTotales = () => {
                     </Form.Group>
                   </Col> 
                 </Row> 
+  
                 </div> 
+
+                <div className='fs-4 text-gray-800 d-flex justify-content-start'> 
+                  <Row className="mb-3"> 
+                    <Col xs="auto">
+                        <h3 className='text-muted mt-1 fw-semibold'>{datosTotales.montoPalabras}</h3> 
+                    </Col>    
+                  </Row>   
+                </div> 
+
             </Form> 
 
          

@@ -3,7 +3,7 @@ export const URL_BUCKET = 'https://jadalfecpe.s3.amazonaws.com/';
 
 export const FetchGet = async (endpoint) => {
     const response = await fetch(URL_BACK + endpoint);
-    const content = await response.json();
+    const content = await response.json(); 
     return content;
 }
 

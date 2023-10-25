@@ -4,7 +4,7 @@ import {KTCardBody} from '../../../../_metronic/helpers'
 import {useTable, usePagination} from 'react-table'
 import {CustomHeaderColumn} from './table/CustomHeaderColumn'
 import {CustomRow} from './table/CustomRow'
-  
+import {CpeLoading} from '../../../modules/loading/CpeLoading' 
 
 export default function CpesBody({cpes,cpesColumns}) {
 
@@ -64,11 +64,11 @@ export default function CpesBody({cpes,cpesColumns}) {
                             })
                         ) : (
                             <tr>
-                            <td colSpan={10}>
-                                <div className='d-flex text-center w-100 align-content-center justify-content-center'>
-                                No se han encontrado resultados
-                                </div>
-                            </td>
+                                <td colSpan={10}>
+                                    <div className='d-flex text-center w-100 align-content-center justify-content-center'>
+                                    No se han encontrado resultados
+                                    </div>
+                                </td>
                             </tr>
                         )}
                     </tbody>

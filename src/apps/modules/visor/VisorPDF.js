@@ -23,14 +23,14 @@ const VisorPDF = () => {
   return ( 
  
     <div style={{ height: '750px' }} >
-    <Viewer 
-        fileUrl={pdfFile}
-        plugins={[defaultLayoutPluginInstance]}
-        defaultScale={1}
-        defaultScaleDelta={1.1}
-        defaultScaleValue="page-width"
-    />
-</div>
+      <Viewer 
+          fileUrl={pdfFile}
+          plugins={[defaultLayoutPluginInstance]}
+          defaultScale={1}
+          defaultScaleDelta={1.1}
+          defaultScaleValue="page-width"
+      />
+    </div>
 
   )
 }
