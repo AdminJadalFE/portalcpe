@@ -60,3 +60,10 @@ export const getTipoNota = async () => {
     let content = await FetchGet('cpe/gettiponota'); 
     return content.content;
 }
+
+export const ConsultaRuc = async (data) => { 
+    data.accion = 'consulta';
+    console.log('data',data);
+    let content = await FetchConf('cpe/consultaruc','POST',data);  
+    return content;
+}
