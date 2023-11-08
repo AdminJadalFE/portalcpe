@@ -48,6 +48,8 @@ const DatosReceptor = ({ tipoDocumento }) => {
         ruc: numeroDocumento,
       };
       console.log("data", data);
+      setRazonSocial('');
+      setDireccion('');
       try {
         let content = await ConsultaRuc(data);
         console.log("Resultado de la consulta:1", content);
@@ -76,6 +78,8 @@ const DatosReceptor = ({ tipoDocumento }) => {
         dni: numeroDocumento,
       };
       console.log("data", data);
+      setRazonSocial('');
+      setDireccion('');
       try {
         let content = await ConsultaRuc(data);
         console.log("Resultado de la consulta:1", content);
