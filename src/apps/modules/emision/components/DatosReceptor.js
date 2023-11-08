@@ -41,30 +41,57 @@ const DatosReceptor = ({ tipoDocumento }) => {
   };
 
   const ConsultarRuc = async () => {
-    const data = {
-      accion: "consultar",
-      ruc: numeroDocumento,
-    };
-    console.log("data", data);
-    try {
-      let content = await ConsultaRuc(data);
-      console.log("Resultado de la consulta:1", content);
-      if (content) {
-        if (content.razonSocial) {
-          setRazonSocial(content.razonSocial);
-          setDireccion(content.direccion);
-          console.log(
-            "setReceptorDatos",
-            setReceptorDatos("razonSocial", content.razonSocial)
-          );
+    //consulta RUC
+    if(tipoDoc==6){
+      const data = {
+        accion: "consultar",
+        ruc: numeroDocumento,
+      };
+      console.log("data", data);
+      try {
+        let content = await ConsultaRuc(data);
+        console.log("Resultado de la consulta:1", content);
+        if (content) {
+          if (content.razonSocial) {
+            setRazonSocial(content.razonSocial);
+            setDireccion(content.direccion);
+            console.log(
+              "setReceptorDatos",
+              setReceptorDatos("razonSocial", content.razonSocial)
+            );
+          }
+          direccionInputRef.current.focus();
+  
+          console.log("Resultado de la consulta:2", content);
+          console.log("Contenido del contexto:2", datosReceptor);
         }
-        direccionInputRef.current.focus();
-
-        console.log("Resultado de la consulta:2", content);
-        console.log("Contenido del contexto:2", datosReceptor);
+      } catch (error) {
+        console.error("Error en la consulta:3", error);
       }
-    } catch (error) {
-      console.error("Error en la consulta:3", error);
+    }
+    //Consulta DNI
+    else{
+      const data = {
+        accion: "consultar",
+        dni: numeroDocumento,
+      };
+      console.log("data", data);
+      try {
+        let content = await ConsultaRuc(data);
+        console.log("Resultado de la consulta:1", content);
+        if (content) {
+          if(content.nombres)
+          {
+            setRazonSocial(content.nombres +' '+ content.apellidoPaterno +' '+ content.apellidoMaterno);
+          }
+          razonSocialInputRef.current.focus();
+  
+          console.log("Resultado de la consulta:2", content);
+          console.log("Contenido del contexto:2", datosReceptor);
+        }
+      } catch (error) {
+        console.error("Error en la consulta:3", error);
+      }
     }
   };
 
