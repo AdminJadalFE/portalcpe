@@ -87,6 +87,7 @@ const DatosReceptor = ({ tipoDocumento }) => {
           if(content.nombres)
           {
             setRazonSocial(content.nombres +' '+ content.apellidoPaterno +' '+ content.apellidoMaterno);
+            setDireccion('');
           }
           razonSocialInputRef.current.focus();
   
