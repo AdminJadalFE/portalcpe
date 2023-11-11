@@ -48,8 +48,14 @@ export function Login() {
           if (emisores) { 
             // saveAuth(data) 
             setCurrentUser(data)
+            // console.log('setCurrentUser', data);
+            localStorage.setItem('data', JSON.stringify(data));
+
             setEmisores(emisores.content)
+            localStorage.setItem('emisores.content', JSON.stringify(emisores.content));
+
             setCurrentEmisor(emisores.content[0]);  
+            localStorage.setItem('emisores.content[0]', JSON.stringify(emisores.content[0])); 
           }else{
             // saveAuth(undefined)
             setStatus('Usuario Incorrecto')
