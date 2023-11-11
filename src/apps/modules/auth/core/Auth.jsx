@@ -1,7 +1,8 @@
 import { 
   useState, 
   createContext,
-  useContext, 
+  useContext,
+  useEffect,
 } from 'react'
  
 
@@ -25,10 +26,39 @@ const AuthProvider = ({children}) => {
   const [emisores, setEmisores] = useState()
   const [currentEmisor, setCurrentEmisor] = useState()
  
+  useEffect(() => {
+    try {
+      const userData = JSON.parse(localStorage.getItem('data'));
+      const emisoresData = JSON.parse(localStorage.getItem('emisores.content'));
+      const currentEmisorData = JSON.parse(localStorage.getItem('emisores.content[0]'));
+  
+      console.log('userData:', userData);
+      console.log('emisoresData:', emisoresData);
+      console.log('currentEmisorData:', currentEmisorData);
+  
+      if (userData) {
+        setCurrentUser(userData);
+      }
+  
+      if (emisoresData) {
+        setEmisores(emisoresData);
+      }
+  
+      if (currentEmisorData) {
+        setCurrentEmisor(currentEmisorData);
+      }
+    } catch (error) {
+      console.error('Error al analizar JSON:', error);
+    }
+  }, []);
+
   const logout = () => {
     setCurrentUser(undefined)
     setEmisores(undefined)
     setCurrentEmisor(undefined)
+    localStorage.setItem('data', undefined);
+    localStorage.setItem('emisores.content', undefined);
+    localStorage.setItem('emisores.content[0]', undefined);    
   }
 
   return (
