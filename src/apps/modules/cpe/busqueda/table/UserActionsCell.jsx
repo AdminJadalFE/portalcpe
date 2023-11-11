@@ -188,6 +188,8 @@ function MyVerticallyCenteredModal(props) {
    
 
 const UserActionsCell = ({cpe}) => {
+
+        console.log(cpe)
  
         const [modalShow, setModalShow] = useState(false);
 
@@ -242,7 +244,7 @@ const UserActionsCell = ({cpe}) => {
                 <text>Descargar XML</text>
           </a> 
 
-          <Link to={`/visorpdf/${cpe.id}`} 
+          <Link to={`/visorpdf/${cpe.urlPdf.substring(cpe.urlPdf.lastIndexOf("/") + 1) }`} 
                     target="_blank" 
                     className='menu-link px-3'
                     title='Descargar PDF'>
