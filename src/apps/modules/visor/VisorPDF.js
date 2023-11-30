@@ -22,7 +22,7 @@ const VisorPDF = () => {
      
   return ( 
  
-    <div style={{ height: '750px' }} >
+    <div style={{ width: '100%', height: '100vh' }}>
       <Viewer 
           fileUrl={pdfFile}
           plugins={[defaultLayoutPluginInstance]}
