@@ -51,10 +51,15 @@ const SidebarMenuMain = () => {
             hasBullet={true}
           /> 
           <SidebarMenuItem
+            to='/emision/guia'
+            title='Guia de Remisión-Remitente'
+            hasBullet={true}
+          />             
+          <SidebarMenuItem
             to='/emision/serie'
             title='Serie-Número'
             hasBullet={true}
-          /> 
+          />         
       </SidebarMenuItemWithSub>
      
       <SidebarMenuItemWithSub

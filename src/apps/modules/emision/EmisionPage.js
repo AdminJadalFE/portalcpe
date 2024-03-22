@@ -3,6 +3,7 @@ import {PageTitle} from '../../../_metronic/layout/core'
 import {EmisionProvider} from './core/EmisionContext';
 import FacturaPage from './FacturaPage' 
 import BoletaPage from './BoletaPage' 
+import GuiaPage from './GuiaPage' 
 import NotaCreditoPage from './NotaCreditoPage' 
 import SeriePage from './SeriePage' 
 
@@ -53,6 +54,16 @@ const EmisionPage = () => {
               <>
                 <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
                 <NotaCreditoPage />
+              </>
+            }
+          />  
+
+        <Route
+            path='guia'
+            element={
+              <>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <GuiaPage />
               </>
             }
           />  

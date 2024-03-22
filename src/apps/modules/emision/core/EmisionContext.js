@@ -50,8 +50,31 @@ import {
   }
 
   const receptorInitialize = {
-    direccion:'',
-    correo:''
+    vehiculo:'',
+    conductorID:'',
+    conductorDocumento:'',
+    conductorNombre:'',
+    conductorCompanyId:'',
+  }
+
+  const transporteInitialize = {
+    vehiculo:'',
+    correo:'',
+    conductorID:'',
+    conductorDocumento:'',
+    conductorNombre:'',
+    conductorCompanyId:''
+  }
+
+  const envioInitialize = {
+    motivoTraslado:'',
+    pesoBrutoTotal:'',
+    puntoPartida:'',
+    puntoPartidaUbigeo:'',
+    modalidadTransporte:'',
+    numeroBultos:'',
+    puntoLlegada:'',
+    puntoLlegadaUbigeo:''
   }
 
   const EmisionContext = createContext()
@@ -65,6 +88,8 @@ import {
     const [datosCpe, setDatosCpe] = useState(cpeInitialize);
     const [datosContingencia, setDatosContingencia] = useState(contingenciaInitialize);
     const [datosReceptor, setDatosReceptor] = useState(receptorInitialize);  
+    const [datosTransporte, setDatosTransporte] = useState(transporteInitialize);
+    const [datosEnvio, setDatosEnvio] = useState(envioInitialize);
     const [datosReferencia, setDatosReferencia] = useState(referenciaInitialize);  
     const [datosItem, setDatosItem] = useState([]);
     const [datosDocRel, setDatosDocRel] = useState([]);
@@ -90,6 +115,14 @@ import {
     const setReceptorDatos =  async (campo, valor) => { 
       setDatosReceptor({ ...datosReceptor, [campo]: valor });  
     }
+
+    const setTransporteDatos =  async (campo, valor) => { 
+      setDatosTransporte({ ...datosTransporte, [campo]: valor });  
+    }
+
+    const setEnvioDatos =  async (campo, valor) => { 
+      setDatosEnvio({ ...datosEnvio, [campo]: valor });  
+    }        
 
     const setReferenciaDatos =  async (campo, valor) => { 
       setDatosReferencia({ ...datosReferencia, [campo]: valor });  
@@ -363,6 +396,14 @@ import {
       setDatosReceptor(receptorInitialize);
     }
   
+    const CleanDatosTransporte =  () => { 
+      setDatosTransporte(transporteInitialize);
+    }
+  
+    const CleanDatosEnvio =  () => { 
+      setDatosEnvio(receptorInitialize);
+    }
+      
     const CleanDatosReferencia =  () => { 
       setDatosReferencia(referenciaInitialize);
     }
@@ -378,9 +419,9 @@ import {
 
     return (
       <EmisionContext.Provider 
-        value={{setCpeDatosInicial, setCpeDatos, CleanDatosCpe, setReceptorDatos, CleanDatosReceptor, setReferenciaDatos, CleanDatosReferencia, setTotales, CleanDatosTotales, setContingenciaDatos, CleanDatosContingencia, setAdicionalesDatos, CleanDatosAdicionales,
+        value={{setCpeDatosInicial, setCpeDatos, CleanDatosCpe, setReceptorDatos, setTransporteDatos, setEnvioDatos, CleanDatosReceptor, CleanDatosTransporte, CleanDatosEnvio, setReferenciaDatos, CleanDatosReferencia, setTotales, CleanDatosTotales, setContingenciaDatos, CleanDatosContingencia, setAdicionalesDatos, CleanDatosAdicionales,
                  AddItem, DeleteItem, CleanItem, AddFormaPago, DeleteFormaPago, CleanFormaPago, AddDocRel, DeleteDocRel, CleanDocRel,
-                datosCpe, datosReceptor,datosItem,datosTotales,datosReferencia, datosAdicionales, datosContingencia, datosDocRel, datosFormaPago }}>
+                datosCpe, datosReceptor, datosTransporte, datosEnvio,datosItem,datosTotales,datosReferencia, datosAdicionales, datosContingencia, datosDocRel, datosFormaPago }}>
         {children}
       </EmisionContext.Provider>
     )
