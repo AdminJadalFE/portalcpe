@@ -9,6 +9,42 @@ import data from '../../data/ubigetoData';
 const DatosEnvio = ({ tipoDocumento }) => {
   console.log('datatttta',data);
   const { setEnvioDatos } = useEmision();
+  const [selectedDepartment, setSelectedDepartment] = useState('');
+  const [selectedProvince, setSelectedProvince] = useState('');
+  const [selectedDistrict, setSelectedDistrict] = useState('');
+  const [ubigeo, setUbigeo] = useState('');
+
+  const handleDepartmentChange = (event) => {
+    setSelectedDepartment(event.target.value);
+    setSelectedProvince('');
+    setSelectedDistrict('');
+  };
+
+  const handleProvinceChange = (event) => {
+    setSelectedProvince(event.target.value);
+    setSelectedDistrict('');
+  };
+
+  const handleDistrictChange = (event) => {
+    setSelectedDistrict(event.target.value);
+  };
+
+  useEffect(() => {
+    // Buscar el Ubigeo correspondiente
+    const selectedData = data.find(item => 
+      item.departamento === selectedDepartment &&
+      item.provincia === selectedProvince &&
+      item.distrito === selectedDistrict
+    );
+
+    if (selectedData) {
+      setUbigeo(selectedData.ubigeo_url);
+    } else {
+      setUbigeo('');
+    }
+  }, [selectedDepartment, selectedProvince, selectedDistrict]);
+
+
   const [selectedUnit, setSelectedUnit] = useState('');
 
   const setMotivoTraslado = (event) => {
@@ -187,6 +223,41 @@ const DatosEnvio = ({ tipoDocumento }) => {
                   onChange={setDireccionLlegadaUbigeo}
                 />
               </Form.Group>
+            </Col>
+          </Row>
+
+          
+          <Row className="mb-3">
+            <Col xs={4}>
+              <Form.Group controlId="formDepartment">
+                <Form.Select size="sm" onChange={handleDepartmentChange}>
+                  <option value="">Seleccione un departamento</option>
+                  {/* Llenar opciones de departamento */}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col xs={4}>
+              <Form.Group controlId="formProvince">
+                <Form.Select size="sm" onChange={handleProvinceChange}>
+                  <option value="">Seleccione una provincia</option>
+                  {/* Llenar opciones de provincia */}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col xs={4}>
+              <Form.Group controlId="formDistrict">
+                <Form.Select size="sm" onChange={handleDistrictChange}>
+                  <option value="">Seleccione un distrito</option>
+                  {/* Llenar opciones de distrito */}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <Row className="mb-3">
+            <Col xs={12}>
+              <Form.Label>Ubigeo:</Form.Label>
+              <p>{ubigeo}</p>
             </Col>
           </Row>
         </Form>
