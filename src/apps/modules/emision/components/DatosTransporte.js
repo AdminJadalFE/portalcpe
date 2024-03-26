@@ -8,12 +8,13 @@ import { useEmision } from '../core/EmisionContext';
 const DatosTransporte = ({ tipoDocumento }) => {
   const { setTransporteDatos } = useEmision();
 
-  const [tipoDoc, setTipoDoc] = useState(0);
+  const [ tipoDoc, setTipoDoc ] = useState(0);
 
   const setVehiculo = (event) => {
-    setTransporteDatos('vehiculo', event.target.value);
+    setTransporteDatos('vehiculoPlaca', event.target.value);
   };
   const setConductorID = (event) => {
+    setTipoDoc(event.target.value)
     setTransporteDatos('conductorID', event.target.value);
   };
   const setConductorDocumento = (event) => {
@@ -25,9 +26,12 @@ const DatosTransporte = ({ tipoDocumento }) => {
   const setConductorCompanyId = (event) => {
     setTransporteDatos('conductorCompanyId', event.target.value);
   };
+  const setConductorMtc = (event) => {
+    setTransporteDatos('conductorMtc', event.target.value);
+  };  
 
   useEffect(() => {
-    setTransporteDatos('tipoDocumento', tipoDocumento);
+    setTransporteDatos('conductorID', tipoDocumento);
     setTipoDoc(tipoDocumento);
   }, []);
 
@@ -44,7 +48,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
           <Row className='mb-3'>
             <Col xs='auto'>
               <Form.Group as={Col} controlId='formTipoDocumento'>
-                <Form.Select size='sm' value={tipoDoc} onChange={setTipoDoc}>
+                <Form.Select size='sm' value={tipoDoc} onChange={setConductorID}>
                   <option value='6'>RUC</option>
                   <option value='1'>DNI</option>
                 </Form.Select>
@@ -63,22 +67,22 @@ const DatosTransporte = ({ tipoDocumento }) => {
           </Row>
 
           <Row className='mb-3'>
-            <Col xs={9}>
+            <Col xs={6}>
               <Form.Group controlId='formVehiculo'>
-                <Form.Control size='sm' type='text' placeholder='Vehículo' onChange={setVehiculo} />
+                <Form.Control size='sm' type='text' placeholder='Placa del Vehículo' onChange={setVehiculo} />
               </Form.Group>
             </Col>
-            <Col xs={3}>
-              <Form.Group controlId='formConductorID'>
-                <Form.Control size='sm' type='text' placeholder='ID del Conductor' onChange={setConductorID} />
+            <Col xs={6}>
+              <Form.Group controlId='formConductorMtc'>
+                <Form.Control size='sm' type='text' placeholder='Númerto de registro MTC' onChange={setConductorMtc} />
               </Form.Group>
             </Col>
           </Row>
 
           <Row className='mb-3'>
-            <Col xs={9}>
+            <Col xs={6}>
               <Form.Group controlId='formConductorCompanyId'>
-                <Form.Control size='sm' type='text' placeholder='ID de la Compañía del Conductor' onChange={setConductorCompanyId} />
+                <Form.Control size='sm' type='text' placeholder='Número de registro(MTC)' onChange={setConductorCompanyId} />
               </Form.Group>
             </Col>
           </Row>

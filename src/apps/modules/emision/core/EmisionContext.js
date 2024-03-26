@@ -7,9 +7,11 @@ import {
   import moment from 'moment'; 
 
   const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).format("YYYY-MM-DD");
+  const horaActual = moment().format("HH:mm:ss");
 
   const cpeInitialize = {
     fechaCpe:fechaActual,
+    horaCpe:horaActual,
     fechaVencimiento:fechaActual,
     moneda: 'PEN',
     tipoAfectacion: '1000',
@@ -58,12 +60,13 @@ import {
   }
 
   const transporteInitialize = {
-    vehiculo:'',
+    vehiculoPlaca:'',
     correo:'',
     conductorID:'',
     conductorDocumento:'',
     conductorNombre:'',
-    conductorCompanyId:''
+    conductorCompanyId:'',
+    conductorMtc:''
   }
 
   const envioInitialize = {
@@ -74,7 +77,8 @@ import {
     modalidadTransporte:'',
     numeroBultos:'',
     puntoLlegada:'',
-    puntoLlegadaUbigeo:''
+    puntoLlegadaUbigeo:'',
+    pesoUnidad:''
   }
 
   const EmisionContext = createContext()

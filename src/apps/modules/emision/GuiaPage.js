@@ -352,7 +352,7 @@ const GuiaPage = () => {
                 <DatosContingencia />
                 <DatosEmision tipoCpe="09"/>
                 <DatosReceptor tipoDocumento="6"/>
-                <DatosTransporte/>
+                <DatosTransporte tipoDocumento="6"/>
                 <DatosEnvio/>
                 <DatosDetalle /> 
                 <DatosDocRelacionado />
