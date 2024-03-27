@@ -6,12 +6,15 @@ import moment from 'moment';
 
 import { useEmision } from '../core/EmisionContext';
 
+import Swal from 'sweetalert2';
+
 const DatosTransporte = ({ tipoDocumento }) => {
   const { setTransporteDatos } = useEmision();
 
   const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).format("YYYY-MM-DD");
 
   const [ tipoDoc, setTipoDoc ] = useState(0);
+  const [fechaTraslado, setFechaTraslado] = useState(fechaActual); 
 
   const setVehiculo = (event) => {
     setTransporteDatos('vehiculoPlaca', event.target.value);
@@ -32,19 +35,21 @@ const DatosTransporte = ({ tipoDocumento }) => {
   const setConductorMtc = (event) => {
     setTransporteDatos('conductorMtc', event.target.value);
   };  
-  const setTrasladoFecha = (event) => {
-    setTransporteDatos('trasladoFecha', event.target.value);
-  };  
-
+  const handleFechaTrasladoChange = (event) => {
+    console.log('event',event);
+    setFechaTraslado(event.target.value);
+    setTransporteDatos('trasladoFecha', event.target.value); 
+  };
   useEffect(() => {
     setTransporteDatos('conductorID', tipoDocumento);
     setTipoDoc(tipoDocumento);
   }, []);
 
+  
   return (
     <div className='card mb-2'>
       <div className='card-body pt-1 pb-0'>
-        <Form>
+        <Form onSubmit={manejarSubmit}>
           <Row className='mt-3'>
             <div>
               <h3 className='fw-bolder text-dark'>DATOS DEL CHOFER</h3>
@@ -52,17 +57,17 @@ const DatosTransporte = ({ tipoDocumento }) => {
           </Row>
 
           <Row className='mb-3'>
-
           <Col xs="auto">
               <Form.Group as={Col} controlId="formFechaCpe">
                 <label className="d-flex align-items-center form-label mb-3">
-                  Fecha Emisión
+                  Fecha de inicio del traslado
                 </label>
                 <Form.Control
                   size="sm"
                   type="date"
                   defaultValue={fechaActual}
-                  onChange={setTrasladoFecha}
+                  value={fechaTraslado} 
+                  onChange={handleFechaTrasladoChange} 
                 />
               </Form.Group>
             </Col>

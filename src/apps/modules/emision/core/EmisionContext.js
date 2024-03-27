@@ -67,7 +67,7 @@ import {
     conductorNombre:'',
     conductorCompanyId:'',
     conductorMtc:'',
-    trasladoFecha: ''
+    trasladoFecha: fechaActual
   }
 
   const envioInitialize = {
