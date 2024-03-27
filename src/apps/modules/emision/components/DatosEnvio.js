@@ -9,11 +9,68 @@ import data from '../../data/ubigetoData';
 const DatosEnvio = ({ tipoDocumento }) => {
   console.log('datatttta',data);
   const { setEnvioDatos } = useEmision();
+  const [ubigeo, setUbigeo] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('');
-  const [ubigeo, setUbigeo] = useState('');
+  const [departments, setDepartments] = useState([]);
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
 
+
+  useEffect(() => {
+    // Buscar el Ubigeo correspondiente
+    const selectedData = data.find(item => 
+      item.departamento === selectedDepartment &&
+      item.provincia === selectedProvince &&
+      item.distrito === selectedDistrict
+    );
+
+    if (selectedData) {
+      setUbigeo(selectedData.ubigeo_url);
+      setDireccionPartidaUbigeo(selectedData.ubigeo_url);
+    } else {
+      setUbigeo('');
+      setDireccionPartidaUbigeo('');
+    }
+  }, [selectedDepartment, selectedProvince, selectedDistrict]);
+
+
+  const [selectedUnit, setSelectedUnit] = useState('');
+
+  const setMotivoTraslado = (event) => {
+    setEnvioDatos("motivoTraslado", event.target.value);
+  };
+  const setPesoBrutoTotal = (event) => {
+    setEnvioDatos("pesoBrutoTotal", event.target.value);
+  };
+  const setDireccionPartida = (event) => {
+    setEnvioDatos("puntoPartida", event.target.value);
+  };
+  const setDireccionPartidaUbigeo = (ubigeo) => {
+    if (ubigeo) {
+      console.log('biefawefa',ubigeo);
+      setEnvioDatos("puntoPartidaUbigeo", ubigeo);
+    }
+  };  
+  const setModalidadTransporte = (event) => {
+    setEnvioDatos("modalidadTransporte", event.target.value);
+  };
+  const setNumeroBultos = (event) => {
+    setEnvioDatos("numeroBultos", event.target.value);
+  };
+  const setDireccionLlegada = (event) => {
+    setEnvioDatos("puntoLlegada", event.target.value);
+  };
+  const setDireccionLlegadaUbigeo = (event) => {
+    setEnvioDatos("puntoLlegadaUbigeo", event.target.value);
+  };
+  const setPesoUnidad = (event) => {
+    setEnvioDatos("pesoUnidad", event.target.value);
+  };
+
+
+  //ubigeo
   const handleDepartmentChange = (event) => {
     setSelectedDepartment(event.target.value);
     setSelectedProvince('');
@@ -30,50 +87,51 @@ const DatosEnvio = ({ tipoDocumento }) => {
   };
 
   useEffect(() => {
-    // Buscar el Ubigeo correspondiente
+    // Obtener la lista de departamentos
+    const departmentList = [...new Set(data.map(item => item.departamento))];
+    setDepartments(departmentList);
+  }, []);
+
+  useEffect(() => {
+    // Filtrar las provincias según el departamento seleccionado
+    if (selectedDepartment !== '') {
+      const provinceList = [...new Set(data.filter(item => item.departamento === selectedDepartment).map(item => item.provincia))];
+      setProvinces(provinceList);
+    } else {
+      setProvinces([]);
+    }
+  }, [selectedDepartment]);
+
+  useEffect(() => {
+    // Filtrar los distritos según la provincia seleccionada
+    if (selectedProvince !== '') {
+      const districtList = data.filter(item => item.departamento === selectedDepartment && item.provincia === selectedProvince).map(item => item.distrito);
+      setDistricts(districtList);
+    } else {
+      setDistricts([]);
+    }
+  }, [selectedProvince]);
+
+  useEffect(() => {
     const selectedData = data.find(item => 
       item.departamento === selectedDepartment &&
       item.provincia === selectedProvince &&
       item.distrito === selectedDistrict
     );
-
+  
     if (selectedData) {
-      setUbigeo(selectedData.ubigeo_url);
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(selectedData.ubigeo_url, 'text/html');
+      const codigoUbicacion = doc.querySelector('a')?.textContent.trim(); // Utilizar el operador opcional "?." para evitar errores si no se encuentra ningún elemento
+      setUbigeo(codigoUbicacion);
+      setDireccionPartidaUbigeo(codigoUbicacion);
+      console.log('codigo ubieto',codigoUbicacion);
     } else {
       setUbigeo('');
+      setDireccionPartidaUbigeo(''); // Restablecer el Ubigeo de la dirección de partida si no se encuentra ningún dato seleccionado
     }
-  }, [selectedDepartment, selectedProvince, selectedDistrict]);
+  }, [selectedDepartment, selectedProvince, selectedDistrict]);  
 
-
-  const [selectedUnit, setSelectedUnit] = useState('');
-
-  const setMotivoTraslado = (event) => {
-    setEnvioDatos("motivoTraslado", event.target.value);
-  };
-  const setPesoBrutoTotal = (event) => {
-    setEnvioDatos("pesoBrutoTotal", event.target.value);
-  };
-  const setDireccionPartida = (event) => {
-    setEnvioDatos("puntoPartida", event.target.value);
-  };
-  const setDireccionPartidaUbigeo = (event) => {
-    setEnvioDatos("puntoPartidaUbigeo", event.target.value);
-  };
-  const setModalidadTransporte = (event) => {
-    setEnvioDatos("modalidadTransporte", event.target.value);
-  };
-  const setNumeroBultos = (event) => {
-    setEnvioDatos("numeroBultos", event.target.value);
-  };
-  const setDireccionLlegada = (event) => {
-    setEnvioDatos("puntoLlegada", event.target.value);
-  };
-  const setDireccionLlegadaUbigeo = (event) => {
-    setEnvioDatos("puntoLlegadaUbigeo", event.target.value);
-  };
-  const setPesoUnidad = (event) => {
-    setEnvioDatos("pesoUnidad", event.target.value);
-  };
 
   useEffect(() => {
     setEnvioDatos("tipoDocumento", tipoDocumento);
@@ -182,20 +240,64 @@ const DatosEnvio = ({ tipoDocumento }) => {
                 />
               </Form.Group>
             </Col>
-            <Col xs={3}>
-              <Form.Label htmlFor="direccionPartidaUbigeo" className="mb-2">
-                Ubigeo
-              </Form.Label>
-              <Form.Group controlId="direccionPartidaUbigeo">
-                <Form.Control
-                  size="sm"
-                  type="text"
-                  placeholder="Ingrese el Ubigeo de la dirección de partida"
-                  onChange={setDireccionPartidaUbigeo}
-                />
-              </Form.Group>
-            </Col>
           </Row>
+          
+          <Row className="mb-3">
+              <Col xs={3}>
+              <Form.Label htmlFor="direccionPartida" className="mb-2">
+                Departamento
+              </Form.Label>
+                <Form.Group controlId="formDepartment">
+                  <Form.Select size="sm" onChange={handleDepartmentChange} value={selectedDepartment}>
+                    <option value="">Seleccione un departamento</option>
+                    {departments.map((department, index) => (
+                      <option key={index} value={department}>{department}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col xs={3}>
+              <Form.Label htmlFor="direccionPartida" className="mb-2">
+                Provincia
+              </Form.Label>            
+                <Form.Group controlId="formProvince">
+                  <Form.Select size="sm" onChange={handleProvinceChange} value={selectedProvince}>
+                    <option value="">Seleccione una provincia</option>
+                    {provinces.map((province, index) => (
+                      <option key={index} value={province}>{province}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col xs={3}>
+              <Form.Label htmlFor="direccionPartida" className="mb-2">
+                Distrito
+              </Form.Label>    
+                <Form.Group controlId="formDistrict">
+                  <Form.Select size="sm" onChange={handleDistrictChange} value={selectedDistrict}>
+                    <option value="">Seleccione un distrito</option>
+                    {districts.map((district, index) => (
+                      <option key={index} value={district}>{district}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>            
+              <Col xs={3}>
+                <Form.Label htmlFor="direccionPartidaUbigeo" className="mb-2">
+                  Ubigeo
+                </Form.Label>
+                <Form.Group controlId="direccionPartidaUbigeo">
+                  <Form.Control
+                    size="sm"
+                    type="text"
+                    placeholder="Ingrese el Ubigeo de la dirección de partida"
+                    value={ubigeo} // Establecer el valor del Ubigeo directamente desde el estado
+                    onChange={setDireccionPartidaUbigeo} // Aunque este evento no se utiliza, se debe mantener para evitar errores
+                  />
+                </Form.Group>
+              </Col>
+          </Row>
+
 
           <Row className="mb-3">
             <Col xs={9}>
@@ -226,40 +328,6 @@ const DatosEnvio = ({ tipoDocumento }) => {
             </Col>
           </Row>
 
-          
-          <Row className="mb-3">
-            <Col xs={4}>
-              <Form.Group controlId="formDepartment">
-                <Form.Select size="sm" onChange={handleDepartmentChange}>
-                  <option value="">Seleccione un departamento</option>
-                  {/* Llenar opciones de departamento */}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col xs={4}>
-              <Form.Group controlId="formProvince">
-                <Form.Select size="sm" onChange={handleProvinceChange}>
-                  <option value="">Seleccione una provincia</option>
-                  {/* Llenar opciones de provincia */}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col xs={4}>
-              <Form.Group controlId="formDistrict">
-                <Form.Select size="sm" onChange={handleDistrictChange}>
-                  <option value="">Seleccione un distrito</option>
-                  {/* Llenar opciones de distrito */}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-          </Row>
-
-          <Row className="mb-3">
-            <Col xs={12}>
-              <Form.Label>Ubigeo:</Form.Label>
-              <p>{ubigeo}</p>
-            </Col>
-          </Row>
         </Form>
       </div>
     </div>
