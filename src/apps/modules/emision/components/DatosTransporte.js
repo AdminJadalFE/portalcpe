@@ -6,8 +6,6 @@ import moment from 'moment';
 
 import { useEmision } from '../core/EmisionContext';
 
-import Swal from 'sweetalert2';
-
 const DatosTransporte = ({ tipoDocumento }) => {
   const { setTransporteDatos } = useEmision();
 
@@ -49,7 +47,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
   return (
     <div className='card mb-2'>
       <div className='card-body pt-1 pb-0'>
-        <Form onSubmit={manejarSubmit}>
+        <Form>
           <Row className='mt-3'>
             <div>
               <h3 className='fw-bolder text-dark'>DATOS DEL CHOFER</h3>

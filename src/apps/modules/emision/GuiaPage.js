@@ -250,6 +250,86 @@ const GuiaPage = () => {
       })  
       return false;
     }
+    
+    if (!datosTransporte || !datosTransporte.conductorDocumento) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar número de documento del Conductor",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    if (!datosTransporte || !datosTransporte.conductorNombre) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar la Razón Social o nombre del Conductor",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    } 
+    
+    if (!datosEnvio || !datosEnvio.modalidadTransporte) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar la Modalidad del Transporte",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    if (!datosEnvio || !datosEnvio.motivoTraslado) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar el Modalidad del traslado",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }                 
+
+    if (!datosEnvio || !datosEnvio.pesoUnidad) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar la unidad del peso",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    } 
+
+    if (!datosEnvio || !datosEnvio.pesoBrutoTotal) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar el Peso Bruto Total",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+    
+    if (!datosEnvio || !datosEnvio.puntoPartida || !datosEnvio.puntoLlegada) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar el Punto de Partida y Punto de LLegada",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    if (!datosEnvio || !datosEnvio.puntoPartidaUbigeo || !datosEnvio.puntoLlegadaUbigeo) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe selecionar el departamento, provincia y distrito para el ubigeo",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }       
 
     if (!datosItem || datosItem.length == 0)  { 
       Swal.fire({
