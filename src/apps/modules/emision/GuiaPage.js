@@ -261,16 +261,26 @@ const GuiaPage = () => {
       return false;
     }
 
-    if (!datosTransporte || !datosTransporte.conductorNombre) { 
+    // if (!datosTransporte || !datosTransporte.conductorNombre) { 
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Debe ingresar la Razón Social o nombre del Conductor",
+    //     showConfirmButton: false,
+    //     timer: 5000
+    //   })  
+    //   return false;
+    // }
+
+    if (datosEnvio.modalidadTransporte === "01" && datosTransporte.conductorID === "1") { 
       Swal.fire({
         icon: "error",
-        title: "Debe ingresar la Razón Social o nombre del Conductor",
+        title: "Transporte Público el documento del chofer deber ser RUC",
         showConfirmButton: false,
         timer: 5000
       })  
       return false;
-    } 
-    
+    }   
+
     if (!datosEnvio || !datosEnvio.modalidadTransporte) { 
       Swal.fire({
         icon: "error",
@@ -432,8 +442,8 @@ const GuiaPage = () => {
                 <DatosContingencia />
                 <DatosEmision tipoCpe="09"/>
                 <DatosReceptor tipoDocumento="6"/>
-                <DatosTransporte tipoDocumento="6"/>
                 <DatosEnvio/>
+                <DatosTransporte tipoDocumento="6"/>
                 <DatosDetalle /> 
                 <DatosDocRelacionado />
                 <DatosAdicionales />

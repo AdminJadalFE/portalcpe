@@ -67,7 +67,14 @@ import {
     conductorNombre:'',
     conductorCompanyId:'',
     conductorMtc:'',
-    trasladoFecha: fechaActual
+    trasladoFecha: fechaActual,
+    conductorNombres:'',
+    conductorApellidos:'',
+    conductorTitle:'',
+    conductorLicencia:'',
+    vehiculoPlaca:'',
+    vehiculoPlacaSecundario:'',
+
   }
 
   const envioInitialize = {

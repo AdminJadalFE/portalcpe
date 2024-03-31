@@ -202,7 +202,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
       </Col>
       <Col xs={3}>
         <Form.Label htmlFor="direccionPartidaUbigeo" className="mb-2">
-          Ubigeo de Partida
+          Ubigeo de Partida *
         </Form.Label>
         <Form.Group controlId="direccionPartidaUbigeo">
           <Form.Control
@@ -267,7 +267,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
       </Col>
       <Col xs={3}>
         <Form.Label htmlFor="ubigeoLlegada" className="mb-2">
-          Ubigeo Llegada
+          Ubigeo de Llegada *
         </Form.Label>
         <Form.Control
           size="sm"
@@ -297,7 +297,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
           <Row className="mb-3">
             <Col>
               <Form.Label htmlFor="modalidadTransporte" className="mb-2">
-                Modalidad de Transporte
+                Modalidad de Transporte *
               </Form.Label>
               <Form.Select
                 size="sm"
@@ -311,7 +311,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
 
             <Col>
               <Form.Label htmlFor="motivoTraslado" className="mb-2">
-                Motivo de Traslado
+                Motivo de Traslado *
               </Form.Label>
               <Form.Select
                 size="sm"
@@ -376,7 +376,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
           <Row className="mb-3">
             <Col>
               <Form.Label htmlFor="direccionPartida" className="mb-2">
-                Dirección de Partida
+                Dirección de Partida *
               </Form.Label>
               <Form.Control
                 size="sm"
@@ -394,7 +394,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
           <Row className="mb-3">
             <Col>
               <Form.Label htmlFor="direccionLlegada" className="mb-2">
-                Dirección de Llegada
+                Dirección de Llegada *
               </Form.Label>
               <Form.Control
                 size="sm"
