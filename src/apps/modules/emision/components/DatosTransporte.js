@@ -61,7 +61,8 @@ const DatosTransporte = ({ tipoDocumento }) => {
     setTransporteDatos('trasladoFecha', event.target.value); 
   };
   useEffect(() => {
-    setTransporteDatos('conductorID', tipoDocumento);
+    const conductorID = datosEnvio.modalidadTransporte === '01' ? '6' : '1';
+    setTransporteDatos('conductorID', conductorID);
     setTipoDoc(tipoDocumento);
   }, []);
 
@@ -126,7 +127,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 <Col xs={6}>
                   <Form.Group controlId='formConductorMtc'>
                     <label className="d-flex align-items-center form-label mb-3">
-                      Número de Registro MTC
+                      Número de Registro MTC (Sólo mayúscula máx 20 carácteres sin guion o espacio)
                     </label>           
                     <Form.Control size='sm' type='text' placeholder='Número de registro MTC' onChange={setConductorCompanyId} />
                   </Form.Group>
@@ -181,46 +182,46 @@ const DatosTransporte = ({ tipoDocumento }) => {
 
               <Row className='mb-3'>
                 <Col xs={4}>
-                  <Form.Group controlId='formVehiculo'>
+                  <Form.Group controlId='formConductorNombres'>
                     <label className="d-flex align-items-center form-label mb-3">
                       Nombres del Conductor
                     </label>    
-                    <Form.Control size='sm' type='text' placeholder='Placa del Vehículo' onChange={setConductorNombres} />
+                    <Form.Control size='sm' type='text' placeholder='Nombres del Conductor' onChange={setConductorNombres} />
                   </Form.Group>
                 </Col>
                 <Col xs={4}>
-                  <Form.Group controlId='formConductorMtc'>
+                  <Form.Group controlId='formConductorApellidos'>
                     <label className="d-flex align-items-center form-label mb-3">
                       Apellidos del Conductor
                     </label>                     
-                    <Form.Control size='sm' type='text' placeholder='Númerto de registro MTC' onChange={setConductorApellidos} />
+                    <Form.Control size='sm' type='text' placeholder='Apellidos del Conductor' onChange={setConductorApellidos} />
                   </Form.Group>
                 </Col>
               </Row>
 
               <Row className='mb-3'>
                 <Col xs={4}>
-                  <Form.Group controlId='formConductorCompanyId'>
+                  <Form.Group controlId='formConductorLicencia'>
                     <label className="d-flex align-items-center form-label mb-3">
-                      Licencia del Conductor
+                      Licencia del Conductor (Sólo mayúscula de 9 a 10 carácteres sin guion o espacio)
                     </label>                              
-                    <Form.Control size='sm' type='text' placeholder='Número de registro(MTC)' onChange={setConductorLicencia} />
+                    <Form.Control size='sm' type='text' placeholder='Licencia del Conductor' onChange={setConductorLicencia} />
                   </Form.Group>
                 </Col>
                 <Col xs={4}>
-                  <Form.Group controlId='formConductorCompanyId'>
+                  <Form.Group controlId='formVehiculoPlaca'>
                     <label className="d-flex align-items-center form-label mb-3">
-                      Placa del Vehículo
+                      Placa del Vehículo (Sólo mayúscula de 6 a 8 carácteres sin guion o espacio)
                     </label>                              
-                    <Form.Control size='sm' type='text' placeholder='Número de registro(MTC)' onChange={setVehiculoPlaca} />
+                    <Form.Control size='sm' type='text' placeholder='Placa del Vehículo' onChange={setVehiculoPlaca} />
                   </Form.Group>
                 </Col>
                 <Col xs={4}>
-                  <Form.Group controlId='formConductorCompanyId'>
+                  <Form.Group controlId='formVehiculoPlacaSecundario'>
                     <label className="d-flex align-items-center form-label mb-3">
-                      Placa del Vehículo Secundario
+                      Placa del Vehículo Secundario (Opcional) (Sólo mayúscula de 6 a 8 carácteres sin guion o espacio)
                     </label>                              
-                    <Form.Control size='sm' type='text' placeholder='Número de registro(MTC)' onChange={setVehiculoPlacaSecundario} />
+                    <Form.Control size='sm' type='text' placeholder='Placa del Vehículo Secundario (Opcional)' onChange={setVehiculoPlacaSecundario} />
                   </Form.Group>
                 </Col>                                
               </Row>

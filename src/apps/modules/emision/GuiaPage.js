@@ -261,25 +261,74 @@ const GuiaPage = () => {
       return false;
     }
 
-    // if (!datosTransporte || !datosTransporte.conductorNombre) { 
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Debe ingresar la Razón Social o nombre del Conductor",
-    //     showConfirmButton: false,
-    //     timer: 5000
-    //   })  
-    //   return false;
-    // }
-
-    if (datosEnvio.modalidadTransporte === "01" && datosTransporte.conductorID === "1") { 
+    if (datosEnvio.modalidadTransporte === "01" && !datosTransporte.conductorNombre) { 
       Swal.fire({
         icon: "error",
-        title: "Transporte Público el documento del chofer deber ser RUC",
+        title: "Debe ingresar la Razón Social o nombre del Conductor",
         showConfirmButton: false,
         timer: 5000
       })  
       return false;
-    }   
+    }
+
+    if (datosEnvio.modalidadTransporte === "02" &&  !datosTransporte.conductorNombres) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar los nombres del Conductor",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    if (datosEnvio.modalidadTransporte === "02" &&  !datosTransporte.conductorApellidos) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar los apellidos del Conductor",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    if (datosEnvio.modalidadTransporte === "02" &&  !datosTransporte.conductorLicencia) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar el número de licencia",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    if (datosEnvio.modalidadTransporte === "02" &&  !datosTransporte.vehiculoPlaca) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar la placa del vehículo",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+
+    if (datosEnvio.modalidadTransporte === "01" && (!datosTransporte.conductorCompanyId || !/^[A-Z0-9]{1,20}$/.test(datosTransporte.conductorCompanyId.trim()))) { 
+      Swal.fire({
+        icon: "error",
+        title: "Debe ingresar un Número de Registro MTC válido",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }
+    // if (datosEnvio.modalidadTransporte === "01" && datosTransporte.conductorID === "1") { 
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Transporte Público el documento del chofer deber ser RUC",
+    //     showConfirmButton: false,
+    //     timer: 5000
+    //   })  
+    //   return false;
+    // }   
 
     if (!datosEnvio || !datosEnvio.modalidadTransporte) { 
       Swal.fire({
