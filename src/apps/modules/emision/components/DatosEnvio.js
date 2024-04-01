@@ -360,7 +360,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
                 <option value="TNE">Toneladas</option>
               </Form.Select>
             </Col>
-            <Col>
+            {/* <Col>
               <Form.Label htmlFor="numeroBultos" className="mb-2">
                 Número de Bultos
               </Form.Label>
@@ -370,7 +370,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
                 placeholder="Ingrese el número de bultos"
                 onChange={(e) => setEnvioDatos("numeroBultos", e.target.value)}
               />
-            </Col>
+            </Col> */}
           </Row>
 
           <Row className="mb-3">

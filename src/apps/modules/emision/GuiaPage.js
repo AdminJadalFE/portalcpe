@@ -271,6 +271,26 @@ const GuiaPage = () => {
       return false;
     }
 
+    if (datosEnvio.modalidadTransporte === "01" && datosTransporte.conductorID === "1") { 
+      Swal.fire({
+        icon: "error",
+        title: "Selecionar el tipo documento chofer RUC",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }    
+
+    if (datosEnvio.modalidadTransporte === "02" && datosTransporte.conductorID === "6") { 
+      Swal.fire({
+        icon: "error",
+        title: "Selecionar el tipo documento chofer DNI",
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }        
+
     if (datosEnvio.modalidadTransporte === "02" &&  !datosTransporte.conductorNombres) { 
       Swal.fire({
         icon: "error",

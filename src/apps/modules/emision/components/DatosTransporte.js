@@ -19,10 +19,15 @@ const DatosTransporte = ({ tipoDocumento }) => {
   const setVehiculo = (event) => {
     setTransporteDatos('vehiculoPlaca', event.target.value);
   };
-  const setConductorID = (event) => {
-    setTipoDoc(event.target.value)
-    setTransporteDatos('conductorID', event.target.value);
+  // const setConductorID = (event) => {
+  //   //setTipoDoc(event.target.value)
+  //   setTransporteDatos('conductorID', event.target.value);
+  // };
+
+  const setConductorID = (value) => {
+    setTransporteDatos('conductorID', value);
   };
+
   const setConductorDocumento = (event) => {
     setTransporteDatos('conductorDocumento', event.target.value);
   };
@@ -61,8 +66,8 @@ const DatosTransporte = ({ tipoDocumento }) => {
     setTransporteDatos('trasladoFecha', event.target.value); 
   };
   useEffect(() => {
-    const conductorID = datosEnvio.modalidadTransporte === '01' ? '6' : '1';
-    setTransporteDatos('conductorID', conductorID);
+    // const conductorID = datosEnvio.modalidadTransporte === '01' ? '6' : '1';
+    // setTransporteDatos('conductorID', conductorID);
     setTransporteDatos('conductorTitle', "Principal")
     setTipoDoc(tipoDocumento);
   }, []);
@@ -100,7 +105,8 @@ const DatosTransporte = ({ tipoDocumento }) => {
                     <label className="d-flex align-items-center form-label mb-3">
                       Tipo de Doc.
                     </label>                    
-                    <Form.Select size='sm' value={6} onChange={setConductorID}>
+                    <Form.Select size='sm' onChange={(e) => setConductorID(e.target.value)}>
+                      <option value=''>Seleccionar RUC</option>
                       <option value='6'>RUC</option>
                       <option value='1'>DNI</option>
                     </Form.Select>
@@ -165,9 +171,10 @@ const DatosTransporte = ({ tipoDocumento }) => {
                     <label className="d-flex align-items-center form-label mb-3">
                       Tipo de Doc.
                     </label>                            
-                    <Form.Select size='sm' value={1} onChange={setConductorID}>
-                      <option value='1'>DNI</option>
+                    <Form.Select size='sm' onChange={(e) => setConductorID(e.target.value)}>
+                      <option value=''>Seleccionar DNI</option>
                       <option value='6'>RUC</option>
+                      <option value='1'>DNI</option>
                     </Form.Select>
                   </Form.Group>
                 </Col>
