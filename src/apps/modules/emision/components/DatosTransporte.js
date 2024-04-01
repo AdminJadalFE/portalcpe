@@ -63,6 +63,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
   useEffect(() => {
     const conductorID = datosEnvio.modalidadTransporte === '01' ? '6' : '1';
     setTransporteDatos('conductorID', conductorID);
+    setTransporteDatos('conductorTitle', "Principal")
     setTipoDoc(tipoDocumento);
   }, []);
 

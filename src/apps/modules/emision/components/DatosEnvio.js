@@ -338,7 +338,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
           <Row className="mb-3">
             <Col>
               <Form.Label htmlFor="pesoBrutoTotal" className="mb-2">
-                Peso Bruto Total
+                Peso Bruto Total *
               </Form.Label>
               <Form.Control
                 size="sm"
@@ -349,7 +349,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
             </Col>
             <Col>
               <Form.Label htmlFor="pesoUnidad" className="mb-2">
-                Unidad de Peso
+                Unidad de Peso *
               </Form.Label>
               <Form.Select
                 size="sm"
