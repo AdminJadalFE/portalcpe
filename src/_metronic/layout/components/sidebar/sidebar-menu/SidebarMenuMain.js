@@ -6,6 +6,9 @@ import {SidebarMenuItem} from './SidebarMenuItem'
 
 const SidebarMenuMain = () => {
   const intl = useIntl() 
+
+  const data = JSON.parse(localStorage.getItem("data"));
+  const email = data.email;
   return (
     <>
       <SidebarMenuItem
@@ -95,8 +98,31 @@ const SidebarMenuMain = () => {
           fontIcon='bi-archive'
           icon='/media/icons/duotune/general/gen022.svg'
         />  
-  
-  
+
+      {email === "adm@jadalfe.pe" && (
+      <SidebarMenuItemWithSub
+          to='/emisión'
+          title='Empresas y Usuarios'
+          fontIcon='bi-archive'
+          icon='/media/icons/duotune/general/com014.svg'
+        > 
+            <SidebarMenuItem
+            to='/empresa/registrar'
+            title='Empresas'
+            hasBullet={true}
+            fontIcon='bi-archive'
+            icon='/media/icons/duotune/general/ecm008.svg'
+          /> 
+          <SidebarMenuItem
+            to='/empresa/usuario/registrar'
+            title='Usuarios'
+            hasBullet={true}
+            fontIcon='bi-archive'
+            icon='/media/icons/duotune/general/com013.svg'
+          /> 
+      </SidebarMenuItemWithSub>
+      )}
+
     </>
   )
 }
