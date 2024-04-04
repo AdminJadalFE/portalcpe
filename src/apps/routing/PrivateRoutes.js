@@ -12,7 +12,8 @@ const PrivateRoutes = () => {
   const ResumenPage = lazy(() => import('../modules/resumen/ResumenPage'))   
   const EmisionPage = lazy(() => import('../modules/emision/EmisionPage'))   
   const ReportePage = lazy(() => import('../modules/reporte/ReportePage'))   
- 
+  const CompanyPage = lazy(() => import('../modules/company/CompanyPage'))   
+
   return (
 
       <Routes>
@@ -27,6 +28,7 @@ const PrivateRoutes = () => {
           <Route path='resumen/*' element={<SuspensedView><ResumenPage tipoCpe="RC"/></SuspensedView>}/> 
           <Route path='emision/*' element={<SuspensedView><EmisionPage/></SuspensedView>}/> 
           <Route path='reporte/*' element={<SuspensedView><ReportePage/></SuspensedView>}/> 
+          <Route path='empresa/*' element={<SuspensedView><CompanyPage/></SuspensedView>}/> 
 
           <Route path='*' element={<Navigate to='/error/404' />} />
         </Route>
