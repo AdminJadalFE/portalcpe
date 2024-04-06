@@ -104,10 +104,19 @@ const CpeHeaderSearch = () => {
     // Obtener la cantidad de días entre las fechas
     const cantidadDias = differenceInDays(new Date(fechaFin),new Date(fechaInicio));
 
-    let maximoDias = 7;
-    if (tipo == 'XLS') {
-      maximoDias = 31;
-    }
+    // Obtén los datos de CPEs
+    const cpes = await CpeServiceGetData(dataReport);
+    console.log('cantidad de CPEs:', cpes.length);
+
+    if ( cpes.length > 3000) {
+      Swal.fire({
+        icon: "warning",
+        title: 'Solo puede descargar como máximo 3000 documentos',
+        showConfirmButton: false,
+        timer: 5000
+      })  
+      return false;
+    }    
     
     if (cantidadDias < 0) {
       Swal.fire({
@@ -118,16 +127,6 @@ const CpeHeaderSearch = () => {
       })  
       return false;
     }    
-
-    if (cantidadDias > maximoDias) {
-      Swal.fire({
-        icon: "warning",
-        title: 'Solo se permite generar reportes de un rango de ' + maximoDias + ' días',
-        showConfirmButton: false,
-        timer: 5000
-      })  
-      return false;
-    }
 
     dataReport.tipoReporte = tipo;
     dataReport.usuario = 'adm@jadal.pe';
