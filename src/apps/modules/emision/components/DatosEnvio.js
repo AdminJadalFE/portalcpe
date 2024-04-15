@@ -22,6 +22,7 @@ const DatosEnvio = ({ tipoDocumento }) => {
   const [departmentsLlegada, setDepartmentsLlegada] = useState([]);
   const [provincesLlegada, setProvincesLlegada] = useState([]);
   const [districtsLlegada, setDistrictsLlegada] = useState([]);
+  const [trasladoVehiculoM1L, setTrasladoVehiculoM1L] = useState('');
 
   // Función para cargar el Ubigeo de partida según la selección del usuario
   useEffect(() => {
@@ -99,6 +100,13 @@ const DatosEnvio = ({ tipoDocumento }) => {
   const handleDistrictChangeLlegada = (event) => {
     setSelectedDistrictLlegada(event.target.value);
   };
+
+  const handleTrasladoVehiculoM1L = (event) => {
+    const isChecked = event.target.checked;
+    const valueToSend = isChecked ? 'SUNAT_Envio_IndicadorTrasladoVehiculoM1L' : ''; // Establecer el valor basado en si el checkbox está marcado o no
+    setTrasladoVehiculoM1L(valueToSend);
+    setEnvioDatos('trasladoVehiculoM1L', valueToSend); 
+  }
 
   // Cargar la lista de departamentos de partida
   useEffect(() => {
@@ -277,6 +285,24 @@ const DatosEnvio = ({ tipoDocumento }) => {
           readOnly
         />
       </Col>
+    <Row className="mb-3">
+      <Col xs={4} className="pt-4">
+        <label className="form-check-label" htmlFor="inlineCheckbox2">Transporte con vehículo M1 o L</label>
+        <input
+          className="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox2"
+          checked={trasladoVehiculoM1L}
+          onChange={handleTrasladoVehiculoM1L}
+        />
+      </Col>
+      <Col xs={12} className="pt-4">
+        <label className="form-check-label" htmlFor="inlineCheckbox2">- M1 son tipo de vehículos de 8 asientos o menos sin contar el asiento del conductor (ejemplo: auto SUV, pickup, 3filas)</label>
+      </Col>
+      <Col xs={12} className="pt-4">
+        <label className="form-check-label" htmlFor="inlineCheckbox2">- L son tipo de vehículos con 2 o 3 ruedas (ejemplo: moto, motokar)</label>
+      </Col>                         
+    </Row>                     
     </>
   );
 

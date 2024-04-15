@@ -86,7 +86,8 @@ import {
     numeroBultos:'',
     puntoLlegada:'',
     puntoLlegadaUbigeo:'',
-    pesoUnidad:''
+    pesoUnidad:'',
+    trasladoVehiculoM1L:''
   }
 
   const EmisionContext = createContext()
