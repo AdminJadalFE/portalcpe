@@ -108,7 +108,7 @@ const CpeHeaderSearch = () => {
     const cpes = await CpeServiceGetData(dataReport);
     console.log('cantidad de CPEs:', cpes.length);
 
-    if ( cpes.length > 3000) {
+    if ( cpes.length > 3000 && tipo !== 'XLS') {
       Swal.fire({
         icon: "warning",
         title: 'Solo puede descargar como máximo 3000 documentos',
