@@ -251,6 +251,9 @@ const GuiaPage = () => {
       return false;
     }
     
+
+if(!datosEnvio.trasladoVehiculoM1L)
+  {
     if (!datosTransporte || !datosTransporte.conductorDocumento) { 
       Swal.fire({
         icon: "error",
@@ -340,6 +343,8 @@ const GuiaPage = () => {
       })  
       return false;
     }
+  }
+
     // if (datosEnvio.modalidadTransporte === "01" && datosTransporte.conductorID === "1") { 
     //   Swal.fire({
     //     icon: "error",

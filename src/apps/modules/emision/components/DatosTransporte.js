@@ -82,6 +82,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
               <Row className='mt-3'>
                 <div>
                   <h3 className='fw-bolder text-dark'>DATOS DEL CHOFER</h3>
+                  <h5>No es necesitario si es Transporte con vehículo M1 o L</h5>
                 </div>
               </Row>
 
@@ -148,6 +149,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
               <Row className='mt-3'>
                 <div>
                   <h3 className='fw-bolder text-dark'>DATOS DEL CHOFER</h3>
+                  <h5>No es necesitario si es Transporte con vehículo M1 o L</h5>
                 </div>
               </Row>
 
