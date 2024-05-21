@@ -64,6 +64,10 @@ export const getTipoNota = async () => {
 export const ConsultaRucDni = async (data) => { 
     data.accion = 'consulta';
     console.log('data', data);
-    let content = await FetchConf('https://apitest.jadal.pe/api/cpe/consultarucdni', 'POST', data);  
-    return content;
+    let content = await fetch('https://apitest.jadal.pe/api/cpe/consultarucdni', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+    });  
+    return await content.json();
 }
