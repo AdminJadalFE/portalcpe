@@ -49,7 +49,7 @@ function MyVerticallyCenteredModalWs(props){
             try {
                 let phone = values.phone;
                 
-                const whatsappUrl = `https://api.whatsapp.com/send/?phone=${phone}&text=Hola,%20aqu%C3%AD%20te%20env%C3%ADo%20el%20PDF%20de%20tu%20factura%20${id}%20del%20portal%20de%20Facturacion%20enlace:%20https://jadalfecpe.s3.amazonaws.com/${id}.pdf&type=phone_number&app_absent=0`;
+                const whatsappUrl = `https://api.whatsapp.com/send/?phone=51${phone}&text=Hola,%20aqu%C3%AD%20te%20env%C3%ADo%20el%20PDF%20de%20tu%20factura%20${id}%20del%20portal%20de%20Facturacion%20enlace:%20https://jadalfecpe.s3.amazonaws.com/${id}.pdf&type=phone_number&app_absent=0`;
                 window.open(whatsappUrl, '_blank');
 
                 props.onHide();
