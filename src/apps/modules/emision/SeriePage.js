@@ -15,6 +15,7 @@ const SeriePage = () => {
   const [ numeroBoleta, setNumeroBoleta ] = useState('');
   const [ numeroNotaCreditoBoleta, setNumeroNotaCreditoBoleta ] = useState('');
   const [ numeroNotaCreditoFactura, setNumeroNotaCreditoFactura ] = useState('');
+  const [ numeroGuia, setNumeroGuia ] = useState('');
 
 
   const serieSet = (event) => { 
@@ -37,6 +38,9 @@ const SeriePage = () => {
     setNumeroNotaCreditoFactura(event.target.value) 
   };
 
+  const numeroGuiaSet = (event) => { 
+    setNumeroGuia(event.target.value) 
+  };
  
   let { register, handleSubmit } = useForm();  
  
@@ -50,7 +54,8 @@ const SeriePage = () => {
       numeroFactura: numeroFactura,
       numeroBoleta: numeroBoleta,
       numeroNotaCreditoBoleta: numeroNotaCreditoBoleta,
-      numeroNotaCreditoFactura: numeroNotaCreditoFactura
+      numeroNotaCreditoFactura: numeroNotaCreditoFactura,
+      numeroGuian: numeroGuia
     }
      
     const serieVal = await getSerie({rucEmisor:currentEmisor.rucEmisor});
@@ -83,6 +88,7 @@ const SeriePage = () => {
       setNumeroBoleta(serieEmisor.numeroBoleta);
       setNumeroNotaCreditoBoleta(serieEmisor.numeroNotaCreditoBoleta);
       setNumeroNotaCreditoFactura(serieEmisor.numeroNotaCreditoFactura);
+      setNumeroGuia(serieEmisor.numeroGuia);
     }
  
   };
@@ -173,8 +179,38 @@ const SeriePage = () => {
                 value={numeroNotaCreditoBoleta}
                 onChange={numeroNotaCreditoBoletaSet}
               /> 
+            </div>    
+
+            <div className='col'> 
+              <label className='d-flex align-items-center form-label mb-3'>
+                Número Nota Crédito Boleta
+              </label>
+              <input
+                type='number'
+                data-kt-user-table-filter='search'
+                id="numeroNotaCreditoFactura"
+                name="numeroNotaCreditoFactura" 
+                className='form-control form-control-solid w-200px form-control-sm' 
+                value={numeroNotaCreditoBoleta}
+                onChange={numeroNotaCreditoBoletaSet}
+              /> 
             </div>     
-  
+
+            <div className='col'> 
+              <label className='d-flex align-items-center form-label mb-3'>
+                Número de Guia de Remisión
+              </label>
+              <input
+                type='number'
+                data-kt-user-table-filter='search'
+                id="numeroGuiaRemision"
+                name="numeroGuiaRemision" 
+                className='form-control form-control-solid w-200px form-control-sm' 
+                value={numeroGuia}
+                onChange={numeroGuiaSet}
+              /> 
+            </div>   
+
           </div> 
 
 
