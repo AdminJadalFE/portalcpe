@@ -32,8 +32,104 @@ const initialValues = {
     email1: '',
     email2: '',
     email3: '',
+    phone: '',
 }
   
+function MyVerticallyCenteredModalWs(props){
+
+    const [loading, setLoading] = useState(false)
+
+    const {id} = props;
+
+    const formik = useFormik({
+        initialValues,
+        onSubmit: async (values, {setStatus, setSubmitting}) => {
+            setLoading(true); 
+
+            try {
+                let phone = values.phone;
+                
+                const whatsappUrl = `https://api.whatsapp.com/send/?phone=${phone}&text=Hola,%20aqu%C3%AD%20te%20env%C3%ADo%20el%20PDF%20de%20tu%20factura%20${id}%20del%20portal%20de%20Facturacion%20enlace:%20https://jadalfecpe.s3.amazonaws.com/${id}.pdf&type=phone_number&app_absent=0`;
+                window.open(whatsappUrl, '_blank');
+
+                props.onHide();
+
+                Swal.fire({
+                    icon: "success",
+                    title: `El mensaje fue enviado correctamente a ${phone}`,
+                    showConfirmButton: false,
+                    timer: 2000
+                })  
+
+            } catch (error) {
+                console.error(error)
+                setStatus('Las credenciales ingresadas no son correctas')
+                setSubmitting(false)
+                setLoading(false)
+            }
+        },
+    })
+
+    useEffect(() => {
+        MenuComponent.reinitialization()
+    }, [])
+
+    return ( 
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+                Envío al whatsapp - CPE: {id}
+            </Modal.Title>
+            </Modal.Header>
+            <Modal.Body> 
+                <form
+                    className='form w-100'
+                    onSubmit={formik.handleSubmit}
+                    noValidate
+                    id='kt_login_signin_form'
+                > 
+                    <div className='fv-row mb-8'>
+                        <label className='form-label fs-6 fw-bolder text-dark'>Destinatario +51</label>
+                        <input
+                        placeholder='Número de teléfono 999999999' 
+                        {...formik.getFieldProps('phone')}
+                        className={clsx(
+                            'form-control bg-transparent',
+                            {'is-invalid': formik.touched.phone && formik.errors.phone},
+                            {
+                            'is-valid': formik.touched.phone && !formik.errors.phone,
+                            }
+                        )}
+                        type='number'
+                        name='phone'
+                        autoComplete='on'
+                        />
+                        {formik.touched.phone && formik.errors.phone && (
+                        <div className='fv-plugins-message-container'>
+                            <span role='alert'>{formik.errors.phone}</span>
+                        </div>
+                        )}
+                    </div>
+
+                    <div className='d-flex flex-row-reverse'>
+                        <button type='submit' className='btn btn-dark me-3'>
+                            <span className='indicator-label'>Enviar Mensaje</span>
+                        </button> 
+                        <Button className='btn btn-dark me-3' onClick={props.onHide}>Cerrar</Button>
+                    </div>
+                    
+                </form>
+
+            </Modal.Body> 
+        </Modal>  
+    );
+}
+
 function MyVerticallyCenteredModal(props) {
 
     const [loading, setLoading] = useState(false)
@@ -192,6 +288,7 @@ const UserActionsCell = ({cpe}) => {
         console.log(cpe)
  
         const [modalShow, setModalShow] = useState(false);
+        const [modalShowWs, setModalShowWs] = useState(false);
 
 
         const ResendCPEById = async (id) => {  
@@ -256,6 +353,25 @@ const UserActionsCell = ({cpe}) => {
                 <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
                 <text>Descargar CDR</text>
           </a>
+
+          <a className='menu-link px-3' onClick={() => setModalShowWs(true)} title='Enviar Correo'>
+                <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
+                <text>Enviar al Whatsapp</text>
+          </a>
+          {
+                modalShowWs 
+                ?
+                (
+                    <MyVerticallyCenteredModalWs
+                    id={cpe.id}
+                    show={modalShowWs}
+                    onHide={() => setModalShowWs(false)}
+                />
+                )
+                :
+                <></>
+            }
+
 
           <a className='menu-link px-3' onClick={() => setModalShow(true)} title='Enviar Correo'>
                 <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
