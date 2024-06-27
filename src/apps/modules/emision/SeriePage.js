@@ -15,7 +15,7 @@ const SeriePage = () => {
   const [ numeroBoleta, setNumeroBoleta ] = useState('');
   const [ numeroNotaCreditoBoleta, setNumeroNotaCreditoBoleta ] = useState('');
   const [ numeroNotaCreditoFactura, setNumeroNotaCreditoFactura ] = useState('');
-  const [ numeroGuiaRemision, setNumeroGuiaRemision ] = useState('');
+  const [ numeroGuia, setNumeroGuia ] = useState('');
 
 
   const serieSet = (event) => { 
@@ -38,8 +38,8 @@ const SeriePage = () => {
     setNumeroNotaCreditoFactura(event.target.value) 
   };
 
-  const numeroGuiaRemisionSet = (event) => { 
-    setNumeroGuiaRemision(event.target.value) 
+  const numeroGuiaSet = (event) => { 
+    setNumeroGuia(event.target.value) 
   };
  
   let { register, handleSubmit } = useForm();  
@@ -55,7 +55,7 @@ const SeriePage = () => {
       numeroBoleta: numeroBoleta,
       numeroNotaCreditoBoleta: numeroNotaCreditoBoleta,
       numeroNotaCreditoFactura: numeroNotaCreditoFactura,
-      numeroGuiaRemision: numeroGuiaRemision
+      numeroGuian: numeroGuia
     }
      
     const serieVal = await getSerie({rucEmisor:currentEmisor.rucEmisor});
@@ -88,7 +88,7 @@ const SeriePage = () => {
       setNumeroBoleta(serieEmisor.numeroBoleta);
       setNumeroNotaCreditoBoleta(serieEmisor.numeroNotaCreditoBoleta);
       setNumeroNotaCreditoFactura(serieEmisor.numeroNotaCreditoFactura);
-      setNumeroNotaCreditoFactura(serieEmisor.numeroGuia);
+      setNumeroGuia(serieEmisor.numeroGuia);
     }
  
   };
@@ -206,8 +206,8 @@ const SeriePage = () => {
                 id="numeroGuiaRemision"
                 name="numeroGuiaRemision" 
                 className='form-control form-control-solid w-200px form-control-sm' 
-                value={numeroGuiaRemision}
-                onChange={numeroGuiaRemisionSet}
+                value={numeroGuia}
+                onChange={numeroGuiaSet}
               /> 
             </div>   
 
