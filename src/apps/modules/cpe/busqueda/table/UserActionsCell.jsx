@@ -342,18 +342,23 @@ const UserActionsCell = ({cpe}) => {
                 <text>Descargar XML</text>
           </a> 
 
-          <Link to={`/visorpdf/${cpe.urlPdf.substring(cpe.urlPdf.lastIndexOf("/") + 1) }`} 
-                    target="_blank" 
-                    className='menu-link px-3'
-                    title='Descargar PDF'>
-                <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
-                <text> Descargar PDF</text>
-            </Link>
+          <a className='menu-link px-3' href={cpe.urlPdf} target="_blank" title='Descargar XML'>
+                <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
+                <text>Descargar PDF</text>
+          </a> 
 
           <a className='menu-link px-3' href={cpe.urlCdr} target="_blank" title='Descargar XML'>
                 <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
                 <text>Descargar CDR</text>
           </a>
+
+          <Link to={`/visorpdf/${cpe.urlPdf.substring(cpe.urlPdf.lastIndexOf("/") + 1) }`} 
+                    target="_blank" 
+                    className='menu-link px-3'
+                    title='Visualizar PDF'>
+                <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
+                <text>Visualizar PDF</text>
+            </Link>          
 
           <a className='menu-link px-3' onClick={() => setModalShowWs(true)} title='Enviar Correo'>
                 <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
