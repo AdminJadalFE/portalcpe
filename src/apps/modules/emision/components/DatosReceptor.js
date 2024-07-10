@@ -111,7 +111,12 @@ const DatosReceptor = ({ tipoDocumento, tipoCpe }) => {
         <Form>
           <Row className="mt-3">
             <div>
-              <h3 className="fw-bolder text-dark">{tipoCpe === "09" ? "DATOS DEL CLIENTE" : "DATOS DEL RECEPTOR"}</h3>
+              <h3 className="fw-bolder text-dark">{tipoCpe === "09" ? "DATOS DEL DESTINATARIO O PROVEEDOR" : "DATOS DEL RECEPTOR"}</h3>
+              {tipoCpe === "09" &&
+              <Form.Label htmlFor="modalidadTransporte" className="mb-2">
+                Cliente Destinatario (Proveedor para Guía de Compra)
+              </Form.Label>
+              }
             </div>
           </Row>
 
