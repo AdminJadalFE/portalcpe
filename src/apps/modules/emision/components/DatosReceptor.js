@@ -7,7 +7,7 @@ import { useEmision } from "../core/EmisionContext";
 
 import { ConsultaRucDni } from "../services/EmisionService";
 
-const DatosReceptor = ({ tipoDocumento }) => {
+const DatosReceptor = ({ tipoDocumento, tipoCpe }) => {
   const [numeroDocumento, setNumeroDocumento] = useState("");
   const [razonSocial, setRazonSocial] = useState("");
   const [direccion, setDireccion] = useState("");
@@ -111,7 +111,7 @@ const DatosReceptor = ({ tipoDocumento }) => {
         <Form>
           <Row className="mt-3">
             <div>
-              <h3 className="fw-bolder text-dark">DATOS DEL RECEPTOR</h3>
+              <h3 className="fw-bolder text-dark">{tipoCpe === "09" ? "DATOS DEL CLIENTE" : "DATOS DEL RECEPTOR"}</h3>
             </div>
           </Row>
 
