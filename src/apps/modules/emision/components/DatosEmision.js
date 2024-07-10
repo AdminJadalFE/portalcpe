@@ -18,6 +18,7 @@ const DatosEmision = ({tipoCpe}) => {
   const [ icbperChecked, setIcbperChecked ] = useState(true);
  
   const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).format("YYYY-MM-DD");
+  const horaActual = moment().format("HH:mm:ss");
 
   const handleKeyPress = (event) => {
     const charCode = event.which ? event.which : event.keyCode;
@@ -33,6 +34,10 @@ const DatosEmision = ({tipoCpe}) => {
   
   const setFechaCpe = (event) => { 
     setCpeDatos('fechaCpe', event.target.value) 
+  };
+
+  const setHoraCpe = (event) => { 
+    setCpeDatos('horaCpe', event.target.value) 
   };
 
   const setFechaVencimiento = (event) => { 
@@ -90,114 +95,161 @@ const DatosEmision = ({tipoCpe}) => {
   }, [datosItem])
   
   return (
-    
-    <div className='card mb-2'>
-      <div className='card-body pt-1 pb-0'> 
-         
-            <Form>
+    <div className="card mb-2">
+      <div className="card-body pt-1 pb-0">
+        <Form>
+          <Row className="mt-3">
+            <div>
+              <h3 className="fw-bolder text-dark">DATOS DE EMISIÓN</h3>
+            </div>
+          </Row>
 
-              <Row className="mt-3"> 
-                <div>
-                    <h3 className='fw-bolder text-dark'>DATOS DE EMISIÓN</h3>
-                </div>
-              </Row>
-
-              <Row className="mb-3">
+          <Row className="mb-3">
+            <Col xs="auto">
+              <Form.Group as={Col} controlId="formFechaCpe">
+                <label className="d-flex align-items-center form-label mb-3">
+                  Fecha Emisión
+                </label>
+                <Form.Control
+                  size="sm"
+                  type="date"
+                  defaultValue={fechaActual}
+                  onChange={setFechaCpe}
+                />
+              </Form.Group>
+            </Col>
+            {tipoCpe === "09" ? (
+              <Col xs="auto">
+                <Form.Group as={Col} controlId="formFechaCpe">
+                  <label className="d-flex align-items-center form-label mb-3">
+                    Hora de Emisión
+                  </label>
+                  <Form.Control
+                    size="sm"
+                    type="time"
+                    defaultValue={horaActual}
+                    onChange={setHoraCpe}
+                  />
+                </Form.Group>
+              </Col>
+            ) : (
+              <>
                 <Col xs="auto">
-                  <Form.Group as={Col} controlId="formFechaCpe"> 
-                      <label className='d-flex align-items-center form-label mb-3'>
-                        Fecha Emisión
-                      </label>
-                      <Form.Control size="sm"  type="date" defaultValue={fechaActual} onChange={setFechaCpe}/>
-                  </Form.Group>  
-                </Col> 
-                <Col xs="auto">
-                  <Form.Group as={Col} controlId="formFechaVencimiento"> 
-                    <label className='d-flex align-items-center form-label mb-3'>
+                  <Form.Group as={Col} controlId="formFechaVencimiento">
+                    <label className="d-flex align-items-center form-label mb-3">
                       Fecha Vencimiento
-                    </label>  
-                    <Form.Control size="sm"  type="date" defaultValue={fechaActual} onChange={setFechaVencimiento}/> 
+                    </label>
+                    <Form.Control
+                      size="sm"
+                      type="date"
+                      defaultValue={fechaActual}
+                      onChange={setFechaVencimiento}
+                    />
                   </Form.Group>
-                </Col>  
+                </Col>
                 <Col xs="auto">
-                  <Form.Group as={Col} controlId="formGridEmail">
-                  <label className='d-flex align-items-center form-label mb-3'>
+                  <Form.Group as={Col} controlId="formGridMoneda">
+                    <Form.Label className="d-flex align-items-center form-label mb-3">
                       Moneda
-                    </label>
-                    <Form.Select  size="sm"  defaultValue="PEN" onChange={setMoneda}>
-                    {
-                        monedas.map((uni,i) => (
-                          <option key={i} value={uni.codigoMoneda}>{uni.descripcionMoneda}</option>
-                        ))
-                    }
+                    </Form.Label>
+                    <Form.Select
+                      size="sm"
+                      defaultValue="PEN"
+                      onChange={setMoneda}
+                    >
+                      {monedas.map((uni, i) => (
+                        <option key={i} value={uni.codigoMoneda}>
+                          {uni.descripcionMoneda}
+                        </option>
+                      ))}
                     </Form.Select>
                   </Form.Group>
-                </Col> 
+                </Col>
                 <Col xs="auto">
-                  <Form.Group as={Col} controlId="formGridEmail">
-                  <label className='d-flex align-items-center form-label mb-3'>
+                  <Form.Group as={Col} controlId="formGridTipoAfectacion">
+                    <Form.Label className="d-flex align-items-center form-label mb-3">
                       Tipo Afectacion
-                    </label>
-                    <Form.Select  size="sm"  defaultValue="PEN" onChange={setTipoAfectacion}>
-                    {
-                        tiposAfectacion.map((uni,i) => (
-                          <option key={i} value={uni.codigoTipoAfectacion}>{uni.descripcionTipoAfectacion}</option>
-                        ))
-                    }
+                    </Form.Label>
+                    <Form.Select
+                      size="sm"
+                      defaultValue="PEN"
+                      onChange={setTipoAfectacion}
+                    >
+                      {tiposAfectacion.map((uni, i) => (
+                        <option key={i} value={uni.codigoTipoAfectacion}>
+                          {uni.descripcionTipoAfectacion}
+                        </option>
+                      ))}
                     </Form.Select>
                   </Form.Group>
-                </Col> 
+                </Col>
+              </>
+            )}
+            {tipoCpe == "01" ? (
+              <Col xs="auto">
+                <Form.Group as={Col} controlId="formGridEmail">
+                  <label className="d-flex align-items-center form-label mb-3">
+                    Forma Pago
+                  </label>
+                  <Form.Select
+                    size="sm"
+                    defaultValue="PEN"
+                    onChange={setFormaPago}
+                  >
+                    {formasPago.map((uni, i) => (
+                      <option key={i} value={uni.codigoFormaPago}>
+                        {uni.descripcionFormaPago}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            ) : (
+              <></>
+            )}
+            {tipoCpe === "09" ? (
+              <></>
+            ) : (
+              <>
+                <Col xs="auto">
+                  <Form.Group as={Col} controlId="formAfectacionIGV">
+                    <Form.Label className="d-flex align-items-center form-label mb-3">
+                      Afectación IGV
+                    </Form.Label>
+                    <div className="d-flex align-items-center mt-5">
+                      <Form.Check
+                        type="switch"
+                        id="afectacion"
+                        defaultChecked={true}
+                        onChange={setAfectacionIgv}
+                        disabled={icbperChecked}
+                      />
+                    </div>
+                  </Form.Group>
+                </Col>
 
-                {
-                  tipoCpe == '01' ?
-                  (
-                    <Col xs="auto">
-                    <Form.Group as={Col} controlId="formGridEmail">
-                    <label className='d-flex align-items-center form-label mb-3'>
-                        Forma Pago
-                      </label>
-                      <Form.Select  size="sm"  defaultValue="PEN" onChange={setFormaPago}>
-                      {
-                          formasPago.map((uni,i) => (
-                            <option key={i} value={uni.codigoFormaPago}>{uni.descripcionFormaPago}</option>
-                          ))
-                      }
-                      </Form.Select>
-                    </Form.Group>
-                  </Col> 
-                  ):
-                  (<></>)
-                } 
-
-                <Col xs="auto"> 
-                    <Form.Group as={Col} controlId="formAfectacion" > 
-                      <label className='d-flex align-items-center form-label mb-3'>
-                          Afectación IGV
-                      </label>  
-                      <div  className='d-flex align-items-center mt-5'>
-                        <Form.Check type="switch" id="afectacion" defaultChecked={true} onChange={setAfectacionIgv} disabled={icbperChecked}/> 
-                      </div>
- 
-                    </Form.Group>
-                </Col> 
-                
-                <Col xs="auto"> 
-                    <Form.Group as={Col} controlId="formAfectacion" > 
-                      <label className='d-flex align-items-center form-label mb-3'>
-                          Porcentaje IGV
-                      </label>   
-                      <Form.Control size="sm" pattern="[0-9]*\.?[0-9]*" onKeyPress={handleKeyPress} type="decimal" defaultValue="18.00" onChange={setPorcentajeIgv} /> 
- 
-                    </Form.Group>
-                </Col> 
-                
-
-              </Row> 
-            </Form>  
- 
+                <Col xs="auto">
+                  <Form.Group as={Col} controlId="formPorcentajeIGV">
+                    <Form.Label className="d-flex align-items-center form-label mb-3">
+                      Porcentaje IGV
+                    </Form.Label>
+                    <Form.Control
+                      size="sm"
+                      pattern="[0-9]*\.?[0-9]*"
+                      onKeyPress={handleKeyPress}
+                      type="decimal"
+                      defaultValue="18.00"
+                      onChange={setPorcentajeIgv}
+                    />
+                  </Form.Group>
+                </Col>
+              </>
+            )}
+          </Row>
+        </Form>
       </div>
     </div>
-  )
+  );
 }
 
 export {DatosEmision}

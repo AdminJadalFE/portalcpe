@@ -515,7 +515,7 @@ if(!datosEnvio.trasladoVehiculoM1L)
                 <DatosEmisor tipoCpe="GUIA DE REMISIÓN"/>
                 <DatosContingencia />
                 <DatosEmision tipoCpe="09"/>
-                <DatosReceptor tipoDocumento="6"/>
+                <DatosReceptor tipoDocumento="6" tipoCpe="09"/>
                 <DatosEnvio/>
                 <DatosTransporte tipoDocumento="6"/>
                 <DatosDetalle /> 
