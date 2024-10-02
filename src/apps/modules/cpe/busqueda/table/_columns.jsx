@@ -73,7 +73,8 @@ const usersColumns = [
       <UserCustomHeader tableProps={props} title='Opciones' className='min-w-150px' />
     ),
     id: 'opciones',
-    Cell: ({...props}) => <UserActionsCell cpe={props.data[props.row.index]} />,
+    Cell: ({...props}) => {
+    return <UserActionsCell cpe={props.data[props.row.index]} />},
   },
 ]
 

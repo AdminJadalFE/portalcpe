@@ -42,7 +42,7 @@ const CpePage = () => {
           path='busqueda'
           element={
             <>
-              <PageTitle breadcrumbs={profileBreadCrumbs}>Busqueda</PageTitle>  
+              <PageTitle breadcrumbs={profileBreadCrumbs}>XD</PageTitle>  
               <CpeList /> 
             </>
           }
