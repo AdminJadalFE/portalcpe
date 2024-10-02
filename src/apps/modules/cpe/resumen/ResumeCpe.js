@@ -11,20 +11,25 @@ import moment from 'moment';
   const ResumeCpe = () => { 
 
     const { searchCpe } = useSearch();  
-    const [cpeData, setCpeData] = useState([]); 
+    const [cpeData, setCpeData] = useState(); 
     const {currentEmisor} = useAuth(); 
 
     const [tipoCPE, setTipoCPE] = useState([]);  
 
-    const getDataList = async() => {   
-      let tipocpe = await getTipoCPE();  
+    // Agrego un loading
+    const [isLoading, setIsLoading] = useState(false)
+    const getDataList = async() => {
+      let tipocpe = await getTipoCPE();
       setTipoCPE(tipocpe);  
     }
    
  
-    const getProduct = async () => {  
-      const cpes = await GetCpeResume(getDefault());    
-      setCpeData(cpes);  
+    const getProduct = async () => {
+      setIsLoading(true)   
+      const cpes = await GetCpeResume(getDefault());
+      console.log(cpes)
+      setCpeData(cpes);
+      setIsLoading(false)
     }  
    
     const getDefault = () => { 
@@ -66,7 +71,7 @@ import moment from 'moment';
     {/* <div className='table-responsive'>  */}
  
           {
-              cpeData
+              !isLoading
               ? 
               (  
                 // <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3'> 

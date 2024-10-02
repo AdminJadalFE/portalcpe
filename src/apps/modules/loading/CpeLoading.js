@@ -8,11 +8,13 @@ const CpeLoading = () => {
     margin: '0',
     width: 'auto',
     padding: '1rem 2rem',
-    top: 'calc(50% - 2rem)',
-    left: 'calc(50% - 4rem)',
   }
 
-  return <div style={{...styles, position: 'absolute', textAlign: 'center'}}>Obteniendo Datos...</div>
+  return (
+    <div style={{display: 'flex', justifyContent: 'center', paddingBottom: '3em'}}>
+      <div style={{ ...styles, textAlign: 'center' }}>Obteniendo Datos...</div>
+    </div>
+  )
 }
 
-export {CpeLoading}
+export { CpeLoading }
