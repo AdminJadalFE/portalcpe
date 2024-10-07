@@ -66,7 +66,9 @@ const usersColumns = [
       <UserCustomHeader tableProps={props} title='Estado' className='min-w-100px' />
     ),
     id: 'estadoCpe',
-    Cell: ({...props}) => <StateCell estadoCpe={props.data[props.row.index].estadoCpe} />,
+    Cell: ({...props}) => {
+      return <StateCell estadoCpe={props.data[props.row.index].estadoCpe} id={props.data[props.row.index].id} />
+    },
   },
   {
     Header: (props) => (
