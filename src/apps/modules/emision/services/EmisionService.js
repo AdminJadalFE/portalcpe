@@ -16,7 +16,7 @@ export const PrevisualizeCpe = async (data) => {
 export const getSerie = async (data) => { 
     let content = await FetchConf('cpe/getserie','POST',data); 
     return content.content;
-}
+} // <--- ENDPOINT PARA SABER SI MI RUC TIENE SERIE
 
 export const CreateSerie = async (data) => { 
     console.log(data);

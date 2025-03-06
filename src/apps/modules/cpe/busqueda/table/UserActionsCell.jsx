@@ -41,6 +41,8 @@ function MyVerticallyCenteredModalWs(props){
     const [loading, setLoading] = useState(false)
 
     const {id} = props;
+    const {urlpdf} = props;
+    console.log("PROPS DEL MODAL: ", props)
 
     const formik = useFormik({
         initialValues,
@@ -50,7 +52,7 @@ function MyVerticallyCenteredModalWs(props){
             try {
                 let phone = values.phone;
                 
-                const whatsappUrl = `https://api.whatsapp.com/send/?phone=51${phone}&text=Hola,%20aqu%C3%AD%20te%20env%C3%ADo%20el%20PDF%20de%20tu%20factura%20${id}%20del%20portal%20de%20Facturacion%20enlace:%20${URL_BUCKET}${id}.pdf&type=phone_number&app_absent=0`;
+                const whatsappUrl = `https://api.whatsapp.com/send/?phone=51${phone}&text=Hola,%20aqu%C3%AD%20te%20env%C3%ADo%20el%20PDF%20de%20tu%20factura%20${id}%20del%20portal%20de%20Facturacion%20enlace:%20${urlpdf}&type=phone_number&app_absent=0`;
                 window.open(whatsappUrl, '_blank');
 
                 props.onHide();
@@ -135,6 +137,7 @@ function MyVerticallyCenteredModal(props) {
 
     const [loading, setLoading] = useState(false)
 
+    
     const {id} = props;
 
     const formik = useFormik({
@@ -153,7 +156,6 @@ function MyVerticallyCenteredModal(props) {
                     "id": id,
                     "emails": emails
                 }
-
                 await SendEmail(data);   
 
                 props.onHide();
@@ -286,7 +288,7 @@ function MyVerticallyCenteredModal(props) {
 
 const UserActionsCell = ({cpe}) => {
 
-        console.log(cpe)
+        //alert("ESTO ES MI CPE" + JSON.stringify(cpe))
  
         const [modalShow, setModalShow] = useState(false);
         const [modalShowWs, setModalShowWs] = useState(false);
@@ -337,17 +339,17 @@ const UserActionsCell = ({cpe}) => {
       >
         {/* begin::Menu item */}
         <div className='menu-item px-3'>  
-          <a className='menu-link px-3' href={cpe.urlCpe} target="_blank" title='Descargar XML'>
+          <a className='menu-link px-3' href={cpe.urlCpe} target="_blank" title='Descargar XML' rel="noreferrer">
                 <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
                 <text>Descargar XML</text>
           </a> 
 
-          <a className='menu-link px-3' href={cpe.urlPdf} target="_blank" title='Descargar XML'>
+          <a className='menu-link px-3' href={cpe.urlPdf} target="_blank" title='Descargar XML' rel="noreferrer">
                 <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
                 <text>Descargar PDF</text>
           </a> 
 
-          <a className='menu-link px-3' href={cpe.urlCdr} target="_blank" title='Descargar XML'>
+          <a className='menu-link px-3' href={cpe.urlCdr} target="_blank" title='Descargar XML' rel="noreferrer">
                 <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
                 <text>Descargar CDR</text>
           </a>
@@ -357,8 +359,8 @@ const UserActionsCell = ({cpe}) => {
                     className='menu-link px-3'
                     title='Visualizar PDF'>
                 <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
-                <text>Visualizar PDF</text>
-            </Link>          
+                <text> Visualizar PDF</text>
+            </Link>
 
           <a className='menu-link px-3' onClick={() => setModalShowWs(true)} title='Enviar Correo'>
                 <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
@@ -370,6 +372,7 @@ const UserActionsCell = ({cpe}) => {
                 (
                     <MyVerticallyCenteredModalWs
                     id={cpe.id}
+                    urlpdf={cpe.urlPdf}
                     show={modalShowWs}
                     onHide={() => setModalShowWs(false)}
                 />

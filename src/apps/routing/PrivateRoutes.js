@@ -13,7 +13,6 @@ const PrivateRoutes = () => {
   const EmisionPage = lazy(() => import('../modules/emision/EmisionPage'))   
   const ReportePage = lazy(() => import('../modules/reporte/ReportePage'))   
   const CompanyPage = lazy(() => import('../modules/company/CompanyPage'))   
- 
   return (
 
       <Routes>

@@ -32,10 +32,6 @@ const AuthProvider = ({children}) => {
       const emisoresData = JSON.parse(localStorage.getItem('emisores.content'));
       const currentEmisorData = JSON.parse(localStorage.getItem('emisores.content[0]'));
   
-      console.log('userData:', userData);
-      console.log('emisoresData:', emisoresData);
-      console.log('currentEmisorData:', currentEmisorData);
-  
       if (userData) {
         setCurrentUser(userData);
       }

@@ -28,7 +28,7 @@ const CpeList = () => (
     <CpeHeaderSearch />
     <Outlet /> 
     <PageTitle breadcrumbs={profileBreadCrumbs}>Busqueda</PageTitle>  
-    <ListCpe />  
+    <ListCpe />   
 </>
 )
 
