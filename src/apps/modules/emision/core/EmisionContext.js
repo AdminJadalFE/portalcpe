@@ -145,7 +145,6 @@ const EmisionProvider = ({children}) => {
   }
 
   const AddItem =  (item) => {  
-      console.log(datosCpe);
       let porcIgv = parseFloat(((datosCpe.afectacionIgv ? datosCpe.porcentajeIgv : 0) / 100).toFixed(2));
 
       item.igv = (item.venta * porcIgv).toFixed(2);
@@ -158,7 +157,9 @@ const EmisionProvider = ({children}) => {
       item.icbper = parseFloat(item.icbper).toFixed(2);
       item.venta = parseFloat(item.venta).toFixed(2);
       item.precio = parseFloat(item.precio).toFixed(2);
-      setDatosItem([...datosItem, item]) 
+      const newItems = [...datosItem, item];
+      setDatosItem(newItems)
+      //setTotales()
   }
 
   const DeleteItem =  (codigo) => { 
@@ -166,10 +167,9 @@ const EmisionProvider = ({children}) => {
     setDatosItem(datosItemTemp); 
   }
 
-  const setTotales =  () => {  
-
+  const setTotales =  () => {
+    console.log('aca')
     let porcIgv = parseFloat(((datosCpe.afectacionIgv ? datosCpe.porcentajeIgv : 0) / 100).toFixed(2));
-
     let subtotal = 0;
     let totalicbper = 0;
     datosItem.map((item) => { 
@@ -433,7 +433,7 @@ const EmisionProvider = ({children}) => {
     <EmisionContext.Provider 
       value={{setCpeDatosInicial, setCpeDatos, CleanDatosCpe, setReceptorDatos, setTransporteDatos, setEnvioDatos, CleanDatosReceptor, CleanDatosTransporte, CleanDatosEnvio, setReferenciaDatos, CleanDatosReferencia, setTotales, CleanDatosTotales, setContingenciaDatos, CleanDatosContingencia, setAdicionalesDatos, CleanDatosAdicionales,
                AddItem, DeleteItem, CleanItem, AddFormaPago, DeleteFormaPago, CleanFormaPago, AddDocRel, DeleteDocRel, CleanDocRel,
-              datosCpe, datosReceptor, datosTransporte, datosEnvio,datosItem,datosTotales,datosReferencia, datosAdicionales, datosContingencia, datosDocRel, datosFormaPago }}>
+              datosCpe, datosReceptor, datosTransporte, datosEnvio,datosItem,datosTotales,datosReferencia, datosAdicionales, datosContingencia, datosDocRel, datosFormaPago, setDatosItem, setDatosTotales }}>
       {children}
     </EmisionContext.Provider>
   )

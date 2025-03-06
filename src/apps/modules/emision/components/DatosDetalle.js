@@ -17,7 +17,7 @@ const DatosDetalle = () => {
   
 let { register, handleSubmit } = useForm();   
 
-const { AddItem, DeleteItem, datosItem } = useEmision();
+const { AddItem, DeleteItem, datosItem, setTotales, datosReferencia } = useEmision();
 const [ cantidad, setCantidad ] = useState();
 const [ precio, setPrecio ] = useState();
 const [ venta, setVenta ] = useState(); 
@@ -94,6 +94,7 @@ const [ icbperChecked, setIcbperChecked ] = useState(true);
     data.venta = venta;
     data.icbper = (icbper == undefined ? 0 : icbper) ; 
     AddItem(data);
+    //setTotales()
   }
 
   const manageIcbper = (event) => { 
@@ -214,7 +215,7 @@ const [ icbperChecked, setIcbperChecked ] = useState(true);
                   </Col> 
 
                   <Col xs="auto">
-                    <button type="submit" className="btn btn-dark btn-sm w-150px ps-5">Agregar</button>
+                    <button disabled={datosReferencia.tipoNotaCredito === '01'} type="submit" className="btn btn-dark btn-sm w-150px ps-5">Agregar</button>
                   </Col> 
   
                 </Row>

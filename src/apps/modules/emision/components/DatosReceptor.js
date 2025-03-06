@@ -11,6 +11,7 @@ const DatosReceptor = ({ tipoDocumento, tipoCpe }) => {
   const [numeroDocumento, setNumeroDocumento] = useState("");
   const [razonSocial, setRazonSocial] = useState("");
   const [direccion, setDireccion] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { setReceptorDatos, datosReceptor } = useEmision();
 
@@ -51,6 +52,7 @@ const DatosReceptor = ({ tipoDocumento, tipoCpe }) => {
       setRazonSocial('');
       setDireccion('');
       try {
+        setIsLoading(true);
         let content = await ConsultaRucDni(data);
         console.log("Resultado de la consulta:1", content);
         if (content) {
@@ -70,6 +72,9 @@ const DatosReceptor = ({ tipoDocumento, tipoCpe }) => {
       } catch (error) {
         console.error("Error en la consulta:3", error);
       }
+      finally{
+        setIsLoading(false);
+      }
     }
     //Consulta DNI
     else{
@@ -81,6 +86,7 @@ const DatosReceptor = ({ tipoDocumento, tipoCpe }) => {
       setRazonSocial('');
       setDireccion('');
       try {
+        setIsLoading(true);
         let content = await ConsultaRucDni(data);
         console.log("Resultado de la consulta:1", content);
         if (content) {
@@ -96,6 +102,9 @@ const DatosReceptor = ({ tipoDocumento, tipoCpe }) => {
         }
       } catch (error) {
         console.error("Error en la consulta:3", error);
+      }
+      finally{
+        setIsLoading(false);
       }
     }
   };
@@ -146,7 +155,7 @@ const DatosReceptor = ({ tipoDocumento, tipoCpe }) => {
             <Col xs={1}>
               <button
                 type="button"
-                className="btn btn-dark btn-sm"
+                className={`btn ${isLoading && 'btn-loading'} btn-dark btn-sm`}
                 onClick={() => {
                   ConsultarRuc();
                 }}
