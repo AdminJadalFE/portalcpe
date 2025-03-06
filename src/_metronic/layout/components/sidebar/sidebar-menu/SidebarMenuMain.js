@@ -1,14 +1,26 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useIntl} from 'react-intl' 
 import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
 import {SidebarMenuItem} from './SidebarMenuItem'
+import {useAuth} from '../../../../../apps/modules/auth'
+import {getSerie} from '../../../../../apps/modules/emision/services/EmisionService'
+import {useState} from 'react'
 
 const SidebarMenuMain = () => {
   const intl = useIntl() 
+  const {currentEmisor} = useAuth(); 
+  const [containSerie, setContainSerie] = useState(false);
+  useEffect(() => {
+    (async () => {
+      const serie = await getSerie({rucEmisor:currentEmisor.rucEmisor});
+      setContainSerie(!!serie)
+    })()
+  }, [])
 
   const data = JSON.parse(localStorage.getItem("data"));
   const email = data.email;
+  
   return (
     <>
       <SidebarMenuItem
@@ -31,7 +43,7 @@ const SidebarMenuMain = () => {
           fontIcon='bi-archive'
           icon='/media/icons/duotune/general/gen022.svg'
         />  
-  
+    {containSerie &&
       <SidebarMenuItemWithSub
         to='/emisión'
         title='Emisión Web'
@@ -64,6 +76,7 @@ const SidebarMenuMain = () => {
             hasBullet={true}
           />         
       </SidebarMenuItemWithSub>
+      }
      
       <SidebarMenuItemWithSub
         to='/baja'
