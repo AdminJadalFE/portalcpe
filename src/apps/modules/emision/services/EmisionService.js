@@ -16,7 +16,7 @@ export const PrevisualizeCpe = async (data) => {
 export const getSerie = async (data) => { 
     let content = await FetchConf('cpe/getserie','POST',data); 
     return content.content;
-}
+} // <--- ENDPOINT PARA SABER SI MI RUC TIENE SERIE
 
 export const CreateSerie = async (data) => { 
     console.log(data);
@@ -64,7 +64,7 @@ export const getTipoNota = async () => {
 export const ConsultaRucDni = async (data) => { 
     data.accion = 'consulta';
     console.log('data', data);
-    let content = await fetch('https://apitest.jadal.pe/api/cpe/consultarucdni', {
+    let content = await fetch('https://api.jadal.pe/api/cpe/consultarucdni', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' }

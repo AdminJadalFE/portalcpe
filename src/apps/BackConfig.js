@@ -1,10 +1,10 @@
-export const URL_BACK = 'https://api.jadal.pe/api/';
+export const URL_BACK = 'https://api.jadal.pe/api/'; // Cambiar en modo desarrollo cuando se requiera
 export const URL_BUCKET = 'https://jadalfecpe.s3.amazonaws.com/';
 
 export const FetchGet = async (endpoint) => {
     const response = await fetch(URL_BACK + endpoint);
     const content = await response.json(); 
-    return content;
+    return content; 
 }
 
 export const FetchConf = async (endpoint, method, data) => {
