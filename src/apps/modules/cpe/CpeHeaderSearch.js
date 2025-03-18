@@ -23,9 +23,10 @@ const CpeHeaderSearch = () => {
   const {currentEmisor} = useAuth(); 
  
   let { register, handleSubmit } = useForm();   
-  const [startDate, setStartDate] = useState(new Date(moment(searchCpe.fechaDesde).add(5, 'h').format()));
-  const [endDate, setEndDate] = useState(new Date(moment(searchCpe.fechaHasta).add(5, 'h').format()));
+  const [startDate, setStartDate] = useState(new Date(moment().format()));
+  const [endDate, setEndDate] = useState(new Date(moment().format()));
  
+  console.log({startDate})
   const [tipoCPE, setTipoCPE] = useState([]);  
   const [estadoCPE, setEstadoCPE] = useState([]); 
   const [sede, setSede] = useState([]); 

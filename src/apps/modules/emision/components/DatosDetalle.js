@@ -215,7 +215,7 @@ const [ icbperChecked, setIcbperChecked ] = useState(true);
                   </Col> 
 
                   <Col xs="auto">
-                    <button disabled={datosReferencia.tipoNotaCredito === '01'} type="submit" className="btn btn-dark btn-sm w-150px ps-5">Agregar</button>
+                    <button type="submit" className="btn btn-dark btn-sm w-150px ps-5">Agregar</button>
                   </Col> 
   
                 </Row>

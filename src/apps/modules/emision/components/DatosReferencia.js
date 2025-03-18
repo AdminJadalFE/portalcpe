@@ -86,7 +86,7 @@ const DatosReferencia = () => {
                 <Form.Control size="sm" type="text" placeholder="Número Documento" onChange={setNumeroDocumento} />
               </Form.Group>
             </Col>
-            <Col xs="auto">
+            {/*<Col xs="auto">
               <button type="button" className="btn btn-dark btn-sm" onClick={() => {
                 const data = invoiceData // <-- SIMULO EL FETCH
                 const items = data.data.map(item => ({
@@ -105,10 +105,10 @@ const DatosReferencia = () => {
                 setReferenciaDatos('fechaCpeRef', '2024-01-01');
                 setDatosItem(items)
               }}>Buscar documento</button>
-            </Col>
+            </Col>*/}
             <Col xs="auto">
               <Form.Group as={Col} controlId="formFechaCpeRef">
-                <Form.Control size="sm" type="date" value={date} onChange={setFechaCpeRef} />
+                <Form.Control size="sm" type="date"/>
               </Form.Group>
             </Col>
             <Col xs="auto">

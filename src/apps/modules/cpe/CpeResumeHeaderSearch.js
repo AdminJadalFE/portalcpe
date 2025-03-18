@@ -15,8 +15,8 @@ const CpeResumeHeaderSearch = () => {
   
   let { register, handleSubmit } = useForm();  
 
-  const [startDate, setStartDate] = useState(new Date(moment().startOf('month')));
-  const [endDate, setEndDate] = useState(new Date(moment().endOf('month')));
+  const [startDate, setStartDate] = useState(new Date(moment()));
+  const [endDate, setEndDate] = useState(new Date(moment()));
   const [sede, setSede] = useState([]); 
 
   const getDataList = async() => { ;
