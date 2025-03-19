@@ -1,4 +1,4 @@
-export const URL_BACK = 'https://api.jadal.pe/api/'; // Cambiar en modo desarrollo cuando se requiera
+export const URL_BACK = 'https://apitest.jadal.pe/api/'; // Cambiar en modo desarrollo cuando se requiera
 export const URL_BUCKET = 'https://jadalfecpe.s3.amazonaws.com/';
 
 export const FetchGet = async (endpoint) => {
