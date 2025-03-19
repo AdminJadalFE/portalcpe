@@ -69,6 +69,8 @@ function MyVerticallyCenteredModal(props) {
   const { urlcpe } = props;
 
   const manejarSubmit = async (event, data) => {
+    console.log({data})
+    console.log({datosReferencia})
     event.stopPropagation();
 
     let factura = {
@@ -193,7 +195,7 @@ const NotaCreditoPage = () => {
   }, [])
 
   const manejarSubmit = async (data) => {
-
+    console.log({data})
     if (!datosCpe || !datosCpe.fechaCpe) {
 
       Swal.fire({

@@ -108,7 +108,7 @@ const DatosReferencia = () => {
             </Col>*/}
             <Col xs="auto">
               <Form.Group as={Col} controlId="formFechaCpeRef">
-                <Form.Control size="sm" type="date"/>
+                <Form.Control size="sm" type="date" defaultValue={date} onChange={setFechaCpeRef} />
               </Form.Group>
             </Col>
             <Col xs="auto">
