@@ -438,9 +438,6 @@ const NotaCreditoPage = () => {
                   (<DatosFormaPago />)
               }
               <DatosTotales />
-              <button onClick={() => {
-                console.log(datosReferencia)
-              }}>VER</button>
               <form onSubmit={handleSubmit(manejarSubmit)}>
 
                 <div className='fs-4 text-gray-800 d-flex justify-content-end mt-4'>

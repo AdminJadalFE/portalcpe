@@ -36,21 +36,21 @@ const StateCell = ({ estadoCpe, id }) => {
       break;
   }
 
-  const handleClickEdit = () => {
+ /* const handleClickEdit = () => {
     // Aquí abriría un modal donde se cargaria un combobox
     setShowModal(true)
 
-  }
+  }*/
 
   return (
     <div class="d-flex gap-2 align-items-center">{estadoCpe &&
       <div className={estadoColor}>
         {estadoCpe}
       </div>}
-      <button style={{ border: 'none', color: '#45458bda', padding: '0', lineHeight: '0', background: 'transparent' }}
+      {/*<button style={{ border: 'none', color: '#45458bda', padding: '0', lineHeight: '0', background: 'transparent' }}
         onClick={handleClickEdit}>
         <i class="fas fa-edit" style={{ fontSize: '1.2em' }}></i>
-      </button>
+      </button>*/}
       {
         showModal &&
         <EditStateModal
