@@ -1,11 +1,11 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import clsx from 'clsx'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
-import {useLayout} from '../../core'
+import { KTSVG, toAbsoluteUrl } from '../../../helpers'
+import { useLayout } from '../../core'
 import './sidebar-menu/sidebar.css';
- 
+
 const SidebarLogo = () => {
-  const {config} = useLayout()
+  const { config } = useLayout()
   const appSidebarDefaultMinimizeDesktopEnabled =
     config?.app?.sidebar?.default?.minimize?.desktop?.enabled
   const appSidebarDefaultCollapseDesktopEnabled =
@@ -13,8 +13,8 @@ const SidebarLogo = () => {
   const toggleType = appSidebarDefaultCollapseDesktopEnabled
     ? 'collapse'
     : appSidebarDefaultMinimizeDesktopEnabled
-    ? 'minimize'
-    : ''
+      ? 'minimize'
+      : ''
   const toggleState = appSidebarDefaultMinimizeDesktopEnabled ? 'active' : ''
   const appSidebarDefaultMinimizeDefault = config.app?.sidebar?.default?.minimize?.desktop?.default
   return (
@@ -24,14 +24,14 @@ const SidebarLogo = () => {
           <img
             alt='Logo'
             src={toAbsoluteUrl('/media/logos/logo2.png')}
-            className='h-50px app-sidebar-logo-default'
+            className='h-60px app-sidebar-logo-default'
           />
         ) : (
-          <> 
+          <>
             <img
               alt='Logo'
               src={toAbsoluteUrl('/media/logos/logo2.png')}
-              className='h-25px app-sidebar-logo-default theme-dark-show'
+              className='h-35px app-sidebar-logo-default theme-dark-show'
             />
           </>
         )}
@@ -39,7 +39,7 @@ const SidebarLogo = () => {
         <img
           alt='Logo'
           src={toAbsoluteUrl('/media/logos/logo1.png')}
-          className='h-20px app-sidebar-logo-minimize'
+          className='h-30px app-sidebar-logo-minimize'
         />
       </Link>
 
@@ -48,7 +48,7 @@ const SidebarLogo = () => {
           id='kt_app_sidebar_toggle'
           className={clsx(
             'app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate',
-            {active: appSidebarDefaultMinimizeDefault}
+            { active: appSidebarDefaultMinimizeDefault }
           )}
           data-kt-toggle='true'
           data-kt-toggle-state={toggleState}
@@ -62,4 +62,4 @@ const SidebarLogo = () => {
   )
 }
 
-export {SidebarLogo}
+export { SidebarLogo }
