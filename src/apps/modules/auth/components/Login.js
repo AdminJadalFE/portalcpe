@@ -88,7 +88,7 @@ export function Login() {
     >
       {/* begin::Heading */}
       <div className='text-center mb-11'>
-        <h1 className='text-dark fw-bolder mb-3'>Ingrese sus crendenciales</h1>
+        <h1 className='text-dark fw-bolder mb-3'>Ingrese sus crendenciales </h1>
       </div>
       {/* begin::Heading */}
 
