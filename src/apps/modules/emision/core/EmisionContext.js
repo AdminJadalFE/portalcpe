@@ -155,7 +155,7 @@ const EmisionProvider = ({children}) => {
       
       item.totalimpuestos = (parseFloat(item.igv) + parseFloat(item.totalicbper)).toFixed(2);
       item.icbper = parseFloat(item.icbper).toFixed(2);
-      item.venta = parseFloat(item.venta).toFixed(DECIMAL_PLACE);
+      item.venta = parseFloat(item.venta).toFixed(2);
       item.precio = parseFloat(item.precio).toFixed(2);
       const newItems = [...datosItem, item];
       setDatosItem(newItems)
