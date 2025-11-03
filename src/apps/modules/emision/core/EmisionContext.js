@@ -108,7 +108,7 @@ const EmisionProvider = ({children}) => {
   const [datosFormaPago, setDatosFormaPago] = useState([]);
   const [datosTotales, setDatosTotales] = useState(totalesInitialize);
   const [datosAdicionales, setDatosAdicionales] = useState(adicionalesInitialize);
-
+  const DECIMAL_PLACE=6;
   const setCpeDatosInicial =  async (tipoCpe, formaPago) => { 
     
     setDatosCpe({ ...datosCpe, tipoCpe, formaPago });   
@@ -155,7 +155,7 @@ const EmisionProvider = ({children}) => {
       
       item.totalimpuestos = (parseFloat(item.igv) + parseFloat(item.totalicbper)).toFixed(2);
       item.icbper = parseFloat(item.icbper).toFixed(2);
-      item.venta = parseFloat(item.venta).toFixed(2);
+      item.venta = parseFloat(item.venta).toFixed(DECIMAL_PLACE);
       item.precio = parseFloat(item.precio).toFixed(2);
       const newItems = [...datosItem, item];
       setDatosItem(newItems)
@@ -179,7 +179,7 @@ const EmisionProvider = ({children}) => {
 
     let igv = (subtotal * porcIgv).toFixed(2);
     let totalimpuestos = (parseFloat(totalicbper) + parseFloat(igv)).toFixed(2);
-    let total = (subtotal + parseFloat(igv) + totalicbper).toFixed(2);
+    let total = (subtotal + parseFloat(igv) + totalicbper).toFixed(DECIMAL_PLACE);
     let montotexto = montoEnPalabras(total);
 
     setDatosTotales({ ...datosTotales, 'subTotal': subtotal.toFixed(2),'igv': igv,'subTotalGravadas': subtotal.toFixed(2),'total': total, 'totalicbper': totalicbper.toFixed(2), 'totalimpuestos': totalimpuestos, 'montoPalabras': montotexto });  
