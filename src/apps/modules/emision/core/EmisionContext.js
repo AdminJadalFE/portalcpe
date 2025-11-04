@@ -108,7 +108,6 @@ const EmisionProvider = ({ children }) => {
   const [datosFormaPago, setDatosFormaPago] = useState([]);
   const [datosTotales, setDatosTotales] = useState(totalesInitialize);
   const [datosAdicionales, setDatosAdicionales] = useState(adicionalesInitialize);
-  const DECIMAL_PLACE = 6;
   const setCpeDatosInicial = async (tipoCpe, formaPago) => {
 
     setDatosCpe({ ...datosCpe, tipoCpe, formaPago });
@@ -148,7 +147,7 @@ const EmisionProvider = ({ children }) => {
     let porcIgv = parseFloat(((datosCpe.afectacionIgv ? datosCpe.porcentajeIgv : 0) / 100).toFixed(2));
 
     item.igv = (item.venta * porcIgv).toFixed(2);
-    let igvunit = (item.precio * porcIgv).toFixed(2);
+    let igvunit = (item.precio * porcIgv).toFixed(8);
 
     item.totalicbper = (parseFloat(item.cantidad) * parseFloat(item.icbper == undefined ? 0 : item.icbper)).toFixed(2);
     item.total = (parseFloat(item.precio) + parseFloat(igvunit) + parseFloat(item.icbper)).toFixed(8);
