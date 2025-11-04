@@ -151,12 +151,12 @@ const EmisionProvider = ({ children }) => {
     let igvunit = (item.precio * porcIgv).toFixed(2);
 
     item.totalicbper = (parseFloat(item.cantidad) * parseFloat(item.icbper == undefined ? 0 : item.icbper)).toFixed(2);
-    item.total = (parseFloat(item.precio) + parseFloat(igvunit) + parseFloat(item.icbper)).toFixed(6);
+    item.total = (parseFloat(item.precio) + parseFloat(igvunit) + parseFloat(item.icbper)).toFixed(8);
 
     item.totalimpuestos = (parseFloat(item.igv) + parseFloat(item.totalicbper)).toFixed(2);
     item.icbper = parseFloat(item.icbper).toFixed(2);
     item.venta = parseFloat(item.venta).toFixed(2);
-    item.precio = parseFloat(item.precio).toFixed(6);
+    item.precio = parseFloat(item.precio).toFixed(8);
     const newItems = [...datosItem, item];
     setDatosItem(newItems)
     //setTotales()
