@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {useSearch} from './busqueda/core/resumenContext';
 import {useAuth} from '../auth'
 import moment from 'moment'; 
+import {PortalSectionHeader} from '../../components/PortalSectionHeader';
 
 const ResumenHeaderSearch = ({tipoCpe}) => { 
   const { searchResumen, setDataResumen } = useSearch();
@@ -24,8 +25,20 @@ const ResumenHeaderSearch = ({tipoCpe}) => {
   }
   
   return (
-    <div className='card mb-2 mb-xl-5'>
+    <>
+    <PortalSectionHeader
+      title={tipoCpe === 'RC' ? 'Resumen de comprobantes' : 'Bajas'}
+      description={tipoCpe === 'RC' ? 'Consulta consolidada de comprobantes emitidos' : 'Consulta de comprobantes dados de baja'}
+    />
+    <div className='card mb-2 mb-xl-5 portal-query-filter'>
       <div className='card-body pt-9 pb-0'>
+        <div className='portal-query-filter-heading'>
+          <div>
+            <h2>Filtros de consulta</h2>
+            <p>Selecciona el período que deseas revisar</p>
+          </div>
+          <span className='portal-filter-reset'>Limpiar filtros</span>
+        </div>
         <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
         <form onSubmit={handleSubmit(manejarSubmit)}>  
         <div className='mb-2 fv-row'> 
@@ -61,7 +74,7 @@ const ResumenHeaderSearch = ({tipoCpe}) => {
               />
             </div>        
 
-            <div className='col'>  
+            <div className='col portal-query-submit-col'>
               <label className='d-flex align-items-center form-label mb-3 invisible'>
                 .
               </label>
@@ -77,6 +90,7 @@ const ResumenHeaderSearch = ({tipoCpe}) => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

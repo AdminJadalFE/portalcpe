@@ -99,7 +99,7 @@ const CpeHeaderOption = () => {
 
 
   return (
-    <div className='card mb-2'>
+    <div className='card mb-2 portal-query-actions'>
       <div className='card-body pt-1 pb-0'>
         <div className='d-flex flex-wrap flex-sm-nowrap mb-1'> 
 

@@ -51,10 +51,13 @@ const ResumeCpeBody = ({tipocpe, data}) => {
     }, [data])  
 
     return (
-        <div className='card mb-5 mb-xl-8'>
+        <div className='card mb-5 mb-xl-8 portal-query-summary-body'>
 
         {/* begin::Body */}
         <div className='card-body py-3'>
+          <div className='portal-table-toolbar'>
+            <span>Mostrando {tipoCpeData.length} tipos de comprobante</span>
+          </div>
           {/* begin::Table container */}
           <div className='table-responsive'>
             {/* begin::Table */}

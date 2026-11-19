@@ -3,11 +3,12 @@ import React, {useEffect, useRef} from 'react'
 import ApexCharts  from 'apexcharts'
 import {getCSSVariableValue} from '../../../assets/ts/_utils' 
 import moment from 'moment'; 
+import {DashboardEmptyState} from './DashboardEmptyState'
  
 const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosCpe, pendientesCpe, erroresCpe, totalCpe}) => {
   
-  const fechaDesde = moment().startOf('month').format('DD-MM-YYYY'); 
-  const fechaHasta = moment().endOf('month').format('DD-MM-YYYY'); 
+  const periodoDesde = moment().startOf('month').format('DD-MM-YYYY');
+  const periodoHasta = moment().endOf('month').format('DD-MM-YYYY');
 
   const chartRef = useRef(null)
   const refreshChart = () => {
@@ -24,6 +25,10 @@ const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe
   }
 
   useEffect(() => {
+    if (!tiposCpe?.length || !totalesCpe?.length) {
+      return undefined
+    }
+
     const chart = refreshChart()
 
     return () => {
@@ -32,7 +37,7 @@ const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [tiposCpe, totalesCpe, rechazadosCpe, pendientesCpe, erroresCpe])
 
   return (
     <div className={`card ${className}`}>
@@ -43,7 +48,7 @@ const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe
           <div className='me-2'>
             <span className='fw-bold text-gray-800 d-block fs-3'>Total Comprobantes Emitidos</span>
 
-            <span className='text-gray-400 fw-semibold'>{fechaDesde} - {fechaHasta}</span>
+            <span className='text-gray-400 fw-semibold'>{periodoDesde} - {periodoHasta}</span>
           </div>
 
           <div className={`fw-bold fs-3 text-${chartColor}`}>{totalCpe}</div>
@@ -51,7 +56,11 @@ const ChartsWidget6 = ({className, chartColor, chartHeight, tiposCpe, totalesCpe
         {/* end::Hidden */}
 
         {/* begin::Chart */}
-        <div ref={chartRef} className='mixed-widget-10-chart'></div>
+        {tiposCpe?.length && totalesCpe?.length ? (
+          <div ref={chartRef} className='mixed-widget-10-chart'></div>
+        ) : (
+          <DashboardEmptyState />
+        )}
         {/* end::Chart */}
       </div>
     </div>
@@ -66,6 +75,7 @@ const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosC
   const baseColor = getCSSVariableValue('--kt-' + 'success')
   const rechazoColor = getCSSVariableValue('--kt-' + 'danger')
   const errorColor = getCSSVariableValue('--kt-' + 'warning')
+  const pendienteColor = getCSSVariableValue('--kt-' + 'gray-500')
 
   return {
     series: [
@@ -102,7 +112,17 @@ const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosC
       },
     },
     legend: {
-      show: false,
+      show: true,
+      position: 'bottom',
+      horizontalAlign: 'left',
+      fontSize: '9px',
+      markers: {
+        width: 7,
+        height: 7,
+      },
+      itemMargin: {
+        horizontal: 6,
+      },
     },
     dataLabels: {
       enabled: false,
@@ -123,7 +143,7 @@ const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosC
       labels: {
         style: {
           colors: labelColor,
-          fontSize: '12px',
+          fontSize: '9px',
         },
       },
     },
@@ -131,7 +151,7 @@ const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosC
       labels: {
         style: {
           colors: labelColor,
-          fontSize: '12px',
+          fontSize: '9px',
         },
       },
     },
@@ -169,7 +189,7 @@ const chartOptions = (chartColor, chartHeight, tiposCpe, totalesCpe, rechazadosC
         },
       },
     },
-    colors: [baseColor, rechazoColor, errorColor],
+    colors: [baseColor, rechazoColor, errorColor, pendienteColor],
     grid: {
       padding: {
         top: 10,

@@ -5,9 +5,16 @@ import { KTSVG, toAbsoluteUrl } from '../../../helpers'
 import { useLayout } from '../../core'
 import { Header } from './Header'
 import { Navbar } from './Navbar'
+import {useAuth} from '../../../../apps/modules/auth'
 
 export function HeaderWrapper() {
   const { config, classes } = useLayout()
+  const {currentEmisor} = useAuth()
+  const mobileCompanyName = currentEmisor?.razonSocial
+    || currentEmisor?.razonSocialEmisor
+    || currentEmisor?.nombreEmisor
+    || currentEmisor?.rucEmisor
+    || 'Portal CPE'
   if (!config.app?.header?.display) {
     return null
   }
@@ -41,6 +48,12 @@ export function HeaderWrapper() {
               </div> */}
             </div>
           </>
+        )}
+
+        {config.app.sidebar?.display && (
+          <div className='portal-mobile-company' title={mobileCompanyName}>
+            {mobileCompanyName}
+          </div>
         )}
 
         {!config.app.sidebar?.display && (

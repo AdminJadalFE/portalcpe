@@ -72,7 +72,7 @@ class LayoutSetup {
         var _a, _b, _c, _d, _e, _f;
         const updatedConfig = Object.assign({}, config);
         // clear body classes
-        const bodyClasses = document.body.classList.value.split(' ');
+        const bodyClasses = document.body.classList.value.split(' ').filter(Boolean);
         bodyClasses.forEach((cssClass) => document.body.classList.remove(cssClass));
         // clear body attributes
         const bodyAttributes = document.body.getAttributeNames().filter((t) => t.indexOf('data-') > -1);

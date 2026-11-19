@@ -24,6 +24,7 @@ const profileBreadCrumbs = [
 ]
  
 const ResumenPage = ({tipoCpe}) => {
+    const pageTitle = tipoCpe === 'RC' ? 'Resumen de comprobantes' : 'Bajas';
  
     return (
     <>
@@ -43,7 +44,7 @@ const ResumenPage = ({tipoCpe}) => {
               path='busqueda'
               element={
                 <>
-                  <PageTitle breadcrumbs={profileBreadCrumbs}>Busqueda</PageTitle>  
+                  <PageTitle breadcrumbs={profileBreadCrumbs}>{pageTitle}</PageTitle>
                   <ListResumen tipoCpe = {tipoCpe}/> 
                 </>
               }

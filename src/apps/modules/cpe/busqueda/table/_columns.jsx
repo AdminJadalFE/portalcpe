@@ -4,29 +4,20 @@ import {UserActionsCell} from './UserActionsCell'
 import {StateCell} from './StateCell'
 import {DateCell} from './DateCell'
 import {NumericCell} from './NumericCell'
-import {TypeCell} from './TypeCell'
 import {CurrencyCell} from './CurrencyCell'
 
 
 var formatDate = "YYYY-MM-DD"; 
-var formatDateTime = "YYYY-MM-DD hh:mm:ss"; 
+var formatDateTime = "YYYY-MM-DD hh:mm:ss A";
  
 
 const usersColumns = [  
   {
     Header: (props) => (
-      <UserCustomHeader tableProps={props} title='Tipo' className='min-w-100px' />
+      <UserCustomHeader tableProps={props} title='Comprobante' className='min-w-160px' />
     ),
-    id: 'tipoCpe',
-    Cell: ({...props}) => <TypeCell tipoCpe={props.data[props.row.index].tipoCpe}/>,
-  }, 
-  {
-    Header: (props) => <UserCustomHeader tableProps={props} title='Serie' className='min-w-80px' />,
-    accessor: 'serieCpe',
-  },
-  {
-    Header: (props) => <UserCustomHeader tableProps={props} title='Número' className='min-w-100px' />,
-    accessor: 'numeroCpe',
+    id: 'comprobante',
+    Cell: ({row}) => `${row.original?.serieCpe || '—'}-${row.original?.numeroCpe || '—'}`,
   },
   {
     Header: (props) => <UserCustomHeader tableProps={props} title='Receptor' className='min-w-180px' />,

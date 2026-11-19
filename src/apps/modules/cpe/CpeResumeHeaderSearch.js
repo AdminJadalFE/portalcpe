@@ -8,6 +8,7 @@ import {getTipoCPE, getEstados, getSedes} from './busqueda/services/CpeService';
 import {useSearch} from './busqueda/core/searchContext';
 import {useAuth} from '../auth';
 import moment from 'moment'; 
+import {PortalSectionHeader} from '../../components/PortalSectionHeader';
 
 const CpeResumeHeaderSearch = () => {
   const { searchCpe, setDataCpe } = useSearch();
@@ -49,8 +50,20 @@ const CpeResumeHeaderSearch = () => {
   }, [])  
   
   return (
-    <div className='card mb-2 mb-xl-5'>
+    <>
+    <PortalSectionHeader
+      title='Emitidos'
+      description='Resumen de comprobantes emitidos'
+    />
+    <div className='card mb-2 mb-xl-5 portal-query-filter'>
       <div className='card-body pt-9 pb-0'>
+        <div className='portal-query-filter-heading'>
+          <div>
+            <h2>Filtros de consulta</h2>
+            <p>Selecciona el período y la sede que deseas revisar</p>
+          </div>
+          <span className='portal-filter-reset'>Limpiar filtros</span>
+        </div>
         <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
         <form onSubmit={handleSubmit(manejarSubmit)}>  
         <div className='mb-2 fv-row'> 
@@ -101,7 +114,7 @@ const CpeResumeHeaderSearch = () => {
                     ))}
                   </select>
               </div>    
-            <div className='col'>  
+            <div className='col portal-query-submit-col'>
               <label className='d-flex align-items-center form-label mb-3 invisible'>
                 .
               </label>
@@ -117,6 +130,7 @@ const CpeResumeHeaderSearch = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

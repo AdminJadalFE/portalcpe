@@ -26,7 +26,7 @@ const StateCell = ({estadoCpe}) => {
     }
 
     return (
-      <> {estadoCpe && <div className={estadoColor}>{estadoCpe}</div>}</>
+      <> {estadoCpe && <div className={`${estadoColor} portal-cpe-status-badge`}>{estadoCpe}</div>}</>
     )
 }
 

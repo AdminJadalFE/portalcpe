@@ -344,6 +344,7 @@ const FacturaPage = () => {
         <Outlet /> 
         <PageTitle breadcrumbs={profileBreadCrumbs}>Emision de Factura Electrónica</PageTitle>   
 
+        <div className='portal-emision-page'>
         {
           !dataSerie ?
           (
@@ -372,10 +373,7 @@ const FacturaPage = () => {
         
                 <form onSubmit={handleSubmit(manejarSubmit)}>
                 
-                  <div className='fs-4 text-gray-800 d-flex justify-content-end mt-4'>
-                    <label className='d-flex align-items-center form-label mb-3 invisible'>
-                      .
-                    </label> 
+                  <div className='portal-emision-submit fs-4 text-gray-800 d-flex justify-content-end mt-4'>
                     <button type="submit" className="btn btn-dark mb-1 w-250px"> Previsualizar</button>
                     {
                       modalShow 
@@ -399,6 +397,7 @@ const FacturaPage = () => {
           )
 
         }
+        </div>
    
     </>
     )

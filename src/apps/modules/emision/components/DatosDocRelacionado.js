@@ -111,7 +111,7 @@ const [ tipoDocRel, setTipoDocRel ] = useState([]);
                     <div className='d-flex bg-light rounded border-light border border-dashed pt-4'  style={{ width: '100%' }} > 
                         <div className='d-flex flex-stack flex-grow-1 justify-content-start mx-8'> 
 
-                          <Table responsive striped bordered hover>
+                          <Table responsive striped bordered hover className='portal-emision-table portal-emision-documents-table'>
                                 <thead >
                                     <tr> 
                                       <th style={{ width: '100px'}}><h6><strong>Ítem</strong></h6></th>
@@ -125,10 +125,10 @@ const [ tipoDocRel, setTipoDocRel ] = useState([]);
                                 {
                                     datosDocRel.map((item,i) => (
                                         <tr key={i}> 
-                                            <td style={{ width: '100px', verticalAlign : 'middle'}}>{i+1}</td>
-                                            <td style={{ width: '140px'}}><button type="submit" className="btn btn-dark btn-sm" onClick={() => DocRelDelete(item.codigoDocRel)} >Eliminar</button></td>
-                                            <td style={{ width: '200px', verticalAlign : 'middle'}}>{getDescripcion(item.codigoDocRel)}</td>
-                                            <td style={{ width: '200px', verticalAlign : 'middle'}}>{item.folioDocRel}</td> 
+                                            <td data-label='Ítem' style={{ width: '100px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{i+1}</span></td>
+                                            <td data-label='Acción' style={{ width: '140px'}}><button type="submit" className="btn btn-dark btn-sm" onClick={() => DocRelDelete(item.codigoDocRel)} >Eliminar</button></td>
+                                            <td data-label='Tipo' style={{ width: '200px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{getDescripcion(item.codigoDocRel)}</span></td>
+                                            <td data-label='Folio' style={{ width: '200px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.folioDocRel}</span></td>
                                         </tr>  
                                           ))
                                     }

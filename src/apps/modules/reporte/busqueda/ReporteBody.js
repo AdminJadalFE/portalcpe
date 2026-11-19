@@ -40,12 +40,12 @@ export default function ReporteBody({cpes,cpesColumns}) {
     const { pageIndex, pageSize } = state;
  
     return (
-        <KTCardBody className='py-4'>
-                <div className='table-responsive'>
+        <KTCardBody className='py-4 portal-cpe-table-body portal-report-table-body'>
+                <div className='table-responsive portal-cpe-table-wrap portal-report-table-responsive'>
                     
                 <table
                     id='kt_table_users'
-                    className='align-middle table-row-dashed dataTable no-footer'
+                    className='align-middle table-row-dashed dataTable no-footer portal-report-table'
                     {...getTableProps()}
                 >
                     <thead>
@@ -56,7 +56,7 @@ export default function ReporteBody({cpes,cpesColumns}) {
                     </tr>
                     </thead>  
   
-                    <tbody className='text-gray-600 fw-bold' {...getTableBodyProps()}>
+                    <tbody className='text-gray-600' {...getTableBodyProps()}>
                         {page.length > 0 ? (
                             page.map((row, i) => {
                             prepareRow(row)
@@ -97,22 +97,6 @@ export default function ReporteBody({cpes,cpesColumns}) {
                             </li>
                             <li className="page-item"> 
                                 <span className="page-link" style={{cursor: 'pointer'}}> Página &nbsp; <strong> {pageIndex + 1} de {pageOptions.length}</strong>&nbsp;</span>&nbsp;
-                            </li> 
-                            <li className="page-item"> 
-                                <span className="page-link">
-                                    | Ir a Página:&nbsp;
-                                    <input className="page-link"
-                                        type="number"
-                                        defaultValue={pageIndex}
-                                        onChange={(e) => {
-                                        const pageNumber = e.target.value
-                                            ? Number(e.target.value) - 1
-                                            : 0;
-                                        gotoPage(pageNumber);
-                                        }}
-                                        style={{ width: "50px" }}
-                                    />
-                                </span>&nbsp;
                             </li> 
                             <li className="page-item">  
                                 <select className="page-link"

@@ -6,8 +6,26 @@ import {useSearch} from './core/resumenContext';
 import {usersColumns} from './table/_columns'
 import {useAuth} from '../../auth';
 import moment from 'moment'; 
+import {LastQuery} from '../../cpe/LastQuery';
  
- const ListResumen = ({tipoCpe}) => { 
+const sortByPublicationDate = (records) => records
+  .map((record, index) => ({record, index}))
+  .sort((left, right) => {
+    const leftTime = moment(left.record.fechaPublicacion).valueOf();
+    const rightTime = moment(right.record.fechaPublicacion).valueOf();
+    const leftIsValid = Number.isFinite(leftTime);
+    const rightIsValid = Number.isFinite(rightTime);
+
+    if (!leftIsValid || !rightIsValid) {
+      if (leftIsValid !== rightIsValid) return leftIsValid ? -1 : 1;
+      return left.index - right.index;
+    }
+
+    return rightTime - leftTime;
+  })
+  .map(({record}) => record);
+
+const ListResumen = ({tipoCpe}) => {
 
   const [loading, setLoading] = useState(false)
   const { searchResumen } = useSearch();  
@@ -20,7 +38,8 @@ import moment from 'moment';
 
     setLoading(false);
     const cpes = await CpeServiceGetData(getDefault());    
-    setCpeData(cpes); 
+    const orderedCpes = sortByPublicationDate(cpes);
+    setCpeData(orderedCpes);
     setLoading(true); 
   
   }  
@@ -45,9 +64,10 @@ import moment from 'moment';
   }, [tipoCpe])  
  
   return (
-  <div className={`card mb-5 mb-xl-8`}>
+  <div className={`card mb-5 mb-xl-8 portal-cpe-list`}>
   {/* begin::Header */}
   <div className='card-header border-0 pt-5'>
+    <div className='portal-cpe-list-header'>
     <h3 className='card-title align-items-start flex-column'>
 
       <span className='card-label fw-bold fs-3 mb-1'>Listado de {tipoCpe === 'RC' ? 'Resumenes' : 'Bajas'} </span>
@@ -63,6 +83,8 @@ import moment from 'moment';
               )
           }
     </h3>
+    <LastQuery queryData={cpeData} />
+    </div>
 
   </div> 
  

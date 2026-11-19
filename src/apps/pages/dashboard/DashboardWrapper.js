@@ -6,6 +6,8 @@ import {getDataResumen, getDataTotalEmision, getDataTotalEstados, getDataEstadoT
 import moment from 'moment'; 
 import {CpeLoading} from '../../modules/loading/CpeLoading' 
 import {toAbsoluteUrl} from '../../../_metronic/helpers'
+import {LastQuery} from '../../modules/cpe/LastQuery'
+import {PortalSectionHeader} from '../../components/PortalSectionHeader'
 
 import {  
   ChartsWidget6,
@@ -133,58 +135,81 @@ const DashboardWrapper = () => {
   return (
     <>
       <PageTitle breadcrumbs={[]}>{intl.formatMessage({id: 'MENU.DASHBOARD'})}</PageTitle>
+      <PortalSectionHeader
+        title='Dashboard'
+        description='Resumen general de comprobantes y actividad del emisor'
+      />
  
       {
           totalCpeData
           ? 
           ( 
-            <> 
+            <div className='portal-dashboard-page'>
+              <div className='portal-dashboard-actions mb-4'>
+                <div className='portal-dashboard-refresh-group'>
+                  <LastQuery queryData={totalCpeData} />
+                  <button
+                    type='button'
+                    className='btn btn-light-secondary portal-dashboard-refresh'
+                    onClick={getDataList}
+                    aria-label='Actualizar dashboard'
+                    title='Actualizar dashboard'
+                  >
+                    <i className='bi bi-arrow-clockwise' aria-hidden='true' />
+                    <span>Actualizar</span>
+                  </button>
+                </div>
+              </div>
 
-              <div className='row g-5 g-xl-8'>     
-                <div className='col-xl-6'> 
-                  <div className='row g-5 g-xl-8'>
-                    <div className='col-xl-6'>
+              <div className='row g-5 g-xl-8 portal-dashboard-top-row'>
+                <div className='col-xl-3'>
                     <CardsWidget20
-                          className='card-xl-stretch mb-xl-10'
+                          className='card-xl-stretch mb-xl-10 portal-dashboard-summary-card'
                           description='Comprobantes'
                           color='#F1416C'
                           img={toAbsoluteUrl('/media/patterns/vector-1.png')}
                           cpe={totalEmisionData}
                         /> 
-                    </div>
-                    <div className='col-xl-6'>
+                </div>
+                <div className='col-xl-3'>
                     <CardsWidget17 className='card-xl-stretch mb-xl-10' cpe={totalEstadosData} totalCpe={totalEmisionData.totalCpe}/> 
-                    </div>
-                  </div>  
- 
-                </div> 
-
-                <div className='col-xl-6'> 
-                  <div className='row g-5 g-xl-8'>
-                    <div className='col-xl-12'> 
+                </div>
+                <div className='col-xl-6'>
                     <ChartsWidget6 
                             className='card-xl-stretch mb-xl-10'
                             chartColor='primary'
-                            chartHeight='200px' 
+                            chartHeight='210px'
                             tiposCpe={tiposCpe}
                             totalesCpe={totalesCpe}
                             rechazadosCpe={rechazadosCpe}
                             pendientesCpe={pendientesCpe} 
                             erroresCpe={erroresCpe}
-                            totalCpe={totalEmisionData.totalCpe} /> 
-                    </div> 
-                  </div>   
-                </div> 
+                            totalCpe={totalEmisionData.totalCpe} />
+                </div>
               </div>   
               <div className='row g-5 g-xl-8'>
                 <div className='col-xl-6'>
-                  <ChartsWidget1 className='card-xl-stretch mb-xl-8' tipoCpe={tipoCpeData} totalCpe={totalCpeData} />
+                  <ChartsWidget1
+                    className='card-xl-stretch mb-xl-8'
+                    tipoCpe={tipoCpeData}
+                    totalCpe={totalCpeData}
+                  />
                 </div>
                 <div className='col-xl-6'>
-                  <ChartsWidget2 className='card-xl-stretch mb-5 mb-xl-8' tipoCpe={tipoCpeData} montoCpe={montoCpeData}/>
+                  <ChartsWidget2
+                    className='card-xl-stretch mb-5 mb-xl-8'
+                    tipoCpe={tipoCpeData}
+                    montoCpe={montoCpeData}
+                  />
                 </div>
               </div>  
-            </>
+
+              <div className='portal-dashboard-filters-legend' aria-label='Periodo aplicado'>
+                <span className='portal-dashboard-filters-legend-label'>Periodo aplicado</span>
+                <span>Desde <strong>{moment(fechaDesde).format('DD-MM-YYYY')}</strong></span>
+                <span>Hasta <strong>{moment(fechaHasta).format('DD-MM-YYYY')}</strong></span>
+              </div>
+            </div>
           )
           :
           (

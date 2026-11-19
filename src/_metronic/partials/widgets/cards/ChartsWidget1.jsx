@@ -2,6 +2,7 @@
 import React, {useEffect, useRef} from 'react'
 import ApexCharts from 'apexcharts' 
 import {getCSS, getCSSVariableValue} from '../../../assets/ts/_utils' 
+import {DashboardEmptyState} from './DashboardEmptyState'
 
  
 const ChartsWidget1  = ({className, tipoCpe, totalCpe}) => {
@@ -10,6 +11,10 @@ const ChartsWidget1  = ({className, tipoCpe, totalCpe}) => {
   const chartRef = useRef(null)
  
   useEffect(() => {
+    if (!tipoCpe?.length || !totalCpe?.length) {
+      return undefined
+    }
+
     const chart = refreshChart()
 
     return () => {
@@ -17,7 +22,7 @@ const ChartsWidget1  = ({className, tipoCpe, totalCpe}) => {
         chart.destroy()
       }
     }
-  }, [chartRef])
+  }, [tipoCpe, totalCpe])
 
   const refreshChart = () => {
     if (!chartRef.current) {
@@ -45,7 +50,11 @@ const ChartsWidget1  = ({className, tipoCpe, totalCpe}) => {
       </div> 
 
       <div className='card-body'> 
-        <div ref={chartRef} id='kt_charts_widget_1_chart' style={{height: '350px'}} /> 
+        {tipoCpe?.length && totalCpe?.length ? (
+          <div ref={chartRef} id='kt_charts_widget_1_chart' style={{height: '220px'}} />
+        ) : (
+          <DashboardEmptyState />
+        )}
       </div> 
 
     </div>
@@ -104,7 +113,7 @@ function getChartOptions(height, tipoCpe, totalCpe) {
       labels: {
         style: {
           colors: labelColor,
-          fontSize: '12px',
+          fontSize: '9px',
         },
       },
     },
@@ -112,7 +121,7 @@ function getChartOptions(height, tipoCpe, totalCpe) {
       labels: {
         style: {
           colors: labelColor,
-          fontSize: '12px',
+          fontSize: '9px',
         },
       },
     },

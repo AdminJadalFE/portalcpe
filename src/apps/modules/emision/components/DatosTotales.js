@@ -27,11 +27,11 @@ const DatosTotales = () => {
                       <h3 className='fw-bolder text-dark'>TOTALES DEL COMPROBANTE</h3>
                   </div>
                 </Row> 
-                <div className='fs-4 text-gray-800 d-flex justify-content-end'>
+                <div className='fs-4 text-gray-800 d-flex justify-content-end portal-emision-totals-values'>
                 <Row className="mb-3"> 
                   <Col xs="auto">
                     <Form.Group as={Col} controlId="formSubTotal"> 
-                      <label className='d-flex align-items-center form-label mb-3'>
+                      <label className='d-flex align-items-center form-label mb-1 mb-md-3'>
                         SubTotal
                       </label>
                       <Form.Control size="sm" type="text" disabled value={datosTotales.subTotal} />
@@ -39,7 +39,7 @@ const DatosTotales = () => {
                   </Col>  
                   <Col xs="auto">
                     <Form.Group as={Col} controlId="formIgv"> 
-                      <label className='d-flex align-items-center form-label mb-3'>
+                      <label className='d-flex align-items-center form-label mb-1 mb-md-3'>
                         SubTotal Gravadas
                       </label>
                       <Form.Control size="sm" type="text" disabled value={datosTotales.subTotalGravadas} />
@@ -47,7 +47,7 @@ const DatosTotales = () => {
                   </Col>  
                   <Col xs="auto">
                     <Form.Group as={Col} controlId="formSubTotalGravadas"> 
-                      <label className='d-flex align-items-center form-label mb-3'>
+                      <label className='d-flex align-items-center form-label mb-1 mb-md-3'>
                         Total IGV
                       </label>
                       <Form.Control size="sm" type="text" disabled value={datosTotales.igv} />
@@ -55,7 +55,7 @@ const DatosTotales = () => {
                   </Col>  
                   <Col xs="auto">
                     <Form.Group as={Col} controlId="formTotal"> 
-                      <label className='d-flex align-items-center form-label mb-3'>
+                      <label className='d-flex align-items-center form-label mb-1 mb-md-3'>
                         Total
                       </label>
                       <Form.Control size="sm" type="text" disabled value={datosTotales.total} />

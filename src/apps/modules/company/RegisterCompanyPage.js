@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
-import { FetchConf, URL_BACK } from "../../../../src/apps/BackConfig"; // Importa URL_BACK desde BackConfig
+import { FetchConf, IS_MOCK_MODE, URL_BACK } from "../../../../src/apps/BackConfig";
 
 const RegisterCompanyPage = () => {
   const {
@@ -14,6 +14,10 @@ const RegisterCompanyPage = () => {
 
   const registerCompany = async (data) => {
     try {
+      if (IS_MOCK_MODE) {
+        return await FetchConf("auth/register", "POST", data);
+      }
+
       const response = await fetch(URL_BACK + "auth/register", {
         method: "POST",
         headers: {
@@ -26,8 +30,7 @@ const RegisterCompanyPage = () => {
         throw new Error("Error al enviar la solicitud");
       }
 
-      const responseData = await response.json();
-      return responseData;
+      return await response.json();
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);
       throw error;

@@ -19,7 +19,8 @@ const SidebarLogo = () => {
   const appSidebarDefaultMinimizeDefault = config.app?.sidebar?.default?.minimize?.desktop?.default
   return (
     <div className='app-sidebar-logo px-8 ' id='kt_app_sidebar_logo'>
-      <Link to='/dashboard'>
+      <Link to='/dashboard' className='app-sidebar-brand-link'>
+        <span className='app-sidebar-brand-lockup'>
         {config.layoutType === 'dark-sidebar' ? (
           <img
             alt='Logo'
@@ -35,6 +36,8 @@ const SidebarLogo = () => {
             />
           </>
         )}
+          <span className='app-sidebar-brand-label'>Portal CPE</span>
+        </span>
 
         <img
           alt='Logo'

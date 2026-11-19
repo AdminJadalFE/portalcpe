@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {useEffect, useState} from 'react' 
+import {useEffect, useRef, useState} from 'react'
 import {MenuComponent} from '../../../../../_metronic/assets/ts/components'
 import {SendEmail, ResendCpe} from '../services/CpeService'; 
 import { KTSVG} from '../../../../../_metronic/helpers' 
@@ -175,7 +175,6 @@ function MyVerticallyCenteredModal(props) {
             }
         },
       })
- 
       useEffect(() => {
         MenuComponent.reinitialization()
       }, [])
@@ -292,6 +291,18 @@ const UserActionsCell = ({cpe}) => {
  
         const [modalShow, setModalShow] = useState(false);
         const [modalShowWs, setModalShowWs] = useState(false);
+        const actionsMenuRef = useRef(null);
+        const xmlUrl = typeof cpe?.urlCpe === 'string' && cpe.urlCpe.trim() ? cpe.urlCpe : null;
+        const pdfUrl = typeof cpe?.urlPdf === 'string' && cpe.urlPdf.trim() ? cpe.urlPdf : null;
+        const cdrUrl = typeof cpe?.urlCdr === 'string' && cpe.urlCdr.trim() ? cpe.urlCdr : null;
+        const pdfFileName = pdfUrl ? pdfUrl.substring(pdfUrl.lastIndexOf('/') + 1) : null;
+
+        useEffect(() => {
+          const menu = actionsMenuRef.current
+          if (menu) {
+            menu.classList.remove('show', 'menu-dropdown')
+          }
+        }, [])
 
 
         const ResendCPEById = async (id) => {  
@@ -334,45 +345,46 @@ const UserActionsCell = ({cpe}) => {
     </Link> 
       {/* begin::Menu */}
       <div
+        ref={actionsMenuRef}
         className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-150px py-4'
         data-kt-menu='true'
       >
         {/* begin::Menu item */}
         <div className='menu-item px-3'>  
-          <a className='menu-link px-3' href={cpe.urlCpe} target="_blank" title='Descargar XML' rel="noreferrer">
-                <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
-                <text>Descargar XML</text>
-          </a> 
+          {xmlUrl && <a className='menu-link px-3' href={xmlUrl} target="_blank" title='Descargar XML' rel="noreferrer">
+                <i className='bi bi-filetype-xml portal-action-icon' aria-hidden='true' />
+                <span>Descargar XML</span>
+          </a>}
 
-          <a className='menu-link px-3' href={cpe.urlPdf} target="_blank" title='Descargar XML' rel="noreferrer">
-                <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
-                <text>Descargar PDF</text>
-          </a> 
+          {pdfUrl && <a className='menu-link px-3' href={pdfUrl} target="_blank" title='Descargar PDF' rel="noreferrer">
+                <i className='bi bi-filetype-pdf portal-action-icon' aria-hidden='true' />
+                <span>Descargar PDF</span>
+          </a>}
 
-          <a className='menu-link px-3' href={cpe.urlCdr} target="_blank" title='Descargar XML' rel="noreferrer">
-                <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
-                <text>Descargar CDR</text>
-          </a>
+          {cdrUrl && <a className='menu-link px-3' href={cdrUrl} target="_blank" title='Descargar XML' rel="noreferrer">
+                <i className='bi bi-file-earmark-check portal-action-icon' aria-hidden='true' />
+                <span>Descargar CDR</span>
+          </a>}
 
-          <Link to={`/visorpdf/${cpe.urlPdf.substring(cpe.urlPdf.lastIndexOf("/") + 1) }`} 
+          {pdfFileName && <Link to={`/visorpdf/${pdfFileName}`} 
                     target="_blank" 
                     className='menu-link px-3'
                     title='Visualizar PDF'>
-                <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
-                <text> Visualizar PDF</text>
-            </Link>
+                <i className='bi bi-file-earmark-pdf portal-action-icon' aria-hidden='true' />
+                <span>Visualizar PDF</span>
+            </Link>}
 
-          <a className='menu-link px-3' onClick={() => setModalShowWs(true)} title='Enviar Correo'>
-                <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
-                <text>Enviar al Whatsapp</text>
-          </a>
+          {pdfUrl && <a className='menu-link px-3' onClick={() => setModalShowWs(true)} title='Enviar Correo'>
+                <i className='bi bi-whatsapp portal-action-icon' aria-hidden='true' />
+                <span>Enviar al Whatsapp</span>
+          </a>}
           {
-                modalShowWs 
+                modalShowWs && pdfUrl
                 ?
                 (
                     <MyVerticallyCenteredModalWs
                     id={cpe.id}
-                    urlpdf={cpe.urlPdf}
+                    urlpdf={pdfUrl}
                     show={modalShowWs}
                     onHide={() => setModalShowWs(false)}
                 />
@@ -383,8 +395,8 @@ const UserActionsCell = ({cpe}) => {
 
 
           <a className='menu-link px-3' onClick={() => setModalShow(true)} title='Enviar Correo'>
-                <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
-                <text>Enviar Correo</text>
+                <i className='bi bi-envelope portal-action-icon' aria-hidden='true' />
+                <span>Enviar Correo</span>
           </a>
             {
                 modalShow 
@@ -404,13 +416,13 @@ const UserActionsCell = ({cpe}) => {
                     target="_blank" 
                     className='menu-link px-3'
                     title='Ver Traza CPE'>
-                <KTSVG path='/media/icons/duotune/abstract/abs015.svg' className='svg-icon-3' />
-                <text> Ver Traza CPE</text>
+                <i className='bi bi-list-check portal-action-icon' aria-hidden='true' />
+                <span>Ver Traza CPE</span>
             </Link>
 
             <a className='menu-link px-3' onClick={() => ResendCPEById(`${cpe.id}`)} title='Enviar Correo'>
-                <KTSVG path='/media/icons/duotune/fe/mail.svg' className='svg-icon-3' /> 
-                <text>Reenviar CPE</text>
+                <i className='bi bi-arrow-repeat portal-action-icon' aria-hidden='true' />
+                <span>Reenviar CPE</span>
           </a>
   
         </div>
@@ -426,4 +438,4 @@ const UserActionsCell = ({cpe}) => {
 }
 
 export {UserActionsCell}
- 
+

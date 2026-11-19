@@ -14,14 +14,16 @@ const Navbar = () => {
   return (
     <div className='app-navbar flex-shrink-0'>
      
-      <div className={clsx('app-navbar-item', itemClass)}>
+      <div className={clsx('app-navbar-item portal-navbar-controls', itemClass)}>
+        <ThemeModeSwitcher />
         <div
-          className={clsx('cursor-pointer symbol', userAvatarClass)}
+          className={clsx('cursor-pointer symbol portal-user-trigger', userAvatarClass)}
           data-kt-menu-trigger="{default: 'click'}"
           data-kt-menu-attach='parent'
           data-kt-menu-placement='bottom-end'
         >
           <img src={toAbsoluteUrl('/media/avatars/300-31.jpg')} alt='' />
+          <i className='bi bi-person-fill portal-user-icon' aria-hidden='true' />
         </div>
         <HeaderUserMenu />
       </div>

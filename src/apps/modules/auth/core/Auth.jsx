@@ -25,6 +25,16 @@ const AuthProvider = ({children}) => {
   const [currentUser, setCurrentUser] = useState()
   const [emisores, setEmisores] = useState()
   const [currentEmisor, setCurrentEmisor] = useState()
+
+  const persistCurrentEmisor = (emisor) => {
+    setCurrentEmisor(emisor)
+
+    if (emisor) {
+      localStorage.setItem('emisores.content[0]', JSON.stringify(emisor))
+    } else {
+      localStorage.removeItem('emisores.content[0]')
+    }
+  }
  
   useEffect(() => {
     try {
@@ -58,7 +68,7 @@ const AuthProvider = ({children}) => {
   }
 
   return (
-    <AuthContext.Provider value={{ currentUser, setCurrentUser, emisores, setEmisores, currentEmisor, setCurrentEmisor, logout}}>
+    <AuthContext.Provider value={{ currentUser, setCurrentUser, emisores, setEmisores, currentEmisor, setCurrentEmisor: persistCurrentEmisor, logout}}>
       {children}
     </AuthContext.Provider>
   )

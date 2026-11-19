@@ -5,6 +5,7 @@ import {PageTitle} from '../../../_metronic/layout/core'
 import {ListReporte} from './busqueda/ListReporte'
 
 import {SearchProvider} from '../cpe/busqueda/core/searchContext';
+import {PortalSectionHeader} from '../../components/PortalSectionHeader';
  
 
 const profileBreadCrumbs = [
@@ -33,7 +34,11 @@ const ReportePage = () => {
               path='busqueda'
               element={
                 <>
-                  <PageTitle breadcrumbs={profileBreadCrumbs}>Busqueda</PageTitle>  
+                  <PageTitle breadcrumbs={profileBreadCrumbs}>Reportes</PageTitle>
+                  <PortalSectionHeader
+                    title='Reportes'
+                    description='Solicitudes y descargas de reportes'
+                  />
                   <ListReporte/> 
                 </>
               }

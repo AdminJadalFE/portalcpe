@@ -1,39 +1,38 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {useEffect} from 'react' 
-import {MenuComponent} from '../../../../../_metronic/assets/ts/components'
-import { KTSVG} from '../../../../../_metronic/helpers' 
- 
 const UserActionsCell = ({cpe}) => {
- 
-  useEffect(() => {
-    MenuComponent.reinitialization()
-  }, [])
-
-  
   return (
-    <> 
+    <span className='portal-summary-actions' aria-label='Descargas del comprobante'>
         <a
             href={cpe.urlCpe}
-            className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+            className='btn portal-summary-action'
             title='Descargar XML'
+            aria-label='Descargar XML'
+            target='_blank'
+            rel='noreferrer'
         >
-            <KTSVG path='/media/icons/duotune/fe/xml.svg' className='svg-icon-3' />
+            <i className='bi bi-filetype-xml' aria-hidden='true' />
         </a>
         <a
             href={cpe.urlPdf}
-            className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+            className='btn portal-summary-action'
             title='Descargar PDF'
+            aria-label='Descargar PDF'
+            target='_blank'
+            rel='noreferrer'
         >
-            <KTSVG path='/media/icons/duotune/fe/pdf.svg' className='svg-icon-3' />
+            <i className='bi bi-file-earmark-pdf' aria-hidden='true' />
         </a>
         <a 
             href={cpe.urlCdr} 
-            className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
+            className='btn portal-summary-action'
             title='Descargar CDR'
+            aria-label='Descargar CDR'
+            target='_blank'
+            rel='noreferrer'
          >
-            <KTSVG path='/media/icons/duotune/fe/cdr.svg' className='svg-icon-3' />
+            <i className='bi bi-file-earmark-check' aria-hidden='true' />
         </a> 
-    </>
+    </span>
   )
 }
 

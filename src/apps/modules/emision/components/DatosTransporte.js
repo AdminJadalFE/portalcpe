@@ -89,7 +89,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
               <Row className='mb-3'>
               <Col xs="auto">
                   <Form.Group as={Col} controlId="formFechaCpe">
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Fecha de inicio del traslado
                     </label>
                     <Form.Control
@@ -103,7 +103,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 </Col>
                 <Col xs='auto'>
                   <Form.Group as={Col} controlId='formTipoDocumento'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Tipo de Doc.
                     </label>                    
                     <Form.Select size='sm' onChange={(e) => setConductorID(e.target.value)}>
@@ -115,7 +115,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 </Col>
                 <Col xs='auto'>
                   <Form.Group as={Col} controlId='formNumeroDocumento'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Número de Documento
                     </label>                        
                     <Form.Control size='sm' type='text' placeholder='Número Documento' onChange={setConductorDocumento} />
@@ -123,7 +123,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 </Col>
                 <Col>
                   <Form.Group controlId='formRazonSocial' lg={2}>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Razón Social o Nombre
                     </label>                               
                     <Form.Control size='sm' type='text' placeholder='Razón Social o Nombre' onChange={setConductorNombre} />
@@ -134,7 +134,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
               <Row className='mb-3'>
                 <Col xs={6}>
                   <Form.Group controlId='formConductorMtc'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Número de Registro MTC (Sólo mayúscula máx 20 carácteres sin guion o espacio)
                     </label>           
                     <Form.Control size='sm' type='text' placeholder='Número de registro MTC' onChange={setConductorCompanyId} />
@@ -156,7 +156,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
               <Row className='mb-3'>
               <Col xs="auto">
                   <Form.Group as={Col} controlId="formFechaCpe">
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Fecha de inicio del traslado
                     </label>
                     <Form.Control
@@ -170,7 +170,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 </Col>
                 <Col xs='auto'>
                   <Form.Group as={Col} controlId='formTipoDocumento'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Tipo de Doc.
                     </label>                            
                     <Form.Select size='sm' onChange={(e) => setConductorID(e.target.value)}>
@@ -182,7 +182,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 </Col>
                 <Col xs='auto'>
                   <Form.Group as={Col} controlId='formNumeroDocumento'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Número de Documento
                     </label>                             
                     <Form.Control size='sm' type='text' placeholder='Número Documento' onChange={setConductorDocumento} />
@@ -193,7 +193,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
               <Row className='mb-3'>
                 <Col xs={4}>
                   <Form.Group controlId='formConductorNombres'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Nombres del Conductor
                     </label>    
                     <Form.Control size='sm' type='text' placeholder='Nombres del Conductor' onChange={setConductorNombres} />
@@ -201,7 +201,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 </Col>
                 <Col xs={4}>
                   <Form.Group controlId='formConductorApellidos'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Apellidos del Conductor
                     </label>                     
                     <Form.Control size='sm' type='text' placeholder='Apellidos del Conductor' onChange={setConductorApellidos} />
@@ -212,7 +212,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
               <Row className='mb-3'>
                 <Col xs={4}>
                   <Form.Group controlId='formConductorLicencia'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Licencia del Conductor (Sólo mayúscula de 9 a 10 carácteres sin guion o espacio)
                     </label>                              
                     <Form.Control size='sm' type='text' placeholder='Licencia del Conductor' onChange={setConductorLicencia} />
@@ -220,7 +220,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 </Col>
                 <Col xs={4}>
                   <Form.Group controlId='formVehiculoPlaca'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Placa del Vehículo (Sólo mayúscula de 6 a 8 carácteres sin guion o espacio)
                     </label>                              
                     <Form.Control size='sm' type='text' placeholder='Placa del Vehículo' onChange={setVehiculoPlaca} />
@@ -228,7 +228,7 @@ const DatosTransporte = ({ tipoDocumento }) => {
                 </Col>
                 <Col xs={4}>
                   <Form.Group controlId='formVehiculoPlacaSecundario'>
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Placa del Vehículo Secundario (Opcional) (Sólo mayúscula de 6 a 8 carácteres sin guion o espacio)
                     </label>                              
                     <Form.Control size='sm' type='text' placeholder='Placa del Vehículo Secundario (Opcional)' onChange={setVehiculoPlacaSecundario} />

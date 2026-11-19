@@ -7,6 +7,7 @@ import {ResumeCpeBody} from '../resumen/ResumeCpeBody';
 import {useSearch} from '../busqueda/core/searchContext';  
 import {useAuth} from '../../auth';
 import moment from 'moment'; 
+import {LastQuery} from '../LastQuery';
 
   const ResumeCpe = () => { 
 
@@ -52,9 +53,10 @@ import moment from 'moment';
     }, [searchCpe])  
  
   return (
-  <div className={`card mb-5 mb-xl-8`}>
+  <div className={`card mb-5 mb-xl-8 portal-query-summary`}>
   {/* begin::Header */}
-  <div className='card-header border-0 pt-5'>
+  <div className='card-header border-0 pt-5 portal-query-summary-header'>
+    <div className='portal-query-summary-header-content'>
     <h3 className='card-title align-items-start flex-column'>
 
       <span className='card-label fw-bold fs-3 mb-1'>Resumen de Comprobantes Emitidos</span>
@@ -64,6 +66,8 @@ import moment from 'moment';
       </Link>
          
     </h3>
+    <LastQuery queryData={cpeData} />
+    </div>
 
   </div> 
 

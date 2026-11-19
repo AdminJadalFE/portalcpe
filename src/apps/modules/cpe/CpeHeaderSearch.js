@@ -16,6 +16,7 @@ import {CpeServiceGetData} from './busqueda/services/CpeService';
 import {createReporte} from '../reporte/busqueda/services/ReporteService'; 
 import Swal from 'sweetalert2';
 import { differenceInDays } from 'date-fns';
+import {PortalSectionHeader} from '../../components/PortalSectionHeader';
 
 const CpeHeaderSearch = () => {
 
@@ -152,38 +153,34 @@ const CpeHeaderSearch = () => {
 
   return (
     <>
+      <PortalSectionHeader
+        title='Consulta de Comprobantes'
+        description='Busca y revisa el detalle de tus comprobantes emitidos'
+      />
     
-      <div className='card mb-2'>
-        <div className='card-body pt-1 pb-0'>
-          <div className='d-flex flex-wrap flex-sm-nowrap mb-1'> 
-
-            <div className='flex-grow-1'>
-              <div className='d-flex justify-content-between align-items-start flex-wrap'>
-                <div className='d-flex flex-column'></div>
-
-                <div className='d-flex my-4'>  
-                  {/* <Link to='.' onClick={() => exportToExcel()}  className='btn btn-dark me-3 btn-sm'> */}
-                  <Link to='.' onClick={() => exportReport('XLS')}  className='btn btn-dark me-3 btn-sm'>
-                    Exportar CPE
-                  </Link> 
-                  <Link to='.' onClick={() => exportReport('PDF')}  className='btn btn-dark me-3 btn-sm'>
-                    Exportar PDF
-                  </Link> 
-                  <Link to='.' onClick={() => exportReport('XML')}  className='btn btn-dark me-3 btn-sm'>
-                    Exportar XML
-                  </Link> 
-                </div>
-  
+      <div className='card mb-2 mb-xl-5 portal-query-filter'>
+        <div className='card-body pt-9 pb-0'>
+          <div className='portal-query-filter-heading'>
+            <div>
+              <h2>Filtros de consulta</h2>
+              <p>Completa los filtros para obtener el listado de documentos</p>
+            </div>
+            <div className='portal-query-filter-tools'>
+              <span className='portal-filter-reset'>Limpiar filtros</span>
+              <div className='portal-query-export-actions'>
+                {/* <Link to='.' onClick={() => exportToExcel()} className='btn btn-dark btn-sm'> */}
+                <Link to='.' onClick={() => exportReport('XLS')} className='btn btn-dark btn-sm'>
+                  Exportar CPE
+                </Link>
+                <Link to='.' onClick={() => exportReport('PDF')} className='btn btn-dark btn-sm'>
+                  Exportar PDF
+                </Link>
+                <Link to='.' onClick={() => exportReport('XML')} className='btn btn-dark btn-sm'>
+                  Exportar XML
+                </Link>
               </div>
-  
             </div>
           </div>
-  
-        </div>
-      </div>
-
-      <div className='card mb-2 mb-xl-5'>
-        <div className='card-body pt-9 pb-0'>
           <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
           <form onSubmit={handleSubmit(manejarSubmit)}>  
           <div className='mb-2 fv-row'> 
@@ -330,7 +327,7 @@ const CpeHeaderSearch = () => {
               /> 
               </div>    
 
-              <div className='col'>  
+              <div className='col portal-query-submit-col'>
                 <label className='d-flex align-items-center form-label mb-3 invisible'>
                   .
                 </label>

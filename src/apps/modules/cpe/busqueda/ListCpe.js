@@ -6,16 +6,37 @@ import {useSearch} from './core/searchContext';
 import {usersColumns} from './table/_columns';
 import {useAuth} from '../../auth';
 import moment from 'moment'; 
+import {LastQuery} from '../LastQuery';
+import {PortalTableViewControl} from '../../../components/PortalTableViewControl'
 
   const ListCpe = () => { 
 
     const [loading, setLoading] = useState(false)
+    const [tableView, setTableView] = useState(() => {
+      try {
+        return window.localStorage.getItem('portalcpe-cpe-table-view') === 'scroll'
+          ? 'scroll'
+          : 'cards'
+      } catch {
+        return 'cards'
+      }
+    })
 
     const { searchCpe, setDataCpe, filterCpe } = useSearch();  
     const [cpeData, setCpeData] = useState([]); 
     const {currentEmisor} = useAuth(); 
 
     const columns = useMemo(() => usersColumns, [])
+
+    const handleTableViewChange = (nextView) => {
+      setTableView(nextView)
+
+      try {
+        window.localStorage.setItem('portalcpe-cpe-table-view', nextView)
+      } catch {
+        // Keep the control usable when browser storage is unavailable.
+      }
+    }
  
     const getProduct = async () => {  
       setLoading(false);
@@ -53,9 +74,10 @@ import moment from 'moment';
     }, [searchCpe])  
  
   return (
-  <div className={`card mb-5 mb-xl-8`}>
+  <div className={`card mb-5 mb-xl-8 portal-cpe-list`}>
   {/* begin::Header */}
   <div className='card-header border-0 pt-5'>
+    <div className='portal-cpe-list-header'>
     <h3 className='card-title align-items-start flex-column'>
 
       <span className='card-label fw-bold fs-3 mb-1'>Listado de Comprobantes</span>
@@ -71,6 +93,11 @@ import moment from 'moment';
               )
           }
     </h3>
+    <div className='portal-cpe-list-header-tools'>
+      <LastQuery queryData={cpeData} />
+      <PortalTableViewControl value={tableView} onChange={handleTableViewChange}/>
+    </div>
+    </div>
 
   </div> 
  
@@ -79,7 +106,7 @@ import moment from 'moment';
           ? 
           (  
             // <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3'> 
-              <CpesBody  cpes={cpeData} cpesColumns={columns}/>   
+            <CpesBody cpes={cpeData} cpesColumns={columns} tableView={tableView}/>
             // {/* </table>  */}
           )
           :

@@ -9,7 +9,7 @@ import {ListCpe} from './busqueda/ListCpe'
 
 const profileBreadCrumbs = [
   {
-    title: 'Busqueda',
+    title: 'Consulta de Comprobantes',
     path: '/cpe/busqueda',
     isSeparator: false,
     isActive: false,
@@ -27,7 +27,7 @@ const CpeList = () => (
     {/* <CpeHeaderOption /> */}
     <CpeHeaderSearch />
     <Outlet /> 
-    <PageTitle breadcrumbs={profileBreadCrumbs}>Busqueda</PageTitle>  
+    <PageTitle breadcrumbs={profileBreadCrumbs}>Consulta de Comprobantes</PageTitle>
     <ListCpe />   
 </>
 )

@@ -1,7 +1,11 @@
  
 const CardsWidget20 = ({className, description, color, img, cpe}) => {
 
-  const porcentajePendiente = ((cpe.pendienteCpe * 100) / cpe.totalCpe).toFixed(2)
+  const totalCpe = Number(cpe?.totalCpe) || 0
+  const pendientesCpe = Number(cpe?.pendienteCpe) || 0
+  const porcentajePendiente = totalCpe > 0
+    ? Math.min((pendientesCpe * 100) / totalCpe, 100).toFixed(2)
+    : '0.00'
  
   return(
     <div
@@ -14,7 +18,7 @@ const CardsWidget20 = ({className, description, color, img, cpe}) => {
     >
       <div className='card-header pt-5'>
         <div className='card-title d-flex flex-column'>
-          <span className='fs-2hx fw-bold text-white me-2 lh-1 ls-n2'>{cpe.totalCpe}</span>
+          <span className='fs-2hx fw-bold text-white me-2 lh-1 ls-n2'>{totalCpe}</span>
 
           <span className='text-white opacity-75 pt-1 fw-semibold fs-6'>{description}</span>
         </div>
@@ -22,7 +26,7 @@ const CardsWidget20 = ({className, description, color, img, cpe}) => {
       <div className='card-body d-flex align-items-end pt-0'>
         <div className='d-flex align-items-center flex-column mt-3 w-100'>
           <div className='d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2'>
-            <span>{cpe.pendienteCpe} Pendiente</span>
+            <span>{pendientesCpe} Pendiente{pendientesCpe === 1 ? '' : 's'}</span>
             <span>{porcentajePendiente}%</span>
           </div>
 

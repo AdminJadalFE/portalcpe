@@ -1,6 +1,7 @@
 import {FC, useEffect, useRef} from 'react'
 import {KTSVG} from '../../../helpers'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
+import {DashboardEmptyState} from './DashboardEmptyState'
   
 const CardsWidget17 = ({
   className,
@@ -52,15 +53,13 @@ const CardsWidget17 = ({
 
 
         <div className='d-flex flex-column content-justify-center flex-row-fluid'>
-          {
-            cpe.map((c,i) => (
+          {cpe?.length ? cpe.map((c,i) => (
             <div className='d-flex fw-semibold align-items-center' key={i}>
               <div className='bullet w-8px h-3px rounded-2 bg-success me-3'></div>
               <div className='text-gray-500 flex-grow-1 me-4'>{c._id == 'ERROR' ? 'REMITIDO' : c._id}</div>
               <div className='fw-bolder text-gray-700 text-xxl-end'>{c.totalCpe}</div>
             </div>
-            ))
-          }
+          )) : <DashboardEmptyState />}
 
 
         {/* <div className='d-flex flex-column content-justify-center flex-row-fluid'>

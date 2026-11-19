@@ -9,7 +9,7 @@ import {CurrencyCell} from './CurrencyCell'
 
 
 var formatDate = "YYYY-MM-DD"; 
-var formatDateTime = "YYYY-MM-DD hh:mm:ss"; 
+var formatDateTime = "YYYY-MM-DD hh:mm:ss A"; 
  
 
 const usersColumns = [   

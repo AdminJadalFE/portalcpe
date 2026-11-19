@@ -6,6 +6,7 @@ import BoletaPage from './BoletaPage'
 import GuiaPage from './GuiaPage' 
 import NotaCreditoPage from './NotaCreditoPage' 
 import SeriePage from './SeriePage' 
+import {PortalSectionHeader} from '../../components/PortalSectionHeader';
 
 const profileBreadCrumbs = [
   {
@@ -25,6 +26,10 @@ const profileBreadCrumbs = [
 const EmisionPage = () => {
   return (
     <EmisionProvider>
+      <PortalSectionHeader
+        title='Emisión Web'
+        description='Generación de comprobantes electrónicos'
+      />
       <Routes>
         <Route element={<Outlet />}>
           
@@ -32,7 +37,7 @@ const EmisionPage = () => {
             path='factura'
             element={
               <>
-                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Emisión Web</PageTitle>
                 <FacturaPage />
               </>
             }
@@ -42,7 +47,7 @@ const EmisionPage = () => {
             path='boleta'
             element={
               <>
-                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Emisión Web</PageTitle>
                 <BoletaPage />
               </>
             }
@@ -52,7 +57,7 @@ const EmisionPage = () => {
             path='notacredito'
             element={
               <>
-                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Emisión Web</PageTitle>
                 <NotaCreditoPage />
               </>
             }
@@ -62,7 +67,7 @@ const EmisionPage = () => {
             path='guia'
             element={
               <>
-                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Emisión Web</PageTitle>
                 <GuiaPage />
               </>
             }
@@ -72,7 +77,7 @@ const EmisionPage = () => {
             path='serie'
             element={
               <>
-                <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+                <PageTitle breadcrumbs={profileBreadCrumbs}>Emisión Web</PageTitle>
                 <SeriePage />
               </>
             }

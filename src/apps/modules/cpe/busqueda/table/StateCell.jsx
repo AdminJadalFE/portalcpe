@@ -44,7 +44,7 @@ const StateCell = ({ estadoCpe, id }) => {
 
   return (
     <div class="d-flex gap-2 align-items-center">{estadoCpe &&
-      <div className={estadoColor}>
+      <div className={`${estadoColor} portal-cpe-status-badge`}>
         {estadoCpe}
       </div>}
       {/*<button style={{ border: 'none', color: '#45458bda', padding: '0', lineHeight: '0', background: 'transparent' }}

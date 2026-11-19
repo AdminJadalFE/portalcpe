@@ -14,6 +14,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `npm run start:dev`
+
+Starts the portal in development mode using the local `cpe-ms` bridge at
+`http://localhost:8087/`. Start Extranet and cpe-ms before launching the
+portal. The local values are read from `.env.development.local`; copy
+`.env.example` if that file does not exist.
+
+In local mode, Auth requests are routed directly to `http://localhost:8079/`
+because the API gateway is not running. CPE and Extranet-user requests remain
+behind cpe-ms at `http://localhost:8087/`.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

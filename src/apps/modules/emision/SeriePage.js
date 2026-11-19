@@ -98,7 +98,7 @@ const SeriePage = () => {
   }, [])  
 
   return (
-    <div className='card mb-2 mb-xl-5'>
+    <div className='card mb-2 mb-xl-5 portal-serie-page'>
       <div className='card-body pt-9 pb-0'>
         <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
         <form onSubmit={handleSubmit(manejarSubmit)}>  

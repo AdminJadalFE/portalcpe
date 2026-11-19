@@ -8,9 +8,20 @@ const StateCell = ({estadoCpe}) => {
         estadoColor = 'badge badge-light-warning fw-bolder'
         break;
 
+      case "EN_PROCESO":
+      case "PROCESANDO":
+        estadoColor = 'badge badge-light-info fw-bolder'
+        break;
+
+      case "GENERADO":
       case "COMPLETADO":
         estadoColor = 'badge badge-light-success fw-bolder'
         break; 
+
+      case "ERROR":
+      case "FALLIDO":
+        estadoColor = 'badge badge-light-danger fw-bolder'
+        break;
     
       default:
         estadoColor = 'badge badge-light-secondary fw-bolder'
@@ -18,7 +29,7 @@ const StateCell = ({estadoCpe}) => {
     }
 
     return (
-      <> {estadoCpe && <div className={estadoColor}>{estadoCpe}</div>}</>
+      <> {estadoCpe && <div className={`portal-report-status ${estadoColor}`}>{estadoCpe}</div>}</>
     )
 }
 

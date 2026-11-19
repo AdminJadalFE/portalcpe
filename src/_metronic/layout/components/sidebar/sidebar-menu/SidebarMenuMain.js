@@ -18,8 +18,8 @@ const SidebarMenuMain = () => {
     })()
   }, [])
 
-  const data = JSON.parse(localStorage.getItem("data"));
-  const email = data.email;
+  const data = JSON.parse(localStorage.getItem("data") || '{}');
+  const email = data.email || data.usuario?.emailUsuario;
   
   return (
     <>
@@ -134,6 +134,15 @@ const SidebarMenuMain = () => {
             icon='/media/icons/duotune/general/com013.svg'
           /> 
       </SidebarMenuItemWithSub>
+      )}
+
+      {email !== "adm@jadalfe.pe" && (
+        <SidebarMenuItem
+          to='/usuarios-fidelizados'
+          title='Usuarios Extranet'
+          fontIcon='bi-people'
+          icon='/media/icons/duotune/communication/com014.svg'
+        />
       )}
 
     </>

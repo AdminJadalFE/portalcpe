@@ -1,12 +1,18 @@
 import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {useAuth} from '../../../../apps/modules/auth' 
-import {toAbsoluteUrl} from '../../../helpers' 
+import {confirmLogout} from '../../../../apps/modules/auth/confirmLogout'
 
 import './HeaderUserMenu.css'
 
 const HeaderUserMenu = () => {
   const {currentUser, setCurrentEmisor, emisores, logout} = useAuth(); 
+  const userName = currentUser?.nombre
+    || currentUser?.nombreUsuario
+    || currentUser?.email
+    || currentUser?.emailUsuario
+    || 'Usuario del portal'
+  const userEmail = currentUser?.email || currentUser?.emailUsuario || 'Cuenta autenticada'
 
   const setEmisorDefault = (emi) => {
     setCurrentEmisor(emi);  
@@ -14,23 +20,18 @@ const HeaderUserMenu = () => {
  
   return (
     <div
-      className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px'
+      className='menu portal-user-menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px'
       data-kt-menu='true'
     >
       <div className='menu-item px-3'>
         <div className='menu-content d-flex align-items-center px-3'>
-          <div className='symbol symbol-50px me-5'>
-            <img alt='Logo' src={toAbsoluteUrl('/media/avatars/300-31.jpg')} />
+          <div className='portal-user-menu-avatar' aria-hidden='true'>
+            <i className='bi bi-person-fill' />
           </div>
 
-          <div className='d-flex flex-column'>
-            <div className='fw-bolder d-flex align-items-center fs-5'>
-              {currentUser?.nombre}
-              
-            </div>
-            <a href='#' className='fw-bold text-muted text-hover-primary fs-7'>
-              {currentUser?.email}
-            </a>
+          <div className='portal-user-menu-identity'>
+            <div className='portal-user-menu-name'>{userName}</div>
+            <span className='portal-user-menu-email'>{userEmail}</span>
           </div>
         </div>
       </div>
@@ -39,19 +40,19 @@ const HeaderUserMenu = () => {
    
       <div
         className='menu-item px-5'
-        data-kt-menu-trigger='hover'
+        data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
         data-kt-menu-placement='left-start'
         data-kt-menu-flip='bottom' 
       >
-        <a href='#' className='menu-link px-5'>
+        <button type='button' className='menu-link px-5' onClick={(event) => event.preventDefault()}>
           <span className='menu-title'>Mis Empresas</span>
           <span className='menu-badge'>
             <span className='badge badge-light-danger badge-circle fw-bolder fs-7'>{emisores.length}</span>
           </span>
           <span className='menu-arrow'></span>
-        </a>
+        </button>
 
-        <div className='menu-sub menu-sub-dropdown w-400px py-4 contenedorEmpresas'> 
+        <div className='menu-sub menu-sub-dropdown w-400px py-4 contenedorEmpresas portal-companies-menu'>
 
           {
             emisores.map((emi,i) => ( 
@@ -75,13 +76,13 @@ const HeaderUserMenu = () => {
       </div> */}
 
       <div className='menu-item px-5'>
-        <a onClick={logout} className='menu-link px-5'>
+        <button type='button' onClick={() => confirmLogout(logout)} className='menu-link px-5'>
           Cerrar Sesión
-        </a>
+        </button>
       </div>
     </div>
   )
 }
 
 export {HeaderUserMenu}
- 
+

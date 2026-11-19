@@ -92,7 +92,7 @@ const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).fo
                     <div className='d-flex bg-light rounded border-light border border-dashed pt-4'  style={{ width: '100%' }} > 
                         <div className='d-flex flex-stack flex-grow-1 justify-content-start mx-8'> 
 
-                          <Table responsive striped bordered hover>
+                          <Table responsive striped bordered hover className='portal-emision-table portal-emision-payment-table'>
                                 <thead >
                                     <tr> 
                                       <th style={{ width: '100px'}}><h6><strong>Ítem</strong></h6></th>
@@ -107,11 +107,11 @@ const fechaActual = moment(new Date(moment(new Date()).add(5, 'h').format())).fo
                                 {
                                     datosFormaPago.map((item,i) => (
                                         <tr key={i}> 
-                                            <td style={{ width: '100px', verticalAlign : 'middle'}}>{i+1}</td>
-                                            <td style={{ width: '140px'}}><button type="submit" className="btn btn-dark btn-sm" onClick={() => FormaPagoDelete(item.codigocuota)} >Eliminar</button></td>
-                                            <td style={{ width: '200px', verticalAlign : 'middle'}}>{item.codigocuota}</td>
-                                            <td style={{ width: '200px', verticalAlign : 'middle'}}>{item.montocouta}</td>
-                                            <td style={{ width: '200px', verticalAlign : 'middle'}}>{item.fechacouta}</td> 
+                                            <td data-label='Ítem' style={{ width: '100px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{i+1}</span></td>
+                                            <td data-label='Acción' style={{ width: '140px'}}><button type="submit" className="btn btn-dark btn-sm" onClick={() => FormaPagoDelete(item.codigocuota)} >Eliminar</button></td>
+                                            <td data-label='Número Cuota' style={{ width: '200px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.codigocuota}</span></td>
+                                            <td data-label='Monto Cuota' style={{ width: '200px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.montocouta}</span></td>
+                                            <td data-label='Fecha Cuota' style={{ width: '200px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.fechacouta}</span></td>
                                         </tr>  
                                           ))
                                     }

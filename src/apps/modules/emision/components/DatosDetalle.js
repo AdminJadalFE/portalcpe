@@ -225,7 +225,7 @@ const [ icbperChecked, setIcbperChecked ] = useState(true);
                     <div className='d-flex bg-light rounded border-light border border-dashed pt-4'  style={{ width: '100%' }} > 
                         <div className='d-flex flex-stack flex-grow-1 justify-content-center mx-8'> 
 
-                          <Table responsive striped bordered hover>
+                          <Table responsive striped bordered hover className='portal-emision-table portal-emision-items-table'>
                                 <thead >
                                     <tr> 
                                       <th style={{ width: '50px'}}><h6><strong>Ítem</strong></h6></th>
@@ -244,15 +244,15 @@ const [ icbperChecked, setIcbperChecked ] = useState(true);
                                 {
                                     datosItem.map((item,i) => (
                                         <tr key={i}> 
-                                            <td style={{ width: '50px', verticalAlign : 'middle'}}>{i+1}</td>
-                                            <td style={{ width: '120px'}}><button type="submit" className="btn btn-dark btn-sm"onClick={() => ItemDelete(item.codigo)} >Eliminar</button></td>
-                                            <td style={{ width: '100px', verticalAlign : 'middle'}}>{item.codigo}</td>
-                                            <td style={{ width: '170px', verticalAlign : 'middle'}}>{item.codigoproductosunat}</td>
-                                            <td style={{ width: '400px', verticalAlign : 'middle'}}>{item.descripcion}</td>
-                                            <td style={{ width: '100px', verticalAlign : 'middle'}}>{item.unidadMedida}</td>
-                                            <td style={{ width: '80px', verticalAlign : 'middle'}}>{item.cantidad}</td>
-                                            <td style={{ width: '100px', verticalAlign : 'middle'}}>{item.precio}</td>
-                                            <td style={{ width: '100px', verticalAlign : 'middle'}}>{item.venta}</td>
+                                            <td data-label='Ítem' style={{ width: '50px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{i+1}</span></td>
+                                            <td data-label='Acción' style={{ width: '120px'}}><button type="submit" className="btn btn-dark btn-sm"onClick={() => ItemDelete(item.codigo)} >Eliminar</button></td>
+                                            <td data-label='Código' style={{ width: '100px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.codigo}</span></td>
+                                            <td data-label='Cód. Prod. Sunat' style={{ width: '170px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.codigoproductosunat}</span></td>
+                                            <td data-label='Descripción' style={{ width: '400px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.descripcion}</span></td>
+                                            <td data-label='U.M' style={{ width: '100px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.unidadMedida}</span></td>
+                                            <td data-label='Cantidad' style={{ width: '80px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.cantidad}</span></td>
+                                            <td data-label='Precio' style={{ width: '100px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.precio}</span></td>
+                                            <td data-label='Total' style={{ width: '100px', verticalAlign : 'middle'}}><span className='portal-emision-table-value'>{item.venta}</span></td>
                                         </tr>  
                                           ))
                                     }

@@ -41,10 +41,10 @@ const DatosContingencia = () => {
 
                 <Col xs="auto"> 
                     <Form.Group as={Col} controlId="formAfectacion" > 
-                      <label className='d-flex align-items-center form-label mb-3'>
+                      <label className='d-flex align-items-center form-label mb-1 mb-md-3'>
                           Contingencia
                       </label>  
-                      <div  className='d-flex align-items-center mt-5'>
+                      <div  className='d-flex align-items-center mt-0 mt-md-5 portal-emision-switch-control'>
                         <Form.Check type="switch" id="afectacion" onChange={setContingencia}/> 
                       </div>
  
@@ -53,7 +53,7 @@ const DatosContingencia = () => {
 
                   <Col xs="auto">
                     <Form.Group  controlId="formSerie" lg={2}> 
-                      <label className='d-flex align-items-center form-label mb-3'>
+                      <label className='d-flex align-items-center form-label mb-1 mb-md-3'>
                           Serie Contingencia
                       </label>  
                         <Form.Control  size="sm" type="text" placeholder="Serie" onChange={setSerieContingencia}/>
@@ -62,7 +62,7 @@ const DatosContingencia = () => {
 
                   <Col xs="auto">
                     <Form.Group  controlId="formCorrelativo" lg={2}> 
-                     <label className='d-flex align-items-center form-label mb-3'>
+                     <label className='d-flex align-items-center form-label mb-1 mb-md-3'>
                           Correlativo Contingencia
                       </label> 
                         <Form.Control  size="sm" type="text" placeholder="Correlativo" onChange={setCorrelativoContingencia}/>
@@ -71,7 +71,7 @@ const DatosContingencia = () => {
   
                   <Col xs="auto">
                     <Form.Group  controlId="formCodigoAutorizacion" lg={2}> 
-                      <label className='d-flex align-items-center form-label mb-3'>
+                      <label className='d-flex align-items-center form-label mb-1 mb-md-3'>
                         Código Autorización Sunat
                       </label>  
                         <Form.Control  size="sm" type="text" placeholder="CodigoAutorizacion" onChange={setCodigoAutorizacion}/>

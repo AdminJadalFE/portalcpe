@@ -6,6 +6,8 @@ import { useFormik } from 'formik'
 import { useAuth } from '../core/Auth'
 import { login, getEmisores } from '../services/AuthService';
 import { Link } from 'react-router-dom'
+import isotipoAzul from '../../../../assets/logos/Isotipo-Azul.png'
+import isotipoBlanco from '../../../../assets/logos/Isotipo-Blanco.png'
 import './Login.css';
 
 const loginSchema = Yup.object().shape({
@@ -27,6 +29,7 @@ const initialValues = {
 
 export function Login() {
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const { setCurrentUser, setCurrentEmisor, setEmisores } = useAuth()
 
   const formik = useFormik({
@@ -87,8 +90,22 @@ export function Login() {
       id='kt_login_signin_form'
     >
       {/* begin::Heading */}
-      <div className='text-center mb-11'>
-        <h1 className='text-dark fw-bolder mb-3'>Ingrese sus crendenciales </h1>
+      <div className='text-center mb-11 portal-login-heading'>
+        <div className='portal-login-kicker'>Portal de Facturación Electrónica</div>
+        <h1 className='text-dark fw-bolder mb-3'>Ingrese sus credenciales</h1>
+        <div className='portal-login-logo-frame'>
+          <img
+            src={isotipoAzul}
+            alt='Jadal Global Services'
+            className='portal-login-logo portal-login-logo-light'
+          />
+          <img
+            src={isotipoBlanco}
+            alt='Jadal Global Services'
+            className='portal-login-logo portal-login-logo-dark'
+          />
+        </div>
+        <p className='portal-login-subtitle'>Acceda a su portal de facturación electrónica</p>
       </div>
       {/* begin::Heading */}
 
@@ -101,20 +118,23 @@ export function Login() {
       {/* begin::Form group */}
       <div className='fv-row mb-8'>
         <label className='form-label fs-6 fw-bolder text-dark'>Correo</label>
-        <input
-          placeholder='Email'
-          {...formik.getFieldProps('email')}
-          className={clsx(
-            'form-control bg-transparent',
-            { 'is-invalid': formik.touched.email && formik.errors.email },
-            {
-              'is-valid': formik.touched.email && !formik.errors.email,
-            }
-          )}
-          type='email'
-          name='email'
-          autoComplete='on'
-        />
+        <div className='portal-input-wrap'>
+          <i className='bi bi-person portal-input-icon' aria-hidden='true' />
+          <input
+            placeholder='Email'
+            {...formik.getFieldProps('email')}
+            className={clsx(
+              'form-control bg-transparent',
+              { 'is-invalid': formik.touched.email && formik.errors.email },
+              {
+                'is-valid': formik.touched.email && !formik.errors.email,
+              }
+            )}
+            type='email'
+            name='email'
+            autoComplete='on'
+          />
+        </div>
         {formik.touched.email && formik.errors.email && (
           <div className='fv-plugins-message-container'>
             <span role='alert'>{formik.errors.email}</span>
@@ -126,20 +146,31 @@ export function Login() {
       {/* begin::Form group */}
       <div className='fv-row mb-3'>
         <label className='form-label fw-bolder text-dark fs-6 mb-0'>Contraseña</label>
-        <input
-          type='password'
-          autoComplete='off'
-          {...formik.getFieldProps('password')}
-          className={clsx(
-            'form-control bg-transparent',
-            {
-              'is-invalid': formik.touched.password && formik.errors.password,
-            },
-            {
-              'is-valid': formik.touched.password && !formik.errors.password,
-            }
-          )}
-        />
+        <div className='portal-input-wrap'>
+          <i className='bi bi-lock portal-input-icon' aria-hidden='true' />
+          <input
+            type={showPassword ? 'text' : 'password'}
+            autoComplete='off'
+            {...formik.getFieldProps('password')}
+            className={clsx(
+              'form-control bg-transparent',
+              {
+                'is-invalid': formik.touched.password && formik.errors.password,
+              },
+              {
+                'is-valid': formik.touched.password && !formik.errors.password,
+              }
+            )}
+          />
+          <button
+            type='button'
+            className='portal-password-toggle'
+            onClick={() => setShowPassword((visible) => !visible)}
+            aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+          >
+            <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} aria-hidden='true' />
+          </button>
+        </div>
         {formik.touched.password && formik.errors.password && (
           <div className='fv-plugins-message-container'>
             <div className='fv-help-block'>

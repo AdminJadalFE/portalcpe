@@ -5,8 +5,8 @@ import {StateCell} from './StateCell'
 import {DateCell} from './DateCell' 
 import {TypeCell} from './TypeCell'
 
-var formatDate = "YYYY-MM-DD"; 
-var formatDateTime = "YYYY-MM-DD hh:mm:ss"; 
+var formatDate = "DD/MM/YYYY"; 
+var formatDateTime = "DD/MM/YYYY hh:mm A"; 
  
 
 const usersColumns = [  

@@ -22,7 +22,7 @@ const CpeResume = () => (
 <> 
     <CpeResumeHeaderSearch />
     <Outlet /> 
-    <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>  
+    <PageTitle breadcrumbs={profileBreadCrumbs}>Emitidos</PageTitle>
     <ResumeCpe />  
   </>
 )

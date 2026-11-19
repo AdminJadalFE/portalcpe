@@ -7,10 +7,25 @@ import CpeResume from './CpeResume'
 import {SearchProvider} from './busqueda/core/searchContext';
  
 
-const profileBreadCrumbs = [
+const emitidosBreadCrumbs = [
   {
-    title: 'Comprobantes de Pago Electrónicos',
+    title: 'Emitidos',
     path: '/cpe',
+    isSeparator: false,
+    isActive: false,
+  },
+  {
+    title: '',
+    path: '',
+    isSeparator: true,
+    isActive: false,
+  },
+]
+
+const consultaBreadCrumbs = [
+  {
+    title: 'Consulta de Comprobantes',
+    path: '/cpe/busqueda',
     isSeparator: false,
     isActive: false,
   },
@@ -32,7 +47,7 @@ const CpePage = () => {
           path='emitidos'
           element={
             <>
-              <PageTitle breadcrumbs={profileBreadCrumbs}>Resumen</PageTitle>
+              <PageTitle breadcrumbs={emitidosBreadCrumbs}>Emitidos</PageTitle>
               <CpeResume />
             </>
           }
@@ -42,7 +57,7 @@ const CpePage = () => {
           path='busqueda'
           element={
             <>
-              <PageTitle breadcrumbs={profileBreadCrumbs}>XD</PageTitle>  
+              <PageTitle breadcrumbs={consultaBreadCrumbs}>Consulta de Comprobantes</PageTitle>
               <CpeList /> 
             </>
           }

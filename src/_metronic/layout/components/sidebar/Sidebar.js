@@ -1,15 +1,36 @@
 import clsx from 'clsx'
 import {useEffect} from 'react'
 import {ILayout, useLayout} from '../../core'
+import {DrawerComponent, ToggleComponent} from '../../../assets/ts/components'
 import {SidebarMenu} from './sidebar-menu/SidebarMenu'  
 import {SidebarLogo} from './SidebarLogo'
+import {useAuth} from '../../../../apps/modules/auth'
+import {confirmLogout} from '../../../../apps/modules/auth/confirmLogout'
 import './sidebar-menu/sidebar.css';
 
 const Sidebar = () => {
   const {config} = useLayout()
+  const {currentUser, currentEmisor, logout} = useAuth()
+  const userName = currentUser?.nombre
+    || currentUser?.nombreUsuario
+    || currentUser?.email
+    || currentUser?.emailUsuario
+    || 'Usuario'
+  const userDescription = currentUser?.email
+    || currentUser?.emailUsuario
+    || currentEmisor?.razonSocial
+    || currentEmisor?.razonSocialEmisor
+    || currentEmisor?.rucEmisor
+    || 'Portal Extranet CPE'
 
   useEffect(() => {
     updateDOM(config)
+    const toggleInitialization = setTimeout(() => {
+      ToggleComponent.reinitialization()
+      DrawerComponent.reinitialization()
+    }, 0)
+
+    return () => clearTimeout(toggleInitialization)
   }, [config])
 
   if (!config.app?.sidebar?.display) {
@@ -20,6 +41,24 @@ const Sidebar = () => {
     <div id='kt_app_sidebar' className={clsx('app-sidebar', config.app?.sidebar?.default?.class)}>
       <SidebarLogo />
       <SidebarMenu />
+      <div className='app-sidebar-user' id='kt_app_sidebar_user'>
+        <div className='app-sidebar-user-avatar' aria-hidden='true'>
+          <i className='bi bi-person-fill' />
+        </div>
+        <div className='app-sidebar-user-copy'>
+          <strong>{userName}</strong>
+          <span>{userDescription}</span>
+        </div>
+        <button
+          type='button'
+          className='app-sidebar-logout'
+          onClick={() => confirmLogout(logout)}
+          aria-label='Cerrar sesión'
+          title='Cerrar sesión'
+        >
+          <i className='bi bi-box-arrow-right' aria-hidden='true' />
+        </button>
+      </div>
     </div>
   )
 }

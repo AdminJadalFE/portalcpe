@@ -9,7 +9,7 @@ const Footer = () => {
   }, [config])
   return (
     <>
-      <div className='text-dark order-2 order-md-1'>
+      <div className='portal-footer-content text-dark order-2 order-md-1'>
         <span className='text-muted fw-semibold me-1'>
           {new Date().getFullYear().toString()}&copy;
         </span>

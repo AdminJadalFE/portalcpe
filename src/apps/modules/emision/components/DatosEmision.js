@@ -107,7 +107,7 @@ const DatosEmision = ({tipoCpe}) => {
           <Row className="mb-3">
             <Col xs="auto">
               <Form.Group as={Col} controlId="formFechaCpe">
-                <label className="d-flex align-items-center form-label mb-3">
+                <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                   Fecha Emisión
                 </label>
                 <Form.Control
@@ -121,7 +121,7 @@ const DatosEmision = ({tipoCpe}) => {
             {tipoCpe === "09" ? (
               <Col xs="auto">
                 <Form.Group as={Col} controlId="formFechaCpe">
-                  <label className="d-flex align-items-center form-label mb-3">
+                  <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                     Hora de Emisión
                   </label>
                   <Form.Control
@@ -136,7 +136,7 @@ const DatosEmision = ({tipoCpe}) => {
               <>
                 <Col xs="auto">
                   <Form.Group as={Col} controlId="formFechaVencimiento">
-                    <label className="d-flex align-items-center form-label mb-3">
+                    <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Fecha Vencimiento
                     </label>
                     <Form.Control
@@ -149,7 +149,7 @@ const DatosEmision = ({tipoCpe}) => {
                 </Col>
                 <Col xs="auto">
                   <Form.Group as={Col} controlId="formGridMoneda">
-                    <Form.Label className="d-flex align-items-center form-label mb-3">
+                    <Form.Label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Moneda
                     </Form.Label>
                     <Form.Select
@@ -167,7 +167,7 @@ const DatosEmision = ({tipoCpe}) => {
                 </Col>
                 <Col xs="auto">
                   <Form.Group as={Col} controlId="formGridTipoAfectacion">
-                    <Form.Label className="d-flex align-items-center form-label mb-3">
+                    <Form.Label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Tipo Afectacion
                     </Form.Label>
                     <Form.Select
@@ -188,7 +188,7 @@ const DatosEmision = ({tipoCpe}) => {
             {tipoCpe == "01" ? (
               <Col xs="auto">
                 <Form.Group as={Col} controlId="formGridEmail">
-                  <label className="d-flex align-items-center form-label mb-3">
+                  <label className="d-flex align-items-center form-label mb-1 mb-md-3">
                     Forma Pago
                   </label>
                   <Form.Select
@@ -213,10 +213,10 @@ const DatosEmision = ({tipoCpe}) => {
               <>
                 <Col xs="auto">
                   <Form.Group as={Col} controlId="formAfectacionIGV">
-                    <Form.Label className="d-flex align-items-center form-label mb-3">
+                    <Form.Label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Afectación IGV
                     </Form.Label>
-                    <div className="d-flex align-items-center mt-5">
+                    <div className="d-flex align-items-center mt-0 mt-md-5 portal-emision-switch-control">
                       <Form.Check
                         type="switch"
                         id="afectacion"
@@ -230,7 +230,7 @@ const DatosEmision = ({tipoCpe}) => {
 
                 <Col xs="auto">
                   <Form.Group as={Col} controlId="formPorcentajeIGV">
-                    <Form.Label className="d-flex align-items-center form-label mb-3">
+                    <Form.Label className="d-flex align-items-center form-label mb-1 mb-md-3">
                       Porcentaje IGV
                     </Form.Label>
                     <Form.Control

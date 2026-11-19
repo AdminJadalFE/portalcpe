@@ -8,7 +8,7 @@ import {MasterInit} from './_metronic/layout/MasterInit'
 import { pdfjs } from 'react-pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
-
+ 
 const App = () => {
   return (
     <Suspense>
