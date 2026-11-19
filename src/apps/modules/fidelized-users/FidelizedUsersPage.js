@@ -223,8 +223,10 @@ const mapLookupDataToForm = (data = {}, tipoDocumento) => {
   }
 }
 
+const EXTRANET_PORTAL_URL = 'https://clientes.jadal.pe/'
+
 const buildCredentialsText = ({usuario, password}) =>
-  `\uFEFFJADAL GLOBAL SERVICE Portal Extranet CPE\r\n\r\nUsuario: ${usuario ?? ''}\r\nContraseña: ${password ?? ''}\r\n`
+  `\uFEFFJADAL GLOBAL SERVICE Portal Extranet CPE\r\n\r\nPORTAL EXTRANET: ${EXTRANET_PORTAL_URL}\r\nUsuario: ${usuario ?? ''}\r\nContraseña: ${password ?? ''}\r\n`
 
 const downloadCredentialsText = ({documento, usuario, password}) => {
   const safeDocument = String(documento || 'usuario').replace(/[^a-zA-Z0-9_-]/g, '') || 'usuario'

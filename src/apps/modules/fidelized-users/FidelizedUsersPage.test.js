@@ -258,7 +258,7 @@ describe('FidelizedUsersPage', () => {
 
   test('builds the final-user text with title and labeled credentials', () => {
     expect(buildCredentialsText({usuario: 'EMPRESA-DEMO-0001', password: 'Password123!'})).toBe(
-      '\uFEFFJADAL GLOBAL SERVICE Portal Extranet CPE\r\n\r\nUsuario: EMPRESA-DEMO-0001\r\nContraseña: Password123!\r\n',
+      '\uFEFFJADAL GLOBAL SERVICE Portal Extranet CPE\r\n\r\nPORTAL EXTRANET: https://clientes.jadal.pe/\r\nUsuario: EMPRESA-DEMO-0001\r\nContraseña: Password123!\r\n',
     )
   })
 
