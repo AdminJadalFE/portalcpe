@@ -1851,18 +1851,25 @@ html[data-portal-theme='dark'] .fidelized-users-page .fidelized-user-action {
 }
 
 html[data-portal-theme='dark'] .btn-light:hover,
+html[data-portal-theme='dark'] .btn-light:focus,
 html[data-portal-theme='dark'] .btn-light:focus-visible,
 html[data-portal-theme='dark'] .btn-light-primary:hover,
+html[data-portal-theme='dark'] .btn-light-primary:focus,
 html[data-portal-theme='dark'] .btn-light-primary:focus-visible,
 html[data-portal-theme='dark'] .btn-bg-light:hover,
+html[data-portal-theme='dark'] .btn-bg-light:focus,
 html[data-portal-theme='dark'] .btn-bg-light:focus-visible,
 html[data-portal-theme='dark'] .btn-active-light:hover,
+html[data-portal-theme='dark'] .btn-active-light:focus,
 html[data-portal-theme='dark'] .btn-active-light:focus-visible,
 html[data-portal-theme='dark'] .btn-active-light-primary:hover,
+html[data-portal-theme='dark'] .btn-active-light-primary:focus,
 html[data-portal-theme='dark'] .btn-active-light-primary:focus-visible,
 html[data-portal-theme='dark'] .fidelized-users-refresh:hover,
+html[data-portal-theme='dark'] .fidelized-users-refresh:focus,
 html[data-portal-theme='dark'] .fidelized-users-refresh:focus-visible,
 html[data-portal-theme='dark'] .fidelized-users-page .fidelized-user-action:hover,
+html[data-portal-theme='dark'] .fidelized-users-page .fidelized-user-action:focus,
 html[data-portal-theme='dark'] .fidelized-users-page .fidelized-user-action:focus-visible {
   color: #55c0fa !important;
   border-color: #5b5673 !important;
@@ -1878,6 +1885,7 @@ html[data-portal-theme='dark'] .btn.btn-primary {
 }
 
 html[data-portal-theme='dark'] .btn-primary:hover,
+html[data-portal-theme='dark'] .btn-primary:focus,
 html[data-portal-theme='dark'] .btn-primary:focus-visible {
   color: #fff !important;
   border-color: #19aafa !important;
@@ -1894,16 +1902,21 @@ html[data-portal-theme='dark'] .portal-query-actions .btn-dark {
 }
 
 html[data-portal-theme='dark'] .btn-dark:hover,
+html[data-portal-theme='dark'] .btn-dark:focus,
 html[data-portal-theme='dark'] .btn-dark:focus-visible,
 html[data-portal-theme='dark'] .portal-emision-page .btn-dark:hover,
+html[data-portal-theme='dark'] .portal-emision-page .btn-dark:focus,
 html[data-portal-theme='dark'] .portal-query-filter .btn-dark:hover,
-html[data-portal-theme='dark'] .portal-query-actions .btn-dark:hover {
+html[data-portal-theme='dark'] .portal-query-filter .btn-dark:focus,
+html[data-portal-theme='dark'] .portal-query-actions .btn-dark:hover,
+html[data-portal-theme='dark'] .portal-query-actions .btn-dark:focus {
   color: #fff !important;
   border-color: #193575 !important;
   background: #193575 !important;
 }
 
 html[data-portal-theme='dark'] .btn-danger:hover,
+html[data-portal-theme='dark'] .btn-danger:focus,
 html[data-portal-theme='dark'] .btn-danger:focus-visible {
   color: #fff !important;
   border-color: #d9365f !important;
@@ -2775,7 +2788,9 @@ html[data-portal-theme='dark'] .portal-chart-refresh:focus-visible {
 }
 
 .portal-emision-page .btn-dark:hover,
+.portal-emision-page .btn-dark:focus,
 .portal-query-filter .btn-dark:hover,
+.portal-query-filter .btn-dark:focus,
 .portal-query-actions .btn-dark:hover {
   background: #101f55 !important;
 }
@@ -3632,6 +3647,7 @@ html[data-portal-theme='dark'] .portal-chart-refresh:focus-visible {
 }
 
 .portal-cpe-list .portal-report-refresh:hover,
+.portal-cpe-list .portal-report-refresh:focus,
 .portal-cpe-list .portal-report-refresh:focus-visible {
   border-color: #193575 !important;
   color: #fff !important;
@@ -3728,6 +3744,7 @@ html[data-portal-theme='dark'] .portal-cpe-list .portal-report-status.badge-ligh
 }
 
 .portal-cpe-list #kt_table_users_paginate button.page-link:hover:not(:disabled),
+.portal-cpe-list #kt_table_users_paginate button.page-link:focus:not(:disabled),
 .portal-cpe-list #kt_table_users_paginate button.page-link:focus-visible {
   color: var(--portal-primary) !important;
 }
@@ -4727,6 +4744,7 @@ html[data-portal-theme='dark'] .portal-cpe-list .dataTable td[data-label='Opcion
 }
 
 html[data-portal-theme='dark'] .portal-cpe-list .dataTable td[data-label='Opciones'] > .portal-table-cell-value > .btn:hover,
+html[data-portal-theme='dark'] .portal-cpe-list .dataTable td[data-label='Opciones'] > .portal-table-cell-value > .btn:focus,
 html[data-portal-theme='dark'] .portal-cpe-list .dataTable td[data-label='Opciones'] > .portal-table-cell-value > .btn:focus-visible {
   color: #e2e0ef !important;
   border-color: #5b5673 !important;
@@ -5260,6 +5278,7 @@ html[data-portal-theme='dark'] .portal-cpe-list .dataTable td[data-label='Opcion
 }
 
 html[data-portal-theme='dark'] .portal-cpe-list .dataTable td[data-label='Opciones'] > .portal-table-cell-value > .portal-summary-actions > .portal-summary-action:hover,
+html[data-portal-theme='dark'] .portal-cpe-list .dataTable td[data-label='Opciones'] > .portal-table-cell-value > .portal-summary-actions > .portal-summary-action:focus,
 html[data-portal-theme='dark'] .portal-cpe-list .dataTable td[data-label='Opciones'] > .portal-table-cell-value > .portal-summary-actions > .portal-summary-action:focus-visible {
   border-color: #6c91b8 !important;
   color: #e5f1ff !important;
