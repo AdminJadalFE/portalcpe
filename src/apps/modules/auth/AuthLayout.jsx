@@ -33,7 +33,7 @@ const AuthLayout = () => {
             </a>
             <br /><br />
             También puede consultar nuestro Portal de{' '}
-            <a href='https://www.visortest.jadal.pe' target='_blank' rel='noreferrer'>
+            <a href='https://www.visor.jadal.pe' target='_blank' rel='noreferrer'>
               Consulta Pública de Comprobantes
             </a>
           </div>
@@ -74,7 +74,7 @@ const AuthLayout = () => {
             </p>
             <p>
               También puede consultar nuestro Portal de{' '}
-              <a href='https://www.visortest.jadal.pe' target='_blank' rel='noreferrer'>
+              <a href='https://www.visor.jadal.pe' target='_blank' rel='noreferrer'>
                 Consulta Pública de Comprobantes
               </a>
             </p>
